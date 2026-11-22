@@ -81,3 +81,17 @@ side-by-side at 1440px, tablet (1024) and phone (375).
 
 Exact component split, CSS file organisation, Swiper configuration details, and how closely to
 match sub-pixel spacing — target is "indistinguishable at a glance" side by side.
+
+## Phase 2 inputs (received 2026-11-22, not part of phase 1)
+
+From the edoncreate.com session, at Eduardo's request — see `docs/handoff/`:
+
+- **Visual direction: "Spotlight orange"** (`docs/handoff/2026-11-22-visual-direction-from-edoncreate.md`,
+  mockups `v2-spotlight-orange-{dark,light}.jpg`). Near-black `#0f0f10` / off-white `#f4f4f1`,
+  accent `#ff5b1f` (light `#ee4a0a`); Inter Tight 900 headline, Space Mono labels, Manrope body;
+  4-column grid with visible lines, orange-tinted halftone portrait, chapter dots, bottom data row,
+  "Enter with sound" pill + BPM readout. Take the visual system, not the mockup copy.
+- **Sibling of edoncreate.com:** same system, different accent/headline font; keep tokens and
+  components portable between the two repos.
+- **Stack change:** Eduardo plans to move ed8125 to **Next.js (App Router)** in phase 2, matching
+  edoncreate. Phase 1 stays on Vite as approved; content in `src/data/*` and components port as-is.
