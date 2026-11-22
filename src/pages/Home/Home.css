@@ -562,3 +562,22 @@
     width: 100%;
   }
 }
+
+/* ---------- Footer clearance for the bottom tab bar (< 910px) ---------- */
+@media (max-width: 909px) {
+  .home + .site-footer {
+    padding-bottom: 70px;
+  }
+}
+
+@media (max-width: 767px) {
+  .home + .site-footer {
+    padding-bottom: 71px;
+  }
+}
+
+@media (max-width: 600px) {
+  .home + .site-footer {
+    padding-bottom: 47px;
+  }
+}
