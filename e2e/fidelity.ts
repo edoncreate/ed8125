@@ -1,4 +1,5 @@
 import { expect, test, type Page } from '@playwright/test'
+import { mkdirSync, writeFileSync } from 'node:fs'
 
 export const APP = 'http://localhost:5173'
 export const REF = 'http://localhost:8125'
@@ -14,7 +15,15 @@ export type Landmark = {
   text?: boolean
 }
 
-type Measure = { x: number; y: number; w: number; h: number; fontSize: string; color: string } | null
+type Measure = {
+  x: number
+  y: number
+  w: number
+  h: number
+  fontSize: string
+  color: string
+  style: Record<string, string>
+} | null
 
 const FREEZE = `*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
 .elementor-invisible{visibility:visible!important}`
@@ -43,6 +52,16 @@ async function measure(page: Page, selector: string): Promise<Measure> {
       h: Math.round(r.height),
       fontSize: c.fontSize,
       color: c.color,
+      style: {
+        font: `${c.fontWeight} ${c.fontSize}/${c.lineHeight} ${c.fontFamily.split(',')[0]}`,
+        ls: c.letterSpacing,
+        tt: c.textTransform,
+        margin: c.margin,
+        padding: c.padding,
+        bg: c.backgroundColor,
+        radius: c.borderRadius,
+        align: c.textAlign,
+      },
     }
   }, selector)
 }
@@ -60,18 +79,28 @@ export async function compareLandmarks(page: Page, path: string, landmarks: Land
     await prepare(page, APP + path)
 
     const info = test.info()
-    await info.attach(`ref${path.replace(/\//g, '_')}.png`, {
-      body: await refPage.screenshot({ fullPage: true }),
-      contentType: 'image/png',
-    })
-    await info.attach(`app${path.replace(/\//g, '_')}.png`, {
-      body: await page.screenshot({ fullPage: true }),
-      contentType: 'image/png',
-    })
+    for (const [label, p] of [['ref', refPage], ['app', page]] as const) {
+      try {
+        await info.attach(`${label}${path.replace(/\//g, '_')}.png`, {
+          body: await p.screenshot({ fullPage: true, timeout: 15_000 }),
+          contentType: 'image/png',
+        })
+      } catch (err) {
+        // Screenshots are review aids; a capture failure must not hide the measurements.
+        console.warn(`${label} screenshot failed: ${(err as Error).message.split('\n')[0]}`)
+      }
+    }
 
+    const report: Record<string, unknown>[] = []
     for (const lm of landmarks) {
       const r = await measure(refPage, lm.ref)
       const a = await measure(page, lm.app)
+      report.push({
+        name: lm.name,
+        delta: r && a ? { x: a.x - r.x, y: a.y - r.y, w: a.w - r.w, h: a.h - r.h } : null,
+        ref: r,
+        app: a,
+      })
       expect.soft(r, `${lm.name}: reference selector ${lm.ref} not found`).not.toBeNull()
       expect.soft(a, `${lm.name}: app selector ${lm.app} not found`).not.toBeNull()
       if (!r || !a) continue
@@ -84,6 +113,12 @@ export async function compareLandmarks(page: Page, path: string, landmarks: Land
         expect.soft(a.fontSize, `${lm.name}.fontSize`).toBe(r.fontSize)
         expect.soft(a.color, `${lm.name}.color`).toBe(r.color)
       }
+    }
+    // FIDELITY_REPORT=1 writes every measurement for tuning.
+    if (process.env.FIDELITY_REPORT) {
+      const file = `test-results/fidelity-${info.project.name}${path.replace(/\//g, '_')}.json`
+      mkdirSync('test-results', { recursive: true })
+      writeFileSync(file, JSON.stringify(report, null, 1))
     }
   } finally {
     await refPage.close()

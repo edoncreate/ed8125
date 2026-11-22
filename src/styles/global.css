@@ -98,3 +98,56 @@ button {
   max-width: var(--container);
   margin: 0 auto;
 }
+
+.container--padded {
+  padding: 10px;
+}
+
+/* Section headings: Bebas 48px (40px ≤1024), 20px padding + 20px widget gap below. */
+.section-heading {
+  margin-bottom: 40px;
+  font-family: var(--f-display);
+  font-size: 48px;
+  font-weight: 600;
+  line-height: 1;
+  color: var(--c-white);
+}
+
+.section-heading--gold {
+  color: var(--c-gold);
+}
+
+/* Gold LISTEN button (Elementor button widget). */
+.button {
+  display: inline-block;
+  padding: 15px 40px;
+  border-radius: var(--radius-btn);
+  background-color: var(--c-gold);
+  color: var(--c-white);
+  font-family: var(--f-body);
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1;
+  fill: var(--c-white);
+  transition: all 0.3s;
+}
+
+.button:focus-visible {
+  background-color: #bc8100;
+}
+
+@media (max-width: 1024px) {
+  .section {
+    padding: 80px 30px;
+  }
+
+  .section-heading {
+    font-size: 40px;
+  }
+}
+
+@media (max-width: 767px) {
+  .section {
+    padding: 40px 15px;
+  }
+}

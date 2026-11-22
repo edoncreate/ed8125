@@ -144,15 +144,15 @@
     "dest": "img/bio-bg.png"
   },
   {
-    "src": "2021/02/banner-release.png",
+    "src": "2021/02/banner-release-768x768.png",
     "dest": "img/mad-banner.png"
   },
   {
-    "src": "2020/09/front-cover.png",
+    "src": "2020/09/front-cover-768x768.png",
     "dest": "img/brasil-front.png"
   },
   {
-    "src": "2020/09/back-cover.png",
+    "src": "2020/09/back-cover-768x768.png",
     "dest": "img/brasil-back.png"
   },
   {

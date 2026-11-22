@@ -30,7 +30,7 @@ export function BeatsCarousel({ items, className, ...rest }: Props) {
       {items.map((item) => (
         <SwiperSlide key={item.cover}>
           <Link to={item.href} className="carousel__link">
-            <img className="carousel__img" src={item.cover} alt={item.alt} loading="lazy" />
+            <img className="carousel__img" src={item.cover} alt={item.alt} width={560} height={560} loading="lazy" />
           </Link>
         </SwiperSlide>
       ))}

@@ -31,7 +31,7 @@ export function CoverSlider({ images, className, ...rest }: Props) {
     >
       {images.map((img) => (
         <SwiperSlide key={img.src}>
-          <img className="carousel__img" src={img.src} alt={img.alt} />
+          <img className="carousel__img" src={img.src} alt={img.alt} width={img.width} height={img.height} />
         </SwiperSlide>
       ))}
     </Swiper>

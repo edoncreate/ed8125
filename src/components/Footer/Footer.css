@@ -3,7 +3,7 @@
 }
 
 .site-footer .container {
-  padding: 10px;
+  padding: 25px 10px;
 }
 
 .site-footer__text {
@@ -13,7 +13,6 @@
   line-height: 24.1429px;
   text-align: center;
   color: var(--c-white);
-  padding: 15px 0;
 }
 
 .site-footer__text a {

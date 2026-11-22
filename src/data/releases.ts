@@ -4,7 +4,7 @@ export const newBeat: Release = {
   label: 'NEW BEAT',
   title: 'MAD',
   href: '/latest-beats/',
-  images: [{ src: '/media/img/mad-banner.png', alt: 'banner-release' }],
+  images: [{ src: '/media/img/mad-banner.png', alt: 'banner-release', width: 768, height: 768 }],
 }
 
 export const album: Release = {
@@ -15,8 +15,8 @@ export const album: Release = {
     'This album tell us about a love story between two people.  Since the time they met until the day they drifted apart.',
   href: '/brasil-com-amor/',
   images: [
-    { src: '/media/img/brasil-front.png', alt: 'front-cover' },
-    { src: '/media/img/brasil-back.png', alt: 'back-cover' },
+    { src: '/media/img/brasil-front.png', alt: 'front-cover', width: 768, height: 768 },
+    { src: '/media/img/brasil-back.png', alt: 'back-cover', width: 768, height: 768 },
   ],
 }
 
@@ -24,6 +24,8 @@ export const album: Release = {
 export const albumBanner: Image = {
   src: '/media/img/brasil-banner.png',
   alt: 'art-web-bannerbanner-brasil-com-amor',
+  width: 1200,
+  height: 641,
 }
 
 const cover = (slug: string, alt: string): CoverLink => ({

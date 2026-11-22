@@ -80,8 +80,19 @@
   background-color: var(--c-black);
 }
 
+/* Scrolled: HOME becomes a plain item; only the section in view stays gold. */
 .is-scrolled .site-nav .site-nav__item--home a {
+  color: var(--c-white);
   background-color: transparent;
+}
+
+.is-scrolled .site-nav .site-nav__item--home a.is-active {
+  color: var(--c-gold);
+}
+
+.is-scrolled .site-nav .site-nav__item--home a:hover {
+  color: var(--c-black);
+  background-color: var(--c-white);
 }
 
 /* --- social icons --- */

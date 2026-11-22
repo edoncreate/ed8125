@@ -3,7 +3,6 @@ import { useHashScroll } from './hooks/useHashScroll'
 import { AlbumPage } from './pages/AlbumPage'
 import { Home } from './pages/Home/Home'
 import { LatestBeatsPage } from './pages/LatestBeatsPage'
-import './styles/global.css'
 
 export function AppRoutes() {
   useHashScroll()
