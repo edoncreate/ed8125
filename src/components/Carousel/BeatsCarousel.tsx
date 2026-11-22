@@ -1,9 +1,10 @@
 import { Link } from 'react-router-dom'
-import { Autoplay, Pagination } from 'swiper/modules'
+import { A11y, Autoplay, Pagination } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import type { CoverLink } from '../../data/types'
 import 'swiper/css'
 import 'swiper/css/pagination'
+import 'swiper/css/a11y'
 import './Carousel.css'
 
 type Props = {
@@ -17,7 +18,7 @@ export function BeatsCarousel({ items, className, ...rest }: Props) {
   return (
     <Swiper
       className={['carousel', 'carousel--beats', className].filter(Boolean).join(' ')}
-      modules={[Pagination, Autoplay]}
+      modules={[A11y, Pagination, Autoplay]}
       slidesPerView={2}
       spaceBetween={20}
       breakpoints={{ 768: { slidesPerView: 4 }, 1025: { slidesPerView: 5 } }}

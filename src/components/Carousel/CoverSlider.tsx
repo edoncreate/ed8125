@@ -1,8 +1,9 @@
-import { Autoplay, Pagination } from 'swiper/modules'
+import { A11y, Autoplay, Pagination } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import type { Image } from '../../data/types'
 import 'swiper/css'
 import 'swiper/css/pagination'
+import 'swiper/css/a11y'
 import './Carousel.css'
 
 type Props = {
@@ -20,7 +21,7 @@ export function CoverSlider({ images, className, ...rest }: Props) {
   return (
     <Swiper
       className={['carousel', 'carousel--single', className].filter(Boolean).join(' ')}
-      modules={[Pagination, Autoplay]}
+      modules={[A11y, Pagination, Autoplay]}
       slidesPerView={1}
       speed={500}
       loop={multiple}
