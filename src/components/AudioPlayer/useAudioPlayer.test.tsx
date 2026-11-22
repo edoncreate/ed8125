@@ -115,6 +115,28 @@ describe('useAudioPlayer', () => {
     expect(api.error).toBeNull()
   })
 
+  it('an error is cleared when moving on with next()', async () => {
+    render(<Harness />)
+    await act(async () => fireEvent(audio(), new Event('error')))
+    expect(api.error).not.toBeNull()
+    await act(async () => api.next())
+    expect(api.index).toBe(1)
+    expect(api.error).toBeNull()
+  })
+
+  it('pressing play on a failed track reloads it and retries', async () => {
+    render(<Harness />)
+    await act(async () => fireEvent(audio(), new Event('error')))
+    const load = HTMLMediaElement.prototype.load as unknown as ReturnType<typeof vi.fn>
+    load.mockClear()
+    play().mockClear()
+    await act(async () => api.toggle())
+    expect(load).toHaveBeenCalledTimes(1)
+    expect(play()).toHaveBeenCalledTimes(1)
+    expect(api.error).toBeNull()
+    expect(api.playing).toBe(true)
+  })
+
   it('tracks time and duration from media events', async () => {
     render(<Harness />)
     Object.defineProperty(audio(), 'duration', { configurable: true, value: 202.8 })

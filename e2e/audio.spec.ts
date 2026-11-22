@@ -40,6 +40,13 @@ test('a missing mp3 shows an error instead of stalling', async ({ page }) => {
   await page.getByRole('button', { name: 'Play' }).click()
   await expect(page.getByRole('status')).toHaveText('This track could not be played.')
   await expect(page.getByRole('button', { name: 'Play' })).toBeVisible()
+  // The message must not sit on top of the tracklist.
+  const status = (await page.getByRole('status').boundingBox())!
+  const firstRow = (await page.getByRole('list', { name: 'Tracklist' }).getByRole('listitem').first().boundingBox())!
+  expect(status.y + status.height).toBeLessThanOrEqual(firstRow.y)
+  // Moving on clears the stale message.
+  await page.getByRole('button', { name: 'Next track' }).click()
+  await expect(page.getByRole('status')).toHaveCount(0)
 })
 
 for (const path of ['/latest-beats', '/latest-beats/', '/brasil-com-amor']) {

@@ -37,9 +37,9 @@ export function useAudioPlayer(tracks: Track[], { cycle }: { cycle: boolean }): 
   const [error, setError] = useState<string | null>(null)
 
   // Latest values for event handlers registered once.
-  const live = useRef({ index, playing, loop, cycle, count: tracks.length })
+  const live = useRef({ index, playing, loop, cycle, count: tracks.length, failed: false })
   useLayoutEffect(() => {
-    live.current = { index, playing, loop, cycle, count: tracks.length }
+    live.current = { index, playing, loop, cycle, count: tracks.length, failed: error !== null }
   })
   /** Start playback once the next track's src is in place. */
   const playOnChange = useRef(false)
@@ -111,6 +111,7 @@ export function useAudioPlayer(tracks: Track[], { cycle }: { cycle: boolean }): 
     }
     setCurrentTime(0)
     setDuration(0)
+    setError(null)
     if (playOnChange.current) {
       playOnChange.current = false
       safePlay()
@@ -120,8 +121,16 @@ export function useAudioPlayer(tracks: Track[], { cycle }: { cycle: boolean }): 
   const toggle = useCallback(() => {
     const el = audioRef.current
     if (!el) return
-    if (live.current.playing) el.pause()
-    else safePlay()
+    if (live.current.playing) {
+      el.pause()
+      return
+    }
+    if (live.current.failed) {
+      // Retry a track that failed to load (e.g. a transient network error).
+      setError(null)
+      el.load()
+    }
+    safePlay()
   }, [safePlay])
 
   const select = useCallback(

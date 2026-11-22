@@ -117,13 +117,14 @@ export function AudioPlayer({ playlist }: { playlist: Playlist }) {
               </button>
             )}
           </div>
-          {p.error && (
-            <p className="player__error" role="status">
-              {p.error}
-            </p>
-          )}
         </div>
       </div>
+
+      {p.error && (
+        <p className="player__error" role="status">
+          {p.error}
+        </p>
+      )}
 
       <ul className="player__tracklist" aria-label="Tracklist">
         {items.map((item, i) => {

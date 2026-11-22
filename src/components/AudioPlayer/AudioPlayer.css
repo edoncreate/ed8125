@@ -223,7 +223,7 @@
 }
 
 .player__error {
-  margin-top: 8px;
+  margin-top: 20px;
   font-size: 13px;
   color: var(--c-gold);
 }
