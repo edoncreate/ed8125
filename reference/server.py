@@ -6,13 +6,16 @@ its real CSS. Emulates the one dynamic endpoint the pages need: AudioIgniter's
 playlist JSON (/?audioigniter_playlist_id=N). The original playlists lived in
 the lost WordPress database, so tracklists are rebuilt from the mp3 files.
 
-PHP is never executed, and .php files are refused (the install is compromised).
+PHP is never executed. Only static assets (css/js/images/fonts/mp3) inside
+wp-content/ and wp-includes/ are served; paths are decoded and confined by realpath,
+and directory listings are disabled (the install is compromised).
 
 Run:  npm run ref            (python3 -I reference/server.py)
 Env:  ED8125_FTP=/path/to/ftp/ed8125   (default below)
 """
 import json
 import os
+import posixpath
 import re
 import unicodedata
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
@@ -92,6 +95,27 @@ def beats_123():
 
 PLAYLISTS = {"483": album_483, "123": beats_123}
 
+# Only static assets leave the (compromised) FTP copy: no PHP, configs, readmes,
+# dotfiles or anything else that could disclose secrets.
+STATIC_EXTENSIONS = {
+    ".css", ".js", ".png", ".jpg", ".jpeg", ".gif", ".svg", ".webp", ".ico",
+    ".woff", ".woff2", ".ttf", ".eot", ".mp3",
+}
+FTP_ROOTS = tuple(os.path.realpath(os.path.join(FTP, d)) + os.sep for d in ("wp-content", "wp-includes"))
+
+
+def ftp_asset_path(clean_url_path):
+    """Real file path for a decoded, normalised /wp-content|/wp-includes URL path,
+    or None unless it is an existing static asset inside those two folders."""
+    full = os.path.realpath(os.path.join(FTP, clean_url_path.lstrip("/")))
+    if not full.startswith(FTP_ROOTS):
+        return None
+    if os.path.splitext(full)[1].lower() not in STATIC_EXTENSIONS:
+        return None
+    if not os.path.isfile(full):
+        return None
+    return full
+
 
 class Handler(SimpleHTTPRequestHandler):
     def __init__(self, *a, **kw):
@@ -107,17 +131,20 @@ class Handler(SimpleHTTPRequestHandler):
         super().end_headers()
 
     def translate_path(self, path):
-        clean = unquote(urlsplit(path).path)
+        clean = posixpath.normpath(unquote(urlsplit(path).path))
         if clean.startswith(FTP_PREFIXES):
-            full = os.path.normpath(os.path.join(FTP, clean.lstrip("/")))
-            if full.startswith(os.path.normpath(FTP) + os.sep):
-                return full
+            return ftp_asset_path(clean) or os.devnull
         return super().translate_path(path)
+
+    def list_directory(self, path):
+        self.send_error(404, "Directory listings are disabled")
+        return None
 
     def do_GET(self):
         split = urlsplit(self.path)
-        if split.path.lower().endswith(".php"):
-            self.send_error(403, "PHP is not served")
+        clean = posixpath.normpath(unquote(split.path))
+        if clean.startswith(FTP_PREFIXES) and ftp_asset_path(clean) is None:
+            self.send_error(403, "Not served from the FTP copy")
             return
         pid = (parse_qs(split.query).get("audioigniter_playlist_id") or [None])[0]
         if pid is not None:
