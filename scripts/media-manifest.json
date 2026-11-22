@@ -1,0 +1,198 @@
+[
+  {
+    "src": "2020/09/01-Bloco.mp3",
+    "dest": "audio/brasil-com-amor/01-bloco.mp3"
+  },
+  {
+    "src": "2020/09/02-Carnaval.mp3",
+    "dest": "audio/brasil-com-amor/02-carnaval.mp3"
+  },
+  {
+    "src": "2020/09/03-Amor-à-primeira-vista.mp3",
+    "dest": "audio/brasil-com-amor/03-amor-a-primeira-vista.mp3"
+  },
+  {
+    "src": "2020/09/04-Me-beija.mp3",
+    "dest": "audio/brasil-com-amor/04-me-beija.mp3"
+  },
+  {
+    "src": "2020/09/05-Nosso-samba.mp3",
+    "dest": "audio/brasil-com-amor/05-nosso-samba.mp3"
+  },
+  {
+    "src": "2020/09/06-Será-Você.mp3",
+    "dest": "audio/brasil-com-amor/06-sera-voce.mp3"
+  },
+  {
+    "src": "2020/09/07-Discussão.mp3",
+    "dest": "audio/brasil-com-amor/07-discussao.mp3"
+  },
+  {
+    "src": "2020/09/08-Partiu.mp3",
+    "dest": "audio/brasil-com-amor/08-partiu.mp3"
+  },
+  {
+    "src": "2020/09/09-Vou-por-ai.mp3",
+    "dest": "audio/brasil-com-amor/09-vou-por-ai.mp3"
+  },
+  {
+    "src": "2020/09/10-Livre.mp3",
+    "dest": "audio/brasil-com-amor/10-livre.mp3"
+  },
+  {
+    "src": "2020/09/11-Vem.mp3",
+    "dest": "audio/brasil-com-amor/11-vem.mp3"
+  },
+  {
+    "src": "2020/01/LANDR-Abril-MÁguas-1000-High-Balanced.mp3",
+    "dest": "audio/beats/abril-maguas-1000.mp3"
+  },
+  {
+    "src": "2020/01/Mais-Amor-Por-Favor.mp3",
+    "dest": "audio/beats/mais-amor-por-favor.mp3"
+  },
+  {
+    "src": "2020/01/Follow-Your-Heart.mp3",
+    "dest": "audio/beats/follow-your-heart.mp3"
+  },
+  {
+    "src": "2020/01/Vou-Por-Ai.mp3",
+    "dest": "audio/beats/vou-por-ai.mp3"
+  },
+  {
+    "src": "2020/01/Vamos-A-Luta.mp3",
+    "dest": "audio/beats/vamos-a-luta.mp3"
+  },
+  {
+    "src": "2020/01/One-Love.mp3",
+    "dest": "audio/beats/one-love.mp3"
+  },
+  {
+    "src": "2020/09/It-is-Time-to-Think-RELEASE.mp3",
+    "dest": "audio/beats/its-time-to-think.mp3"
+  },
+  {
+    "src": "2020/11/2020_11_15_REMIX_Sean-Prince-ft-Tek.mp3",
+    "dest": "audio/beats/sean-price-ft-tek-remix.mp3"
+  },
+  {
+    "src": "2021/03/2021_01_03_Tributo_-Carlos_do_Carmo.mp3",
+    "dest": "audio/beats/tributo-carlos-do-carmo.mp3"
+  },
+  {
+    "src": "2021/02/2021_02_28_Mad.mp3",
+    "dest": "audio/beats/mad.mp3"
+  },
+  {
+    "src": "2021/02/banner-release-560x560.png",
+    "dest": "img/covers/mad.png"
+  },
+  {
+    "src": "2021/03/cover-carlos-do-carmo-tributo-560x560.png",
+    "dest": "img/covers/tributo-carlos-do-carmo.png"
+  },
+  {
+    "src": "2020/11/Cover-Sean-Price-560x560.png",
+    "dest": "img/covers/sean-price-ft-tek-remix.png"
+  },
+  {
+    "src": "2020/09/it-is-time-to-think-560x560.png",
+    "dest": "img/covers/its-time-to-think.png"
+  },
+  {
+    "src": "2020/01/One-Love-560x560.png",
+    "dest": "img/covers/one-love.png"
+  },
+  {
+    "src": "2020/01/VamosALuta_optimized-560x560.png",
+    "dest": "img/covers/vamos-a-luta.png"
+  },
+  {
+    "src": "2020/01/vou-por-ai_optimized-560x560.png",
+    "dest": "img/covers/vou-por-ai.png"
+  },
+  {
+    "src": "2020/01/follow-your-heart_optimized-560x560.png",
+    "dest": "img/covers/follow-your-heart.png"
+  },
+  {
+    "src": "2019/08/art-cover-768x768.png",
+    "dest": "img/covers/mais-amor-por-favor.png"
+  },
+  {
+    "src": "2020/09/Abril-Maguas-1000-560x560.png",
+    "dest": "img/covers/abril-maguas-1000.png"
+  },
+  {
+    "src": "2020/09/front-cover-560x560.png",
+    "dest": "img/covers/brasil-com-amor.png"
+  },
+  {
+    "src": "2020/04/ed8125-logo-white.png",
+    "dest": "img/logo-white.png"
+  },
+  {
+    "src": "2021/02/hero-v3-2.png",
+    "dest": "img/hero.png"
+  },
+  {
+    "src": "2021/02/banner-hero-2.png",
+    "dest": "img/hero-card.png"
+  },
+  {
+    "src": "2020/09/bg-bio-img.png",
+    "dest": "img/bio-bg.png"
+  },
+  {
+    "src": "2021/02/banner-release.png",
+    "dest": "img/mad-banner.png"
+  },
+  {
+    "src": "2020/09/front-cover.png",
+    "dest": "img/brasil-front.png"
+  },
+  {
+    "src": "2020/09/back-cover.png",
+    "dest": "img/brasil-back.png"
+  },
+  {
+    "src": "2020/09/art-web-bannerbanner-brasil-com-amor.png",
+    "dest": "img/brasil-banner.png"
+  },
+  {
+    "src": "2020/11/cropped-2Icon-1-32x32.png",
+    "dest": "img/favicon-32.png"
+  },
+  {
+    "src": "2020/11/cropped-2Icon-1-192x192.png",
+    "dest": "img/favicon-192.png"
+  },
+  {
+    "src": "2020/11/cropped-2Icon-1-180x180.png",
+    "dest": "img/favicon-180.png"
+  },
+  {
+    "src": "sb-instagram-feed-images/284039048_694820265122649_3974307650317496930_n.webplow.jpg",
+    "dest": "img/instagram/post-1.jpg"
+  },
+  {
+    "src": "sb-instagram-feed-images/277236147_1149964012481497_6383510798970077927_n.webplow.jpg",
+    "dest": "img/instagram/post-2.jpg"
+  },
+  {
+    "src": "sb-instagram-feed-images/275539970_701869577516704_1807330996129292710_n.webplow.jpg",
+    "dest": "img/instagram/post-3.jpg"
+  },
+  {
+    "src": "sb-instagram-feed-images/264598580_4351500414977728_8072508649911092633_nlow.jpg",
+    "dest": "img/instagram/post-4.jpg"
+  },
+  {
+    "src": "useanyfont/200414070713BebasNeue-Bold.woff2",
+    "dest": "fonts/bebas-neue-bold.woff2"
+  },
+  {
+    "src": "useanyfont/200414070713BebasNeue-Bold.woff",
+    "dest": "fonts/bebas-neue-bold.woff"
+  }
+]
