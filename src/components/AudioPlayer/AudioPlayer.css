@@ -132,7 +132,7 @@
   margin-top: 15px;
 }
 
-.player__btn {
+.player .player__btn {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -166,7 +166,7 @@
   height: 17px;
 }
 
-.player__btn--small {
+.player .player__btn--small {
   width: 32px;
   height: 16px;
   margin: 0 0 2px;
@@ -295,6 +295,12 @@
   .player__thumb img {
     width: 100%;
     height: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .player__volume {
+    display: none;
   }
 }
 

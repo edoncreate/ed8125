@@ -81,7 +81,7 @@ export function AudioPlayer({ playlist }: { playlist: Playlist }) {
             <button type="button" className="player__btn" aria-label="Previous track" onClick={p.prev}>
               <PrevIcon />
             </button>
-            <button type="button" className="player__btn" aria-label="Next track" onClick={p.next}>
+            <button type="button" className="player__btn" aria-label="Next track" onClick={p.next} data-ref="player-next">
               <NextIcon />
             </button>
             <div className="player__volume">
@@ -109,6 +109,7 @@ export function AudioPlayer({ playlist }: { playlist: Playlist }) {
                 type="button"
                 className={`player__btn player__btn--repeat${p.loop ? ' is-active' : ''}`}
                 aria-label="Repeat track"
+                data-ref="player-repeat"
                 aria-pressed={p.loop}
                 onClick={p.toggleLoop}
               >

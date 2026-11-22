@@ -72,10 +72,18 @@ async function measure(page: Page, selector: string): Promise<Measure> {
  * landmarks, that font-size and colour match). Full-page screenshots of both
  * are attached to the report for visual review.
  */
-export async function compareLandmarks(page: Page, path: string, landmarks: Landmark[], tolerancePx: number) {
+export async function compareLandmarks(
+  page: Page,
+  path: string,
+  landmarks: Landmark[],
+  tolerancePx: number,
+  /** Selector to wait for in the original before measuring (async widgets). */
+  refReady?: string,
+) {
   const refPage = await page.context().newPage()
   try {
     await prepare(refPage, REF + path)
+    if (refReady) await refPage.waitForSelector(refReady, { timeout: 15_000 })
     await prepare(page, APP + path)
 
     const info = test.info()

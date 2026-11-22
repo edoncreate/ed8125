@@ -76,3 +76,39 @@ export const HOME_PHONE: Landmark[] = [
   lm('bio-text', el('f40517a', '.elementor-text-editor'), true),
   lm('footer', el('7d87a6f', '.elementor-text-editor'), true),
 ]
+
+const RELEASE_COMMON: Landmark[] = [
+  lm('header', el('e427316')),
+  { name: 'logo', ref: '.menu-item-home .logo', app: '.site-header__logo img' },
+  lm('nav-back', '.btn-back a', true),
+  lm('releases-heading', heading('1a121c4'), true),
+  lm('footer', el('39f5a1e', '.elementor-text-editor'), true),
+]
+
+/** /brasil-com-amor/ */
+export const ALBUM_PAGE = (phone: boolean): Landmark[] => [
+  ...RELEASE_COMMON,
+  lm('album-label', heading('9714595'), true),
+  lm('album-slider', el('fb58e87')),
+  lm('album-title', heading('e04abc4'), true),
+  lm('album-text', el('f51d410', 'p'), true),
+  phone ? lm('share-heading-phone', heading('68cfbee'), true) : lm('share-heading', heading('429ba87'), true),
+  lm('player', el('d476227', '.ai-wrap')),
+  lm('beats-heading', heading('0910689'), true),
+  lm('beats-carousel', el('2bf8cfd')),
+]
+
+/** /latest-beats/ */
+export const BEATS_PAGE: Landmark[] = [
+  ...RELEASE_COMMON,
+  lm('beats-heading', heading('0910689'), true),
+  lm('player', el('f8825fe', '.ai-wrap')),
+  lm('player-next', el('f8825fe', '.ai-tracklist-next')),
+  lm('player-repeat', el('f8825fe', '.ai-btn-repeat')),
+  lm('share-heading', heading('429ba87'), true),
+  lm('album-label', heading('9714595'), true),
+  lm('album-slider', el('fb58e87')),
+  lm('album-title', heading('e04abc4'), true),
+  lm('album-text', el('f51d410', 'p'), true),
+  lm('album-listen', el('fea33bd', '.elementor-button'), true),
+]
