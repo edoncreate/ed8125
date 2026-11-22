@@ -1,0 +1,220 @@
+/* Ported from the custom CSS ".menu-top" rules of the original site. */
+.site-header {
+  position: fixed;
+  z-index: 9999;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--header-h);
+  padding: 10px 27px;
+  background: transparent;
+  transition: background-color 1s ease-out;
+  font-family: var(--f-body);
+  font-weight: 600;
+}
+
+.site-header.is-scrolled {
+  background: var(--c-black);
+}
+
+.site-header__bar {
+  position: relative;
+  height: 70px;
+}
+
+.site-header__logo {
+  position: absolute;
+  top: 5px;
+  left: 0;
+  display: block;
+  width: 112px;
+  padding: 10px;
+}
+
+.site-header__logo img {
+  width: 92px;
+  height: 41.4px;
+  object-fit: cover;
+  object-position: top left;
+}
+
+/* --- section nav --- */
+.site-nav ul {
+  display: flex;
+  justify-content: center;
+}
+
+.site-nav li {
+  padding: 10px;
+}
+
+.site-nav a,
+.site-header__back {
+  display: block;
+  padding: 15px;
+  border-radius: var(--radius-btn);
+  color: var(--c-white);
+  font-size: 15px;
+  line-height: 20px;
+  text-transform: uppercase;
+}
+
+.site-nav a:hover,
+.site-header__back:hover {
+  color: var(--c-black);
+  background-color: var(--c-white);
+}
+
+.site-nav a.is-active {
+  color: var(--c-gold);
+}
+
+.site-nav a.is-active:hover {
+  color: var(--c-black);
+}
+
+/* HOME is a gold pill on black until the header turns black. */
+.site-nav .site-nav__item--home a,
+.site-nav .site-nav__item--home a:hover {
+  color: var(--c-gold);
+  background-color: var(--c-black);
+}
+
+.is-scrolled .site-nav .site-nav__item--home a {
+  background-color: transparent;
+}
+
+/* --- social icons --- */
+.site-header__social-item {
+  position: absolute;
+  top: 0;
+  padding: 10px 0 10px 10px;
+}
+
+.site-header__social-item--instagram {
+  right: 0;
+}
+
+.site-header__social-item--facebook {
+  right: 60px;
+}
+
+.site-header__social a {
+  display: flex;
+  align-items: center;
+  height: 52px;
+  padding: 15px;
+  border-radius: var(--radius-btn);
+  color: var(--c-white);
+}
+
+.site-header__social a:hover {
+  color: var(--c-black);
+  background-color: var(--c-white);
+}
+
+.site-header__social svg {
+  height: 20px;
+  width: auto;
+}
+
+/* --- release pages: black bar with logo + BACK --- */
+.site-header--back {
+  background: var(--c-black);
+  padding: 10px 45px;
+}
+
+.site-header--back .site-header__bar {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 0 10px;
+}
+
+.site-header--back .site-header__logo {
+  position: relative;
+  left: auto;
+}
+
+.site-header--back .site-header__back {
+  margin-top: 10px;
+}
+
+@media (max-width: 1024px) {
+  .site-header--back {
+    padding: 10px 30px;
+  }
+}
+
+/* Tablet portrait and phones: the home nav becomes a bottom tab bar. */
+@media (max-width: 909px) {
+  .site-header__logo,
+  .site-header__social {
+    display: none;
+  }
+
+  .site-header--home {
+    top: auto;
+    bottom: 0;
+    height: auto;
+    padding: 0;
+    background: var(--c-black);
+  }
+
+  .site-header--home .site-header__bar {
+    height: auto;
+  }
+
+  .site-nav li {
+    padding: 10px 50px;
+  }
+
+  .site-header--back {
+    padding: 0 10px;
+  }
+}
+
+@media (max-width: 767px) {
+  .site-header--home {
+    background: #0a0a0a;
+    border-top: 1px solid #1a1a1a;
+  }
+
+  .site-nav li {
+    width: 25%;
+    padding: 10px;
+    text-align: center;
+  }
+
+  /* The phone menu used a plain HOME item (no pill). */
+  .site-nav .site-nav__item--home a {
+    color: var(--c-white);
+    background-color: transparent;
+  }
+
+  .site-nav .site-nav__item--home a.is-active {
+    color: var(--c-gold);
+  }
+
+  .site-header--back {
+    padding: 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .site-nav li {
+    padding: 0;
+  }
+
+  .site-nav a {
+    padding: 15px 0;
+    border-radius: 0;
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 375px) {
+  .site-nav a {
+    font-size: 11px;
+  }
+}

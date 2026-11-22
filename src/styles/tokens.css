@@ -1,0 +1,19 @@
+/* Design tokens ported from the original Elementor/Astra site. */
+:root {
+  --c-black: #000000;
+  --c-ink: #020202; /* hero background */
+  --c-panel: #0c0c0c; /* alternating section background */
+  --c-gold: #d89500;
+  --c-cream: #eee8d9;
+  --c-white: #ffffff;
+  --c-text-muted: #3a3a3a;
+
+  --f-display: 'Bebas Neue Bold', 'Bebas Neue', Impact, sans-serif;
+  --f-body: 'Montserrat', system-ui, sans-serif;
+  --f-alt: 'Montserrat Alternates', 'Montserrat', sans-serif;
+
+  --container: 1140px;
+  --header-h: 90px;
+  --radius-card: 25px;
+  --radius-btn: 10px;
+}
