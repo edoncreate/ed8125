@@ -1,0 +1,48 @@
+/* Elementor entrance animations (animations.min.css). */
+.reveal {
+  visibility: hidden;
+}
+
+.reveal.is-visible {
+  visibility: visible;
+  animation-duration: 1.25s;
+  animation-fill-mode: both;
+}
+
+.reveal--slow.is-visible {
+  animation-duration: 2s;
+}
+
+.reveal--fadeIn.is-visible {
+  animation-name: fadeIn;
+}
+
+.reveal--fadeInUp.is-visible {
+  animation-name: fadeInUp;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 100%, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal.is-visible {
+    animation: none;
+  }
+}
