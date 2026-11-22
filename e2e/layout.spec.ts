@@ -26,6 +26,9 @@ test('beats carousel survives keyboard tabbing and has focusable dots', async ({
   await page.goto(APP + '/')
   const carousel = page.locator('[data-ref="beats-carousel"]')
   await carousel.scrollIntoViewIfNeeded()
+  await expect(carousel).toHaveClass(/swiper-initialized/)
+  // Swiper's A11y ignores focus for 100ms after init; a person never tabs that fast.
+  await page.waitForTimeout(150)
   await carousel.getByRole('link').first().focus()
   for (let i = 0; i < 6; i++) await page.keyboard.press('Tab')
   // Swiper must move the slides itself; the browser must not scroll the container natively.

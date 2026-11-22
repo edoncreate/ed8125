@@ -13,6 +13,7 @@ and directory listings are disabled (the install is compromised).
 Run:  npm run ref            (python3 -I reference/server.py)
 Env:  ED8125_FTP=/path/to/ftp/ed8125   (default below)
 """
+import hashlib
 import json
 import os
 import posixpath
@@ -104,6 +105,20 @@ STATIC_EXTENSIONS = {
 FTP_ROOTS = tuple(os.path.realpath(os.path.join(FTP, d)) + os.sep for d in ("wp-content", "wp-includes"))
 
 
+# JavaScript is served only when it is byte-identical to the pristine release
+# (SHA-256 list built by comparing against wordpress.org SVN, see js-allowlist.json).
+JS_ALLOWLIST = json.load(open(os.path.join(HERE, "js-allowlist.json")))["files"]
+
+
+def verified_js(full_path):
+    rel = os.path.relpath(full_path, os.path.realpath(FTP)).replace(os.sep, "/")
+    expected = JS_ALLOWLIST.get(rel)
+    if expected is None:
+        return False
+    with open(full_path, "rb") as fh:
+        return hashlib.sha256(fh.read()).hexdigest() == expected
+
+
 def ftp_asset_path(clean_url_path):
     """Real file path for a decoded, normalised /wp-content|/wp-includes URL path,
     or None unless it is an existing static asset inside those two folders."""
@@ -113,6 +128,8 @@ def ftp_asset_path(clean_url_path):
     if os.path.splitext(full)[1].lower() not in STATIC_EXTENSIONS:
         return None
     if not os.path.isfile(full):
+        return None
+    if full.endswith(".js") and not verified_js(full):
         return None
     return full
 

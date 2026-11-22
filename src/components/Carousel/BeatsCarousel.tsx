@@ -21,6 +21,7 @@ export function BeatsCarousel({ items, className, ...rest }: Props) {
       modules={[A11y, Pagination, Autoplay]}
       slidesPerView={2}
       spaceBetween={20}
+      watchSlidesProgress
       breakpoints={{ 768: { slidesPerView: 4 }, 1025: { slidesPerView: 5 } }}
       speed={500}
       loop

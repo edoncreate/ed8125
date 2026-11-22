@@ -1,4 +1,4 @@
-import { expect, test, type Page } from '@playwright/test'
+import { expect, test, type Browser, type BrowserContext, type Page } from '@playwright/test'
 import { mkdirSync, writeFileSync } from 'node:fs'
 
 export const APP = 'http://localhost:5173'
@@ -27,6 +27,29 @@ type Measure = {
 
 const FREEZE = `*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
 .elementor-invisible{visibility:visible!important}`
+
+/** Hosts the original pages may reach besides the reference server (web fonts only). */
+const REF_ALLOWED_HOSTS = new Set(['localhost', 'fonts.googleapis.com', 'fonts.gstatic.com'])
+
+/**
+ * Opens a page of the original site in its own browser context (separate from
+ * the app's cookies/storage), with every third-party request blocked except
+ * web fonts — no analytics, tag manager or share widgets run.
+ */
+export async function openReference(
+  browser: Browser,
+  path: string,
+  options: { viewport?: { width: number; height: number } | null; isMobile?: boolean; hasTouch?: boolean } = {},
+): Promise<{ context: BrowserContext; page: Page }> {
+  const context = await browser.newContext(options)
+  await context.route('**/*', (route) => {
+    const host = new URL(route.request().url()).hostname
+    return REF_ALLOWED_HOSTS.has(host) ? route.continue() : route.abort('blockedbyclient')
+  })
+  const page = await context.newPage()
+  await page.goto(REF + path, { waitUntil: 'load' })
+  return { context, page }
+}
 
 async function prepare(page: Page, url: string) {
   await page.goto(url, { waitUntil: 'load' })
@@ -80,7 +103,13 @@ export async function compareLandmarks(
   /** Selector to wait for in the original before measuring (async widgets). */
   refReady?: string,
 ) {
-  const refPage = await page.context().newPage()
+  const appContext = page.context()
+  const browser = appContext.browser()!
+  const { context: refContext, page: refPage } = await openReference(browser, path, {
+    viewport: page.viewportSize(),
+    isMobile: test.info().project.use.isMobile,
+    hasTouch: test.info().project.use.hasTouch,
+  })
   try {
     await prepare(refPage, REF + path)
     if (refReady) await refPage.waitForSelector(refReady, { timeout: 15_000 })
@@ -129,7 +158,7 @@ export async function compareLandmarks(
       writeFileSync(file, JSON.stringify(report, null, 1))
     }
   } finally {
-    await refPage.close()
+    await refContext.close()
   }
 }
 
