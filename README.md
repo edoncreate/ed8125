@@ -34,5 +34,7 @@ old site with `npm run import-media` (manifest: `scripts/media-manifest.json`).
 
 ## Docs
 
+- Artist & content context (start here for new copy): `docs/ed8125-context.md`
 - Design: `docs/superpowers/specs/2026-11-22-wordpress-to-react-design.md`
 - Plan: `docs/superpowers/plans/2026-11-22-wordpress-to-react.md`
+- Phase 2 visual direction: `docs/handoff/`
