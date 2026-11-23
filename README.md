@@ -35,7 +35,7 @@ npm run dev                # http://localhost:3000
 Moving to **ed8125.com**: add the domain in Settings → Pages, point DNS at GitHub Pages, then set the
 repo variable `CUSTOM_DOMAIN` = `true` (Settings → Secrets and variables → Actions → Variables).
 
-Optional secret `YOUTUBE_API_KEY` (YouTube Data API v3) lists every upload instead of the latest 15.
+Optional secret `YOUTUBE_API_KEY` or `YOUTUBE` (YouTube Data API v3) lists every upload instead of the latest 15.
 The Lost Tapes audio is committed in `public/media/lost-tapes/` and served with the site (≈820 MB
 in total; GitHub Pages allows 1 GB).
 
