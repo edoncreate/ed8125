@@ -21,7 +21,8 @@ Machine-readable versions of the content live in `src/data/` (`site.ts`, `releas
 | Active since | 2003 (producing instrumental beats) |
 | Studio / brand behind the site | **EDONCREATE** (edoncreate.com), credited in the footer |
 | Domain | ed8125.com |
-| Language | Site copy in English from 2021; the 2020 version was in **Portuguese**. Contact form labels stayed Portuguese (Nome, Mail, Mensagem). Audience is Portuguese-speaking plus international (**inferred** — to confirm). |
+| Based in | **Lisbon** (confirmed 2026-11-23) |
+| Language | Phase 2 site is **English only** (Eduardo's call). The 2020 site was in Portuguese. |
 | Genres / influences (inferred) | Instrumental hip-hop, jazz-hop, boom-bap remixes (Sean Price ft Tek), Brazilian/samba-inspired album, a tribute to Portuguese fado singer Carlos do Carmo. Instagram hashtags: #hiphop #hiphopbeats #jazzhop #instrumental #sample #melodies #organ #freestyledrums #newbeat. |
 
 ## 2. Bio
@@ -104,17 +105,26 @@ series ("#2", "#4" on covers) — there may be a numbered beat series worth nami
 - July 2020: MASTER_demo_v3 (64 MB, likely a long demo/mix)
 (Titles reconstructed from file names. "Donjon" looks like a series/project name.)
 
+## 3b. Phase 2 additions (2026-11-23)
+
+- **Goal:** show the career since 2003 with current work first; visitors listen and follow.
+- **Current work:** 1-minute beat videos, first as Instagram stories, now also on YouTube (the site lists the channel).
+- **Projects:** *One week one beat* (weekly video series, #25–#39 visible in the public feed; earlier episodes on the channel) and *Brasil com amor*.
+- **Lost Tapes:** `~/Desktop/02_Lost_Tapes` — 139 beats in 4 volumes: Vol. 1 2005–09 (37), Vol. 2 2010–14 (55), Vol. 3 2015–19 (40), 2020–21 (7). All public on the site.
+- **Collabs:** Los Maschineros (vol 1 & 2; 14 archive tracks titled "Los Maschineros – …") and beats sent to MC friends (file-name notes: zidek, jaydas, sacik, trek, ben, ps). Details to come from Eduardo.
+
 ## 4. Channels
 
 | Channel | Link |
 |---|---|
-| Instagram | https://www.instagram.com/ed8125/ (handle `ed8125`) |
+| YouTube | https://www.youtube.com/@ED8125 — home of the 1-minute beat videos ("One Week One Beat", numbered up to #39 in Jul 2025) |
+| Instagram | https://www.instagram.com/ed8125/ (handle `ed8125`) — new beats posted as stories first |
 | Facebook | https://www.facebook.com/ED8125BEATS/ |
 | Studio | https://edoncreate.com/ |
 
 Last cached Instagram posts (2021–2022): keyboard/piano video, home-studio video,
 sticker wall photo (#stickers #brands #carbonostore #vinyl #store), selfie video.
-No Spotify / Bandcamp / YouTube / SoundCloud links were on the site — **to confirm** if any exist.
+Eduardo named YouTube and Instagram as the places to follow. No Spotify/Bandcamp/SoundCloud given.
 
 ## 5. Brand (old site, phase 1)
 
@@ -160,8 +170,8 @@ Technical
 
 1. Exact titles/accents for every track, and release dates for the January 2020 beats.
 2. Which April–May 2020 tracks were released, and what is "Donjon"?
-3. Where are you based / which audience should copy target (PT, EN, both)?
-4. Streaming links (Spotify, Bandcamp, YouTube, SoundCloud)?
+3. ~~Where based / language~~ → Lisbon, English only.
+4. ~~Streaming links~~ → YouTube @ED8125 + Instagram.
 5. Updated bio for 2026 (still "since 2003"; anything new: collaborations, live bass work, gear)?
 6. Contact: email or form? Booking / beat licensing?
 7. Should "Brasil com amor" keep its story description, and is there a story per track?
