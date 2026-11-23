@@ -19,8 +19,12 @@ export type VideoProject = {
   title: string;
   year: number;
   summary: string;
-  /** YouTube video ids, in release order. Assumption: the 2025 weekly series. */
-  videoIds: string[];
+  /**
+   * Which channel videos belong here. "channel" = every upload (One week one beat is
+   * the channel's weekly series; thumbnails are numbered up to #39). Switch to explicit
+   * ids if other kinds of videos get posted.
+   */
+  videos: "channel" | string[];
 };
 
 export type Project = AudioProject | VideoProject;
@@ -38,24 +42,8 @@ export const projects: Project[] = [
     slug: "one-week-one-beat",
     title: "One week one beat",
     year: 2025,
-    summary: "A new beat every week, filmed in one take and posted the same day.",
-    videoIds: [
-      "IESck9e76TQ", // Get Ready
-      "yATPvMkCcCg", // Wake up
-      "mcLy4pItpu8", // Hope
-      "F6xIW3lYJPE", // The Revolutionist
-      "E990WP492eI", // O Povo Unido
-      "OL-JE_MhpXw", // Inquietação
-      "D20YzK4hc7g", // I am doin it
-      "Lta6oFnOwbU", // Vivir
-      "3BQUXs_yNnM", // Nostalgia
-      "DLnMrPX1sSw", // Yo
-      "adjIMd5Q0aM", // Mira
-      "Zmz4qnoxaW8", // Se acabo la diversion
-      "0Q-I8OiD2Ik", // Vamos
-      "KuBPBjixAL0", // Caminho
-      "BaEaVqnvyX4", // Sigo em frente
-    ],
+    summary: "A new beat every week, filmed in the studio and posted as a one-minute video.",
+    videos: "channel",
   },
   {
     kind: "album",

@@ -4,7 +4,7 @@ export const site = {
   url: "https://ed8125.com",
   roles: ["Beatmaker", "Bass", "Producer"],
   since: 2003,
-  headline: ["Let's cook", "some", "music."] as const,
+  headline: ["Let’s cook", "some", "music."] as const,
   positioning: "Beats since 2003, made in Lisbon. A new one most weeks, the archive back to the first tapes.",
   location: { city: "Lisbon", tz: "Europe/Lisbon", coords: "38°43′N 9°08′W" },
   socials: {

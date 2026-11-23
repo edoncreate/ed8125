@@ -1,0 +1,45 @@
+.dots {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dot {
+  display: grid;
+  place-items: center;
+  width: 2.1em;
+  height: 2.1em;
+  border: 1px solid var(--box);
+  border-radius: 50%;
+  font-size: 0.8em;
+  color: inherit;
+  text-decoration: none;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.dot:hover {
+  border-color: var(--acc);
+}
+
+.dot[aria-current="true"] {
+  background: var(--acc);
+  border-color: var(--acc);
+  color: var(--bg);
+}
+
+.dot:focus-visible {
+  outline: 2px solid var(--acc);
+  outline-offset: 3px;
+}
+
+.line {
+  width: clamp(0.6rem, 1.2vw, 1.4rem);
+  height: 1px;
+  background: var(--box);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dot {
+    transition: none;
+  }
+}

@@ -1,0 +1,72 @@
+import Link from "next/link";
+import { site } from "@content/site";
+import { LiveClock } from "@/components/chrome/LiveClock";
+import { NowCell, PlayLatest, SoundToggle } from "@/components/music/HeroControls";
+import type { PlayableTrack } from "@/lib/content";
+import type { Video } from "@/lib/youtube";
+import { HalftonePortrait } from "./HalftonePortrait";
+import styles from "./Hero.module.css";
+
+type Props = { videos: Video[]; soundTrack: PlayableTrack | null; lostTapes: number };
+
+/** 01 Intro: headline left, orange halftone portrait right, data row at the bottom. */
+export function Hero({ videos, soundTrack, lostTapes }: Props) {
+  const [l1, l2, l3] = site.headline;
+  const labels = ["Beats since 2003", "Bass", "Lisbon"];
+
+  return (
+    <section id="intro" aria-labelledby="intro-title" className={styles.hero}>
+      <div className={styles.stage}>
+        <div className={styles.inner}>
+          <div className={styles.copy}>
+            <p className={styles.kicker}>
+              <b>ED8125</b> — {site.roles.join(" | ")}
+            </p>
+            <h1 id="intro-title" className={styles.h1}>
+              <span className={styles.line}>{l1}</span> <span className={styles.line}>{l2}</span>{" "}
+              <span className={`${styles.line} ${styles.acc}`}>{l3}</span>
+            </h1>
+            <p className={styles.sub}>{site.positioning}</p>
+            <div className={styles.ctas}>
+              <PlayLatest videos={videos} className={styles.solid} />
+              <Link href="/beats" className={styles.outline}>
+                All beats
+              </Link>
+            </div>
+          </div>
+
+          <div className={styles.art}>
+            <HalftonePortrait />
+            <ul className={styles.labels}>
+              {labels.map((l, i) => (
+                <li key={l} className={`label ${styles.lbl} ${styles[`l${i + 1}`]}`}>
+                  {l}
+                </li>
+              ))}
+              <li className={`label ${styles.lbl} ${styles.l4}`}>{videos.length} beats on YouTube</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div className={`${styles.bot} ${soundTrack ? "" : styles.noSound}`}>
+        <div className={styles.cellSound}>{soundTrack && <SoundToggle track={soundTrack} className={styles.snd} />}</div>
+        <div className={styles.cellLab}>
+          Lost Tapes · <b>{lostTapes}</b> beats
+        </div>
+        <div className={styles.cellSpin}>
+          <NowCell fallback={videos[0]?.title ?? "—"} />
+        </div>
+        <div className={styles.cellClock}>
+          <span>
+            {site.location.city} <LiveClock />
+          </span>
+          <span className={styles.coords}>
+            <span className={styles.sep}> · </span>
+            {site.location.coords}
+          </span>
+        </div>
+      </div>
+    </section>
+  );
+}

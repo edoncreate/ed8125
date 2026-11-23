@@ -1,6 +1,7 @@
 import { collabs, type Collab } from "@content/collabs";
 import lostTapesJson from "@content/lost-tapes.json";
-import { projects, type Project } from "@content/projects";
+import { projects, type Project, type VideoProject } from "@content/projects";
+import type { Video } from "./youtube";
 
 export type LostTape = {
   slug: string;
@@ -75,6 +76,13 @@ export function getProjects(): Project[] {
 
 export function getProject(slug: string): Project | undefined {
   return projects.find((p) => p.slug === slug);
+}
+
+/** The videos of a video project, newest first ("channel" = every upload). */
+export function projectVideos(project: VideoProject, all: Video[]): Video[] {
+  if (project.videos === "channel") return all;
+  const ids = new Set(project.videos);
+  return all.filter((v) => ids.has(v.id));
 }
 
 export type CollabWithTracks = Collab & { tracks: { volume: Volume; track: LostTape }[] };

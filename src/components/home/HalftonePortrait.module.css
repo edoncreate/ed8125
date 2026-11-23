@@ -1,0 +1,53 @@
+/*
+ * Mask and filters verbatim from docs/design/mockup-hero.html (.v3 .x-head,
+ * .light .v3 .x-head). The mockup's dot pitch is .6cqw on a 42cqw head; here the
+ * frame is its own container, so the pitch is 0.6/42 of the portrait width.
+ */
+.frame {
+  position: absolute;
+  inset: 0;
+  container-type: inline-size;
+}
+
+.dots {
+  position: absolute;
+  inset: 0;
+  --pitch: 1.4286cqw;
+  -webkit-mask-image:
+    radial-gradient(circle, #000 42%, transparent 48%),
+    radial-gradient(circle at 50% 50%, #000 40%, transparent 70%);
+  -webkit-mask-size: var(--pitch) var(--pitch), 100% 100%;
+  -webkit-mask-composite: source-in;
+  mask-image:
+    radial-gradient(circle, #000 42%, transparent 48%),
+    radial-gradient(circle at 50% 50%, #000 40%, transparent 70%);
+  mask-size: var(--pitch) var(--pitch), 100% 100%;
+  mask-composite: intersect;
+  /* Spotlight orange: grayscale → sepia → hue-rotate(-18deg) → saturate(6) → contrast(1.5). */
+  filter: grayscale(1) sepia(1) hue-rotate(-18deg) saturate(6) contrast(1.5) brightness(1.05);
+}
+
+:global([data-theme="light"]) .dots {
+  filter: grayscale(1) sepia(1) hue-rotate(-18deg) saturate(6) contrast(1.5) brightness(0.8);
+}
+
+/* The portrait breathes while music plays. */
+@media (prefers-reduced-motion: no-preference) {
+  :global(html[data-playing="true"]) .frame {
+    animation: pulse 0.65s ease-in-out infinite alternate;
+  }
+}
+
+@keyframes pulse {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.025);
+  }
+}
+
+.img {
+  object-fit: cover;
+  object-position: center;
+}

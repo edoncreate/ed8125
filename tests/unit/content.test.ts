@@ -1,7 +1,7 @@
 import { existsSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import { site } from "@content/site";
-import { formatDuration, getCollabs, getProject, getVolume, getVolumes, lostTapeToPlayable, totalLostTapes } from "@/lib/content";
+import { formatDuration, getCollabs, getProject, getVolume, getVolumes, lostTapeToPlayable, projectVideos, totalLostTapes } from "@/lib/content";
 
 describe("Lost Tapes", () => {
   it("has the four volumes in order with their spans", () => {
@@ -52,9 +52,15 @@ describe("projects and collabs", () => {
     expect(existsSync(`public${album.cover}`)).toBe(true);
   });
 
-  it("one week one beat lists 15 videos", () => {
+  it("one week one beat takes the channel's videos (or an explicit id list)", () => {
     const owob = getProject("one-week-one-beat");
-    expect(owob?.kind === "videos" && owob.videoIds.length).toBe(15);
+    if (owob?.kind !== "videos") throw new Error("expected a video project");
+    const vids = [
+      { id: "a", title: "A", published: "2025-01-02", thumbnail: "", url: "" },
+      { id: "b", title: "B", published: "2025-01-01", thumbnail: "", url: "" },
+    ];
+    expect(projectVideos(owob, vids)).toEqual(vids);
+    expect(projectVideos({ ...owob, videos: ["b"] }, vids).map((v) => v.id)).toEqual(["b"]);
   });
 
   it("collabs pick up their archive tracks", () => {

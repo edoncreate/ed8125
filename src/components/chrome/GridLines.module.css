@@ -1,0 +1,15 @@
+.grid {
+  position: absolute;
+  inset: 0 2vw;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  pointer-events: none;
+}
+
+.grid i {
+  border-left: 1px solid var(--ln);
+}
+
+.grid i:last-child {
+  border-right: 1px solid var(--ln);
+}
