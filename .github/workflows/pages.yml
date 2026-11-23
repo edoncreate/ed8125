@@ -22,12 +22,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      # Project site at https://edoncreate.github.io/ed8125/. Once ed8125.com points at GitHub
-      # Pages, set the repo variable CUSTOM_DOMAIN=true ("/" is read as "no base path").
-      NEXT_PUBLIC_BASE_PATH: ${{ vars.CUSTOM_DOMAIN == 'true' && '/' || '/ed8125' }}
-      NEXT_PUBLIC_SITE_ORIGIN: ${{ vars.CUSTOM_DOMAIN == 'true' && 'https://ed8125.com' || 'https://edoncreate.github.io' }}
-      # Optional: lists every upload instead of the latest 15.
-      YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
       NEXT_TELEMETRY_DISABLED: 1
     steps:
       - uses: actions/checkout@v4
@@ -38,6 +32,13 @@ jobs:
       - run: npm ci
       - run: npm test
       - run: npm run build
+        env:
+          # Project site at https://edoncreate.github.io/ed8125/. Once ed8125.com points at GitHub
+          # Pages, set the repo variable CUSTOM_DOMAIN=true ("/" is read as "no base path").
+          NEXT_PUBLIC_BASE_PATH: ${{ vars.CUSTOM_DOMAIN == 'true' && '/' || '/ed8125' }}
+          NEXT_PUBLIC_SITE_ORIGIN: ${{ vars.CUSTOM_DOMAIN == 'true' && 'https://ed8125.com' || 'https://edoncreate.github.io' }}
+          # Optional: lists every upload instead of the latest 15.
+          YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:

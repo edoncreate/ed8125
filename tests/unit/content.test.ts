@@ -1,6 +1,7 @@
 import { existsSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import { site } from "@content/site";
+import { asset } from "@/lib/asset";
 import { formatDuration, getCollabs, getProject, getVolume, getVolumes, lostTapeToPlayable, projectVideos, totalLostTapes } from "@/lib/content";
 
 describe("Lost Tapes", () => {
@@ -31,7 +32,7 @@ describe("Lost Tapes", () => {
     expect(lostTapeToPlayable(v, mad)).toMatchObject({
       key: "lt:2020/mad",
       title: "MAD",
-      src: "/media/lost-tapes/2020/mad.mp3",
+      src: asset("/media/lost-tapes/2020/mad.mp3"),
       href: "/lost-tapes/2020",
     });
   });
