@@ -14,7 +14,7 @@
 import { execFileSync } from "node:child_process";
 import { copyFileSync, existsSync, mkdirSync, readdirSync, readFileSync, statSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
-import { parseLostTapeFilename, parseVolumeFolder, slugify } from "../src/lib/lost-tapes";
+import { cleanTrackTitle, parseLostTapeFilename, parseVolumeFolder, slugify } from "../src/lib/lost-tapes";
 import { cleanTitle } from "../src/lib/youtube";
 
 type Override = { title?: string; note?: string; hidden?: boolean };
@@ -24,6 +24,7 @@ export type LostTape = {
   year: number | null;
   date: string | null;
   note: string | null;
+  instrumental: boolean;
   duration: number;
   file: string;
   source: string;
@@ -69,7 +70,8 @@ for (const folder of readdirSync(SRC).filter((f) => statSync(join(SRC, f)).isDir
     const parsed = parseLostTapeFilename(name);
     const meta = probe(srcPath);
     const tagTitle = meta.title ? cleanTitle(meta.title) : null;
-    let title = tagTitle && tagTitle.length > 1 ? tagTitle : parsed.title;
+    const cleaned = cleanTrackTitle(tagTitle && tagTitle.length > 1 ? tagTitle : parsed.title);
+    let title = cleaned.title;
 
     let slug = slugify(parsed.title) || "untitled";
     for (let n = 2; used.has(slug); n++) slug = `${slugify(parsed.title)}-${n}`;
@@ -86,6 +88,7 @@ for (const folder of readdirSync(SRC).filter((f) => statSync(join(SRC, f)).isDir
       year: parsed.year,
       date: parsed.date,
       note: o.note ?? parsed.note,
+      instrumental: cleaned.instrumental,
       duration: meta.duration,
       file,
       source: `${folder}/${name}`,

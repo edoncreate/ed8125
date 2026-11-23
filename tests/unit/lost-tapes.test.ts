@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { parseLostTapeFilename, parseVolumeFolder, slugify } from "@/lib/lost-tapes";
+import { cleanTrackTitle, parseLostTapeFilename, parseVolumeFolder, slugify } from "@/lib/lost-tapes";
 
 describe("parseLostTapeFilename", () => {
   it.each([
@@ -42,4 +42,20 @@ describe("slugify", () => {
     expect(slugify("Interlude...Ilusões")).toBe("interlude-ilusoes");
     expect(slugify("Tributo  Carlos do Carmo")).toBe("tributo-carlos-do-carmo");
   });
+});
+
+describe("cleanTrackTitle", () => {
+  it.each([
+    ["LOS MASCHINEROS - Besame", { title: "Los Maschineros – Besame", instrumental: false }],
+    ["Los Maschineros - Tive Razão", { title: "Los Maschineros – Tive Razão", instrumental: false }],
+    ["Bright INSTR", { title: "Bright", instrumental: true }],
+    ["Noite Magica INSTRU", { title: "Noite Magica", instrumental: true }],
+    ["Honey Project v2", { title: "Honey", instrumental: false }],
+    ["And i love v3 torvao", { title: "And i love torvao", instrumental: false }],
+    ["Timi v1", { title: "Timi", instrumental: false }],
+    ["01beat kenzo", { title: "Beat kenzo", instrumental: false }],
+    ["1ed-chil beat", { title: "Ed-chil beat", instrumental: false }],
+    ["beat tal", { title: "Beat tal", instrumental: false }],
+    ["Gira Sol", { title: "Gira Sol", instrumental: false }],
+  ])("%s", (raw, expected) => expect(cleanTrackTitle(raw)).toEqual(expected));
 });

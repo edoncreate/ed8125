@@ -9,6 +9,7 @@ export type LostTape = {
   year: number | null;
   date: string | null;
   note: string | null;
+  instrumental: boolean;
   duration: number;
   file: string;
   source: string;

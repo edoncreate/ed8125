@@ -76,3 +76,26 @@ export function slugify(s: string): string {
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-+|-+$/g, "");
 }
+
+/**
+ * Tidies a raw archive title: "LOS MASCHINEROS - Besame" → "Los Maschineros – Besame",
+ * drops working-file suffixes ("Project v2", "v3"), a leading track number ("01beat")
+ * and an "INSTR" marker (reported as `instrumental`).
+ */
+export function cleanTrackTitle(raw: string): { title: string; instrumental: boolean } {
+  let t = raw.trim();
+  let instrumental = false;
+  if (/\s+INSTRU?M?(ENTAL)?\.?$/i.test(t)) {
+    instrumental = true;
+    t = t.replace(/\s+INSTRU?M?(ENTAL)?\.?$/i, "");
+  }
+  t = t
+    .replace(/^los maschineros\s*[-–—]\s*/i, "Los Maschineros – ")
+    .replace(/\s+project\s+v\d+\b/i, "")
+    .replace(/\s+v\d+\b/gi, "")
+    .replace(/^\d+(?=[a-z])/i, "")
+    .replace(/\s+/g, " ")
+    .trim();
+  if (t) t = t[0].toUpperCase() + t.slice(1);
+  return { title: t, instrumental };
+}

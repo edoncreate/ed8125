@@ -30,7 +30,9 @@ export default async function VolumePage({ params }: Props) {
   const tracks = volume.tracks.map((t, n) => ({
     ...lostTapeToPlayable(volume, t),
     n: String(n + 1).padStart(2, "0"),
-    meta: [t.date?.slice(0, 4) ?? t.year, t.note && `w/ ${t.note}`].filter(Boolean).join(" · "),
+    meta: [t.date?.slice(0, 4) ?? t.year, t.note && `w/ ${t.note}`, t.instrumental && "instrumental"]
+      .filter(Boolean)
+      .join(" · "),
   }));
   const hours = Math.round(volume.tracks.reduce((s, t) => s + t.duration, 0) / 60);
 

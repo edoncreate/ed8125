@@ -30,7 +30,7 @@ describe("Lost Tapes", () => {
     const mad = v.tracks.find((t) => t.slug === "mad")!;
     expect(lostTapeToPlayable(v, mad)).toMatchObject({
       key: "lt:2020/mad",
-      title: "Mad",
+      title: "MAD",
       src: "/media/lost-tapes/2020/mad.mp3",
       href: "/lost-tapes/2020",
     });
