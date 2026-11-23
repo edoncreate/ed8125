@@ -143,8 +143,8 @@
   position: absolute;
   right: clamp(1rem, 3vw, 3rem);
   bottom: calc(100% + 0.75rem);
-  width: clamp(11rem, 15vw, 15rem);
-  aspect-ratio: 9 / 16;
+  width: clamp(16rem, 24vw, 24rem);
+  aspect-ratio: 16 / 9;
   border: 1px solid var(--box);
   border-radius: 10px;
   overflow: hidden;
@@ -190,6 +190,8 @@
   }
 
   .video {
-    width: 9.5rem;
+    left: 1rem;
+    right: 1rem;
+    width: auto;
   }
 }

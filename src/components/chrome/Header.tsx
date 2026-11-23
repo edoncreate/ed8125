@@ -2,12 +2,11 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { site } from "@content/site";
 import { CHAPTER_IDS, ChapterDots } from "./ChapterDots";
 import { ThemeToggle } from "./ThemeToggle";
 import { useActiveChapter } from "./useActiveChapter";
-import { useScrolledPast } from "./useScrolledPast";
 import styles from "./Header.module.css";
 
 export const NAV = [
@@ -17,6 +16,19 @@ export const NAV = [
   { href: "/collabs", label: "Collabs" },
 ] as const;
 
+/** True once the page has scrolled at all (the home header is see-through only at the very top). */
+function useScrolled(enabled: boolean): boolean {
+  const [scrolled, setScrolled] = useState(false);
+  useEffect(() => {
+    if (!enabled) return;
+    const update = () => setScrolled(window.scrollY > 8);
+    update();
+    window.addEventListener("scroll", update, { passive: true });
+    return () => window.removeEventListener("scroll", update);
+  }, [enabled]);
+  return scrolled;
+}
+
 function HomeDots() {
   const active = useActiveChapter(CHAPTER_IDS);
   return <ChapterDots active={active} />;
@@ -25,14 +37,12 @@ function HomeDots() {
 /** Home: fixed, transparent over the hero, chapter dots. Inner pages: sticky, section nav. */
 export function Header({ variant }: { variant: "home" | "page" }) {
   const [open, setOpen] = useState(false);
-  const ref = useRef<HTMLElement>(null);
   const pathname = usePathname();
   const isHome = variant === "home";
-  const scrolled = useScrolledPast(isHome ? "intro" : null, ref);
+  const scrolled = useScrolled(isHome);
 
   return (
     <header
-      ref={ref}
       className={`${styles.header} ${isHome ? styles.home : styles.page}`}
       data-scrolled={isHome ? String(scrolled) : undefined}
     >

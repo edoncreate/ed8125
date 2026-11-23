@@ -6,7 +6,11 @@ import { formatDay } from "@/lib/time";
 import type { Video } from "@/lib/youtube";
 import styles from "./VideoGrid.module.css";
 
-type Props = { videos: Video[]; /** Show the newest first as a larger tile. */ feature?: boolean };
+type Props = {
+  videos: Video[];
+  /** Show the newest first as a larger tile. */
+  feature?: boolean;
+};
 
 /** Grid of one-minute beat videos; clicking plays them in order in the site player. */
 export function VideoGrid({ videos, feature = false }: Props) {

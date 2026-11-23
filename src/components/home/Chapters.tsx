@@ -51,8 +51,10 @@ export function ProjectCards({ projects, videos }: { projects: Project[]; videos
                   {projectVideos(p, videos)
                     .slice(0, 4)
                     .map((v) => (
-                      // eslint-disable-next-line @next/next/no-img-element -- remote YouTube thumbnail
-                      <img key={v.id} src={v.thumbnail} alt="" loading="lazy" />
+                      <span key={v.id} className={styles.mosaicCell}>
+                        {/* eslint-disable-next-line @next/next/no-img-element -- remote YouTube thumbnail */}
+                        <img src={v.thumbnail} alt="" loading="lazy" />
+                      </span>
                     ))}
                 </span>
               )}
