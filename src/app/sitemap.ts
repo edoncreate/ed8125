@@ -2,6 +2,8 @@ import type { MetadataRoute } from "next";
 import { site } from "@content/site";
 import { getProjects, getVolumes } from "@/lib/content";
 
+export const dynamic = "force-static";
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const paths = [
     "/",
@@ -12,5 +14,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...getVolumes().map((v) => `/lost-tapes/${v.id}`),
     "/collabs",
   ];
-  return paths.map((p) => ({ url: `${site.url}${p}` }));
+  return paths.map((p) => ({ url: `${site.url}${p === "/" ? "/" : `${p}/`}` }));
 }

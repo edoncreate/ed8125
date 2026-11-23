@@ -1,6 +1,7 @@
 import { collabs, type Collab } from "@content/collabs";
 import lostTapesJson from "@content/lost-tapes.json";
 import { projects, type Project, type VideoProject } from "@content/projects";
+import { asset } from "./asset";
 import type { Video } from "./youtube";
 
 export type LostTape = {
@@ -39,7 +40,7 @@ export type PlayableTrack = {
  * Lost Tapes audio is not in git. Locally it is served from public/media/lost-tapes;
  * in production NEXT_PUBLIC_LOST_TAPES_BASE points at the audio host.
  */
-export const LOST_TAPES_BASE = (process.env.NEXT_PUBLIC_LOST_TAPES_BASE ?? "/media/lost-tapes").replace(/\/$/, "");
+export const LOST_TAPES_BASE = (process.env.NEXT_PUBLIC_LOST_TAPES_BASE ?? asset("/media/lost-tapes")).replace(/\/$/, "");
 
 type RawVolume = Omit<Volume, "span">;
 

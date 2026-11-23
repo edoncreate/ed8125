@@ -3,7 +3,7 @@ import { defineConfig, devices } from "@playwright/test";
 export default defineConfig({
   testDir: "tests/e2e",
   webServer: {
-    command: "npm run build && npx next start -p 3125",
+    command: "npm run build && node tests/serve-out.mjs 3125",
     port: 3125,
     reuseExistingServer: !process.env.CI,
     timeout: 240_000,

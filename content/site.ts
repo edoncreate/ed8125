@@ -1,7 +1,14 @@
+import { BASE_PATH } from "@/lib/asset";
+
+/** Domain the site is served from (GitHub Pages until ed8125.com points there). */
+const ORIGIN = (process.env.NEXT_PUBLIC_SITE_ORIGIN ?? "https://ed8125.com").replace(/\/$/, "");
+
 /** Site-wide copy and facts for ed8125.com. English only. */
 export const site = {
   name: "ED8125",
-  url: "https://ed8125.com",
+  origin: ORIGIN,
+  /** Full public URL including the base path, e.g. https://edoncreate.github.io/ed8125 */
+  url: `${ORIGIN}${BASE_PATH}`,
   roles: ["Beatmaker", "Bass", "Producer"],
   since: 2003,
   headline: ["Let’s cook", "some", "music."] as const,

@@ -6,18 +6,16 @@ import { Grain } from "@/components/chrome/Grain";
 import { GridLines } from "@/components/chrome/GridLines";
 import { ThemeScript } from "@/components/chrome/ThemeScript";
 import { PlayerProvider } from "@/components/player/PlayerProvider";
+import { asset } from "@/lib/asset";
 import { interTight, manrope, spaceMono } from "@/lib/fonts";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(site.url),
+  // Origin only: Next adds the base path to metadata URLs itself.
+  metadataBase: new URL(site.origin),
   title: { default: "ED8125 — Beatmaker, bass player, producer", template: "%s · ED8125" },
   description: site.positioning,
-  openGraph: {
-    type: "website",
-    siteName: "ED8125",
-    images: [{ url: "/media/img/head.png", width: 470, height: 470 }],
-  },
-  icons: { icon: "/media/img/favicon-32.png", apple: "/media/img/favicon-180.png" },
+  openGraph: { type: "website", siteName: "ED8125" },
+  icons: { icon: asset("/media/img/favicon-32.png"), apple: asset("/media/img/favicon-180.png") },
 };
 
 export const viewport: Viewport = {

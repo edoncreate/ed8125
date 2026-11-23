@@ -1,0 +1,54 @@
+# Builds the static site and publishes it to GitHub Pages.
+# Runs on every push to main, daily (so new YouTube uploads appear), and on demand.
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  schedule:
+    - cron: "17 5 * * *" # 05:17 UTC daily
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      # Project site at https://edoncreate.github.io/ed8125/. Once ed8125.com points at GitHub
+      # Pages, set the repo variable CUSTOM_DOMAIN=true ("/" is read as "no base path").
+      NEXT_PUBLIC_BASE_PATH: ${{ vars.CUSTOM_DOMAIN == 'true' && '/' || '/ed8125' }}
+      NEXT_PUBLIC_SITE_ORIGIN: ${{ vars.CUSTOM_DOMAIN == 'true' && 'https://ed8125.com' || 'https://edoncreate.github.io' }}
+      # Optional: lists every upload instead of the latest 15.
+      YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
+      NEXT_TELEMETRY_DISABLED: 1
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm test
+      - run: npm run build
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: out
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

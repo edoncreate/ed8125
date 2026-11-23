@@ -13,6 +13,7 @@
  */
 import { execFileSync } from "node:child_process";
 import { copyFileSync, existsSync, mkdirSync, readdirSync, readFileSync, statSync, writeFileSync } from "node:fs";
+import { homedir } from "node:os";
 import { join } from "node:path";
 import { cleanTrackTitle, parseLostTapeFilename, parseVolumeFolder, slugify } from "../src/lib/lost-tapes";
 import { cleanTitle } from "../src/lib/youtube";
@@ -31,7 +32,7 @@ export type LostTape = {
 };
 export type LostTapeVolume = { id: string; label: string; from: number; to: number; tracks: LostTape[] };
 
-const SRC = process.env.LOST_TAPES_DIR ?? "~/Desktop/02_Lost_Tapes";
+const SRC = process.env.LOST_TAPES_DIR ?? join(homedir(), "Desktop/02_Lost_Tapes");
 const root = new URL("..", import.meta.url).pathname;
 const OUT_AUDIO = join(root, "public/media/lost-tapes");
 const OUT_JSON = join(root, "content/lost-tapes.json");

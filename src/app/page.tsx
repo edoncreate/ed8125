@@ -5,8 +5,6 @@ import { Hero } from "@/components/home/Hero";
 import { getCollabs, getProjects, getVolume, getVolumes, lostTapeToPlayable, totalLostTapes } from "@/lib/content";
 import { getChannelVideos } from "@/lib/youtube";
 
-/** New YouTube uploads appear within the hour. */
-export const revalidate = 3600;
 
 export default async function HomePage() {
   const videos = await getChannelVideos();

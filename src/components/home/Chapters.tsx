@@ -4,6 +4,7 @@ import { site } from "@content/site";
 import type { Project } from "@content/projects";
 import { PlayAll } from "@/components/music/TrackList";
 import { VideoGrid } from "@/components/music/VideoGrid";
+import { asset } from "@/lib/asset";
 import { projectVideos, type CollabWithTracks, type Volume } from "@/lib/content";
 import type { Video } from "@/lib/youtube";
 import { Chapter } from "./Chapter";
@@ -23,7 +24,7 @@ const SeeAll = ({ href, children }: { href: string; children: string }) => (
 export function NowChapter({ videos }: { videos: Video[] }) {
   return (
     <Chapter id="now" aside={<SeeAll href="/beats">{`All ${videos.length} beats`}</SeeAll>}>
-      <p className={styles.lead}>One-minute beats, straight from the studio. New ones land here as soon as they hit YouTube.</p>
+      <p className={styles.lead}>One-minute beats, straight from the studio. New ones land here within a day of hitting YouTube.</p>
       <VideoGrid videos={videos.slice(0, 9)} feature />
     </Chapter>
   );
@@ -44,7 +45,7 @@ export function ProjectCards({ projects, videos }: { projects: Project[]; videos
           <li key={p.slug} className={styles.card}>
             <Link href={`/projects/${p.slug}`} className={styles.cardArt} aria-label={p.title}>
               {p.kind === "album" ? (
-                <Image src={p.cover} alt="" width={768} height={768} sizes="(max-width: 767px) 100vw, 45vw" />
+                <Image src={asset(p.cover)} alt="" width={768} height={768} sizes="(max-width: 767px) 100vw, 45vw" />
               ) : (
                 <span className={styles.mosaic}>
                   {projectVideos(p, videos)
@@ -70,7 +71,7 @@ export function ProjectCards({ projects, videos }: { projects: Project[]; videos
                   key: `album:${p.slug}/${t.n}`,
                   title: t.title,
                   subtitle: `${p.title} · ${String(t.n).padStart(2, "0")}`,
-                  src: t.src,
+                  src: asset(t.src),
                   duration: t.duration,
                   href: `/projects/${p.slug}`,
                 }))}

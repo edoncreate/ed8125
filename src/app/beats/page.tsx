@@ -4,7 +4,6 @@ import { VideoGrid } from "@/components/music/VideoGrid";
 import { Page } from "@/components/page/Page";
 import { getChannelVideos } from "@/lib/youtube";
 
-export const revalidate = 3600;
 export const metadata: Metadata = { title: "Beats", description: "Every one-minute beat ED8125 has posted, newest first." };
 
 export default async function BeatsPage() {
@@ -21,7 +20,7 @@ export default async function BeatsPage() {
       lead={
         <p>
           One-minute beats straight from the studio. Press any of them to play, and keep browsing while it plays. New
-          uploads land here within the hour.{" "}
+          uploads land here within a day.{" "}
           <a href={site.socials.youtube} target="_blank" rel="noopener noreferrer">
             Subscribe on YouTube ↗
           </a>

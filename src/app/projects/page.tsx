@@ -4,7 +4,6 @@ import { Page } from "@/components/page/Page";
 import { getProjects } from "@/lib/content";
 import { getChannelVideos } from "@/lib/youtube";
 
-export const revalidate = 3600;
 export const metadata: Metadata = { title: "Projects", description: "ED8125's projects: One week one beat and Brasil com amor." };
 
 export default async function ProjectsPage() {

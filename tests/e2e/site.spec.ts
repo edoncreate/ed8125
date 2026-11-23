@@ -39,7 +39,7 @@ test("a Lost Tapes track plays, and keeps playing across pages", async ({ page }
   } else {
     await page.getByRole("navigation", { name: "Sections" }).getByRole("link", { name: "Collabs" }).click();
   }
-  await expect(page).toHaveURL(/\/collabs$/);
+  await expect(page).toHaveURL(/\/collabs\/?$/);
   await expect(dock).toContainText("Beat da nostalgia");
   const t1 = await audioTime(page);
   await page.waitForTimeout(800);

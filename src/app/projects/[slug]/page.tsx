@@ -5,11 +5,11 @@ import { notFound } from "next/navigation";
 import { PlayAll, TrackList } from "@/components/music/TrackList";
 import { VideoGrid } from "@/components/music/VideoGrid";
 import { Page, Section } from "@/components/page/Page";
+import { asset } from "@/lib/asset";
 import { getProject, getProjects, projectVideos, type PlayableTrack } from "@/lib/content";
 import { getChannelVideos } from "@/lib/youtube";
 import styles from "./project.module.css";
 
-export const revalidate = 3600;
 export const dynamicParams = false;
 
 export function generateStaticParams() {
@@ -49,7 +49,7 @@ export default async function ProjectPage({ params }: Props) {
     n: String(t.n).padStart(2, "0"),
     title: t.title,
     subtitle: `${project.title} · ${String(t.n).padStart(2, "0")}`,
-    src: t.src,
+    src: asset(t.src),
     duration: t.duration,
     href: `/projects/${project.slug}`,
   }));
@@ -64,9 +64,9 @@ export default async function ProjectPage({ params }: Props) {
     >
       <div className={styles.album}>
         <div className={styles.covers}>
-          <Image src={project.cover} alt={`${project.title} front cover`} width={768} height={768} sizes="(max-width: 767px) 100vw, 40vw" />
+          <Image src={asset(project.cover)} alt={`${project.title} front cover`} width={768} height={768} sizes="(max-width: 767px) 100vw, 40vw" />
           {project.backCover && (
-            <Image src={project.backCover} alt={`${project.title} back cover`} width={768} height={768} sizes="(max-width: 767px) 50vw, 20vw" className={styles.back} />
+            <Image src={asset(project.backCover)} alt={`${project.title} back cover`} width={768} height={768} sizes="(max-width: 767px) 50vw, 20vw" className={styles.back} />
           )}
         </div>
         <Section title={`${tracks.length} tracks · ${minutes} min`}>

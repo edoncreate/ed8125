@@ -1,6 +1,6 @@
 /**
  * ED8125's videos come straight from the YouTube channel: upload there and the
- * site lists it (pages revalidate hourly). With YOUTUBE_API_KEY set the whole
+ * site lists it at the next build (GitHub Actions rebuilds daily). With YOUTUBE_API_KEY set the whole
  * uploads playlist is read; without it the public feed gives the latest 15.
  * If YouTube can't be reached, the committed snapshot is used instead.
  */
@@ -77,7 +77,7 @@ async function fromApi(key: string): Promise<Video[]> {
       key,
       ...(page ? { pageToken: page } : {}),
     }).toString();
-    const res = await fetch(url, { next: { revalidate: 3600 } });
+    const res = await fetch(url);
     if (!res.ok) throw new Error(`YouTube API ${res.status}`);
     const data = (await res.json()) as PlaylistItemsPage;
     for (const item of data.items ?? []) {
@@ -92,9 +92,7 @@ async function fromApi(key: string): Promise<Video[]> {
 }
 
 async function fromFeed(): Promise<Video[]> {
-  const res = await fetch(`https://www.youtube.com/feeds/videos.xml?channel_id=${CHANNEL_ID}`, {
-    next: { revalidate: 3600 },
-  });
+  const res = await fetch(`https://www.youtube.com/feeds/videos.xml?channel_id=${CHANNEL_ID}`);
   if (!res.ok) throw new Error(`YouTube feed ${res.status}`);
   const videos = parseYouTubeFeed(await res.text());
   if (videos.length === 0) throw new Error("YouTube feed had no entries");

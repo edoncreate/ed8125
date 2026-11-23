@@ -7,7 +7,7 @@ next-env.d.ts
 .vercel
 
 # generated audio (lives on a storage host in production, see docs)
-public/media/lost-tapes/
+# (Lost Tapes audio is committed: GitHub Pages serves it with the site)
 
 # tooling / output
 .DS_Store
@@ -16,3 +16,4 @@ public/media/lost-tapes/
 test-results/
 playwright-report/
 *.log
+out/
