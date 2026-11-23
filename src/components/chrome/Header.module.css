@@ -1,0 +1,169 @@
+.header {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  align-items: center;
+  min-height: clamp(3.5rem, 6.4vw, 6rem);
+  padding: 0 clamp(1rem, 3vw, 3rem);
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: clamp(0.72rem, 0.9vw, 0.9rem);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+/*
+ * The header stays visible so the chapter dots can follow the scroll (spec §7.2).
+ * Home: fixed, overlaying row 1 of the 100svh hero. Inner pages: sticky.
+ * Solid (translucent + blur) by default so it reads without JS; on home it is
+ * transparent only under html.js while the hero is still behind it.
+ */
+.home,
+.page {
+  z-index: 4;
+  background: color-mix(in srgb, var(--bg) 85%, transparent);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--ln);
+}
+
+.home {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+.page {
+  position: sticky;
+  top: 0;
+}
+
+:global(html.js) .home:not([data-scrolled="true"]) {
+  background: transparent;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  border-bottom-color: transparent;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home {
+    transition: none;
+  }
+}
+
+.logo {
+  justify-self: start;
+  font-family: var(--font-head), "Inter Tight", sans-serif;
+  font-weight: 900;
+  font-size: clamp(1.25rem, 1.55vw, 1.75rem);
+  text-transform: none;
+  letter-spacing: -0.02em;
+  color: var(--fg);
+  text-decoration: none;
+}
+
+.logo b {
+  color: var(--acc);
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+}
+
+.nav {
+  display: flex;
+  gap: clamp(1rem, 2.2vw, 2.5rem);
+}
+
+.nav a {
+  color: var(--mut);
+  text-decoration: none;
+}
+
+.nav a:hover,
+.nav a[aria-current="page"] {
+  color: var(--fg);
+}
+
+.nav a[aria-current="page"] {
+  border-bottom: 1px solid var(--acc);
+}
+
+.menuNav {
+  display: none;
+}
+
+.menu {
+  display: flex;
+  gap: clamp(0.75rem, 1.5vw, 1.5rem);
+}
+
+.right {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: clamp(0.75rem, 1.5vw, 1.5rem);
+}
+
+.right a,
+.right button {
+  color: inherit;
+  font: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+  text-decoration: none;
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+}
+
+.right :is(a, button):focus-visible {
+  outline: 2px solid var(--acc);
+  outline-offset: 3px;
+}
+
+.menuBtn {
+  display: none;
+}
+
+@media (max-width: 767px) {
+  .header {
+    grid-template-columns: 1fr auto;
+  }
+
+  .center {
+    display: none;
+  }
+
+  .menuNav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+    margin-bottom: 0.9rem;
+  }
+
+  .menuBtn {
+    display: inline-block;
+  }
+
+  .menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    padding: 1rem clamp(1rem, 3vw, 3rem);
+    background: var(--bg);
+    border-bottom: 1px solid var(--ln);
+  }
+
+  .menu.open {
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+  }
+}

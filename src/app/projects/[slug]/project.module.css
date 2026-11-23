@@ -1,0 +1,33 @@
+.album {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+  gap: clamp(2rem, 4vw, 5rem);
+  align-items: start;
+}
+
+.covers {
+  position: sticky;
+  top: clamp(5rem, 8vw, 8rem);
+}
+
+.covers img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  border: 1px solid var(--ln);
+}
+
+.back {
+  width: 40% !important;
+  margin-top: 1rem;
+}
+
+@media (max-width: 767px) {
+  .album {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .covers {
+    position: static;
+  }
+}

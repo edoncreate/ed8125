@@ -1,0 +1,80 @@
+.page {
+  position: relative;
+  z-index: 1;
+  padding: 0 clamp(1rem, 3vw, 3rem) clamp(4rem, 8vw, 8rem);
+}
+
+.head {
+  padding: clamp(3rem, 7vw, 7rem) 0 clamp(2rem, 4vw, 4rem);
+  border-bottom: 1px solid var(--ln);
+  margin-bottom: clamp(2rem, 4vw, 4rem);
+}
+
+.kicker {
+  margin: 0 0 1rem;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: clamp(0.7rem, 0.85vw, 1rem);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--mut);
+}
+
+.kicker b {
+  color: var(--acc-ink);
+}
+
+.kicker a {
+  color: var(--fg);
+  text-decoration: none;
+}
+
+.kicker a:hover {
+  color: var(--acc-ink);
+}
+
+.title {
+  max-width: 18ch;
+  margin: 0;
+  font-family: var(--font-head), "Inter Tight", sans-serif;
+  font-weight: 900;
+  font-size: clamp(3rem, 8vw, 9rem);
+  line-height: 0.86;
+  letter-spacing: -0.045em;
+}
+
+.acc {
+  color: var(--acc);
+}
+
+.lead {
+  max-width: 42rem;
+  margin-top: clamp(1.25rem, 2vw, 2rem);
+  font-size: clamp(1.05rem, 1.4vw, 1.5rem);
+  line-height: 1.45;
+  opacity: 0.85;
+}
+
+.lead p {
+  margin: 0 0 0.8em;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: clamp(1.5rem, 2.5vw, 2.5rem);
+}
+
+.section {
+  margin-bottom: clamp(3rem, 6vw, 6rem);
+}
+
+.sectionTitle {
+  margin: 0 0 1.5rem;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: clamp(0.7rem, 0.85vw, 1rem);
+  font-weight: 400;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--mut);
+}

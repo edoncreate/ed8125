@@ -1,0 +1,365 @@
+/*
+ * 01 Intro. Values from docs/design/mockup-hero.html, variant .v3 (.x-left, .x-kick,
+ * .v3 .x-h, .x-sub, .x-ctas, .x-lbl, .x-bot). The mockup's cqw are the viewport
+ * width here; vertical sizes are capped by the viewport height so short screens fit.
+ * The home header (position: absolute) sits over row 1.
+ */
+.hero {
+  --hdr: clamp(3.5rem, 6.4vw, 6rem); /* = Header min-height */
+  --bot: clamp(3.5rem, 6.2vw, 6rem);
+  --vh: 100vh;
+  /* Portrait side: 42vw, or the free height between the two rules when that is smaller. */
+  --p: min(42vw, var(--vh) - var(--hdr) - var(--bot) - 1.6vw);
+
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: var(--hdr) minmax(0, 1fr) auto;
+  min-height: 100vh;
+  min-height: 100svh;
+  height: 100svh;
+  padding: 0 2vw;
+  overflow-x: clip;
+}
+
+@supports (height: 100svh) {
+  .hero {
+    --vh: 100svh;
+  }
+}
+
+/* Rule under the header row. */
+.hero::before {
+  content: "";
+  grid-row: 1;
+  border-bottom: 1px solid var(--ln);
+  pointer-events: none;
+}
+
+/* ---- main row ---- */
+
+.stage {
+  grid-row: 2;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.inner {
+  margin-block: auto; /* centres without overflowing upwards when content is taller */
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  align-items: start;
+  min-height: var(--p);
+}
+
+.copy {
+  grid-column: 1 / 3;
+  padding: 2vw 0 0 1vw;
+}
+
+.kicker {
+  margin: 0;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: clamp(0.7rem, 0.85vw, 1rem);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--mut);
+}
+
+.kicker b {
+  font-weight: 700;
+  color: var(--fg);
+}
+
+.h1 {
+  margin: clamp(0.75rem, 1.4vw, 1.75rem) 0 0;
+  font-family: var(--font-head), "Inter Tight", sans-serif;
+  font-weight: 900;
+  font-size: clamp(2.6rem, min(7.4vw, 13vh), 9.5rem);
+  line-height: 0.86;
+  letter-spacing: -0.045em;
+  color: var(--fg);
+  overflow-wrap: anywhere;
+}
+
+@supports (height: 1svh) {
+  .h1 {
+    font-size: clamp(2.6rem, min(7.4vw, 13svh), 9.5rem);
+  }
+}
+
+.line {
+  display: block;
+}
+
+.acc {
+  color: var(--acc);
+}
+
+.sub {
+  margin: clamp(1rem, 1.8vw, 2.25rem) 0 0;
+  max-width: 34vw;
+  font-size: clamp(1rem, 1.3vw, 1.5rem);
+  line-height: 1.35;
+  opacity: 0.85;
+  text-wrap: pretty;
+}
+
+.ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(0.5rem, 0.7vw, 0.875rem);
+  margin-top: clamp(1.25rem, 2vw, 2.5rem);
+  font-size: clamp(0.875rem, 1vw, 1.125rem);
+  font-weight: 500;
+}
+
+.ctas a,
+.ctas button {
+  padding: 1em 1.7em;
+  border: 1px solid transparent;
+  border-radius: 99px;
+  color: var(--fg);
+  font: inherit;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  background: none;
+  transition: background-color 0.2s, border-color 0.2s, color 0.2s;
+}
+
+.ctas .solid {
+  background: var(--fg);
+  border-color: var(--fg);
+  color: var(--bg);
+}
+
+.ctas .solid:hover {
+  background: var(--acc);
+  border-color: var(--acc);
+  color: #0f0f10;
+}
+
+.ctas .outline {
+  border-color: var(--box);
+}
+
+.ctas .outline:hover {
+  border-color: var(--fg);
+}
+
+.ctas :is(a, button):focus-visible {
+  outline: 2px solid var(--acc);
+  outline-offset: 3px;
+}
+
+/* ---- portrait + floating labels ---- */
+
+.art {
+  grid-column: 3 / 5;
+  justify-self: center;
+  position: relative;
+  width: var(--p);
+  aspect-ratio: 1;
+  translate: -1vw 0; /* mockup: 52cqw → 94cqw */
+}
+
+.labels {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Extends the global .label (box + ■ marker). */
+.lbl {
+  position: absolute;
+  font-size: clamp(0.62rem, 0.78vw, 0.9rem);
+  padding: 0.385em 0.83em;
+  white-space: nowrap;
+  background: color-mix(in srgb, var(--bg) 70%, transparent);
+}
+
+/* Mockup positions converted to % of the 42cqw head box. */
+.l1 {
+  left: 7.1%;
+  top: 8.3%;
+}
+
+.l2 {
+  right: -4.8%;
+  top: 22.6%;
+}
+
+.l3 {
+  left: 11.9%;
+  top: 82.1%;
+}
+
+.l4 {
+  right: 0;
+  top: 72.6%;
+}
+
+/* ---- bottom data row ---- */
+
+.bot {
+  grid-row: 3;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  align-items: center;
+  min-height: var(--bot);
+  border-top: 1px solid var(--ln);
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: clamp(0.62rem, 0.78vw, 0.9rem);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--mut);
+}
+
+.bot > div {
+  padding: 0 1vw;
+}
+
+.bot b {
+  font-weight: 700;
+  color: var(--acc-ink);
+}
+
+.snd[aria-pressed="true"] {
+  border-color: var(--acc);
+  color: var(--acc-ink);
+}
+
+.cellClock {
+  text-align: right;
+}
+
+.snd {
+  display: inline-block;
+  padding: 0.7em 1.4em;
+  border: 1px solid var(--box);
+  border-radius: 99px;
+  background: none;
+  color: var(--fg);
+  font: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+  cursor: pointer;
+}
+
+/* ---- mobile: one column, portrait behind the headline ---- */
+
+@media (max-width: 767px) {
+  .hero {
+    --hdr: 3.5rem;
+    padding: 0 1rem;
+  }
+
+  .stage {
+    position: relative; /* containing block for the portrait */
+  }
+
+  .inner {
+    display: block;
+    min-height: 0;
+  }
+
+  .copy {
+    position: relative;
+    z-index: 1;
+    padding: 0;
+  }
+
+  .kicker {
+    font-size: 0.68rem;
+  }
+
+  .h1 {
+    font-size: clamp(2rem, 10vw, 5.6rem);
+  }
+
+  .sub {
+    max-width: none;
+  }
+
+  .art {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: min(100vw, 62vh);
+    translate: -50% -50%;
+    opacity: 0.35;
+  }
+
+  @supports (height: 1svh) {
+    .art {
+      width: min(100vw, 62svh);
+    }
+  }
+
+  .labels {
+    display: none;
+  }
+
+  .bot {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-areas:
+      "sound lab"
+      "spin clock";
+    align-items: start;
+    gap: 0.6rem 1rem;
+    padding: 0.9rem 0;
+    font-size: 0.65rem;
+  }
+
+  .bot > div {
+    padding: 0;
+  }
+
+  .bot.noSound {
+    grid-template-areas:
+      "lab clock"
+      "spin spin";
+  }
+
+  .noSound .cellSound {
+    display: none;
+  }
+
+  .cellSound {
+    grid-area: sound;
+  }
+
+  .cellLab {
+    grid-area: lab;
+  }
+
+  .cellSpin {
+    grid-area: spin;
+  }
+
+  .cellClock {
+    grid-area: clock;
+  }
+}
+
+/* Narrow cells: coordinates drop to their own line instead of wrapping mid-value. */
+@media (max-width: 959px) {
+  .coords {
+    display: block;
+  }
+
+  .sep {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ctas a,
+.ctas button {
+    transition: none;
+  }
+}

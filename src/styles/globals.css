@@ -1,0 +1,107 @@
+/* "Spotlight orange" — ed8125's variant of the system shared with edoncreate.com (docs/handoff). */
+:root,
+[data-theme="dark"] {
+  --bg: #0f0f10;
+  --fg: #f4f4f1;
+  --mut: rgba(244, 244, 241, 0.58);
+  --ln: rgba(255, 255, 255, 0.09);
+  --box: rgba(255, 255, 255, 0.22);
+  --card: #161618;
+  --acc: #ff5b1f;
+  /* Accent for small text (AA): same as --acc on dark. */
+  --acc-ink: #ff5b1f;
+  color-scheme: dark;
+}
+
+[data-theme="light"] {
+  --bg: #f4f4f1;
+  --fg: #0f0f10;
+  --mut: rgba(15, 15, 16, 0.62);
+  --ln: rgba(0, 0, 0, 0.09);
+  --box: rgba(0, 0, 0, 0.25);
+  --card: #ebebe7;
+  --acc: #ee4a0a;
+  /* #ee4a0a is 3.4:1 on the light bg — fine for large type, not small text. */
+  --acc-ink: #b83a06;
+  color-scheme: light;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+section[id] {
+  scroll-margin-top: clamp(3.5rem, 6.4vw, 6rem);
+}
+
+body {
+  position: relative; /* containing block for GridLines */
+  margin: 0;
+  min-height: 100vh;
+  min-height: 100dvh;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-body), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Room for the player bar once something plays. */
+html[data-dock="true"] body {
+  padding-bottom: 4.5rem;
+}
+
+@media (max-width: 767px) {
+  html[data-dock="true"] body {
+    padding-bottom: 6.5rem;
+  }
+}
+
+a {
+  color: inherit;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+.label {
+  display: inline-block;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 0.25em 0.8em;
+  border: 1px solid var(--box);
+}
+
+.label::before {
+  content: "■ ";
+  color: var(--acc-ink);
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+:focus-visible {
+  outline: 2px solid var(--acc);
+  outline-offset: 3px;
+}
