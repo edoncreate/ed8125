@@ -1,8 +1,18 @@
-node_modules
-dist
+# node / next
+node_modules/
+.next/
+next-env.d.ts
+*.tsbuildinfo
+.env*
+.vercel
+
+# generated audio (lives on a storage host in production, see docs)
+public/media/lost-tapes/
+
+# tooling / output
 .DS_Store
-.playwright-mcp
-.superpowers
-test-results
-playwright-report
+.playwright-mcp/
+.superpowers/
+test-results/
+playwright-report/
 *.log
