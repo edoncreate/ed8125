@@ -52,6 +52,7 @@ npm run typecheck && npm run lint
 
 ## Docs
 
+- **Maintaining the site (start here): `docs/MAINTAINING.md`**
 - Artist & content context: `docs/ed8125-context.md`
 - Phase 2 design record: `docs/superpowers/specs/2026-11-23-phase-2-design.md`
 - Visual direction: `docs/handoff/`

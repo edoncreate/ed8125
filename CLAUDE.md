@@ -2,7 +2,8 @@
 
 ed8125.com — Eduardo's beatmaker site (Lisbon, beats since 2003). Sibling of edoncreate.com.
 
-- **Phase 2 (current, branch `feat/phase-2`):** Next.js 16 App Router, "Spotlight orange" system
+- **Start with `docs/MAINTAINING.md`** — status, everyday tasks, deploy/secrets, domain move, rules, open items.
+- **Phase 2 (live, `main`):** Next.js 16 App Router static export on GitHub Pages, "Spotlight orange" system
   (`docs/handoff/`). Phase 1 Vite port is tagged `phase-1`.
 - Read `AGENTS.md` (Next.js 16 differs from older versions; docs in `node_modules/next/dist/docs/`).
 
@@ -18,5 +19,5 @@ ed8125.com — Eduardo's beatmaker site (Lisbon, beats since 2003). Sibling of e
 
 ## Rules
 - English only. Small orange text uses `--acc-ink` (AA in light mode), large type may use `--acc`.
-- Lost Tapes audio and the old FTP copy never go in git. Never copy code from the compromised WordPress install.
-- GitHub: push/PR as `edoncreate` per command; don't switch the active gh account.
+- Lost Tapes mp3s are committed on purpose (served by Pages); source WAVs and the old FTP copy never go in git. Never copy code from the compromised WordPress install.
+- GitHub: push/PR as `edoncreate` per command; don't switch the active gh account. Repo is public: commit with the no-reply identity only.
