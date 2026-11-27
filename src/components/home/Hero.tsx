@@ -1,8 +1,8 @@
 import Link from "next/link";
 import { site } from "@content/site";
 import { LiveClock } from "@/components/chrome/LiveClock";
-import { NowCell, PlayLatest, SoundToggle } from "@/components/music/HeroControls";
-import type { PlayableTrack } from "@/lib/content";
+import { NowCell, PlayRadio, SoundToggle } from "@/components/music/HeroControls";
+import { radio, type PlayableTrack } from "@/lib/content";
 import type { Video } from "@/lib/youtube";
 import { HalftonePortrait } from "./HalftonePortrait";
 import styles from "./Hero.module.css";
@@ -28,7 +28,7 @@ export function Hero({ videos, soundTrack, lostTapes }: Props) {
             </h1>
             <p className={styles.sub}>{site.positioning}</p>
             <div className={styles.ctas}>
-              <PlayLatest videos={videos} className={styles.solid} />
+              <PlayRadio queue={radio(videos)} className={styles.solid} />
               <Link href="/beats" className={styles.outline}>
                 All beats
               </Link>

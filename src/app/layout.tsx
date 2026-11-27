@@ -6,6 +6,7 @@ import { Grain } from "@/components/chrome/Grain";
 import { GridLines } from "@/components/chrome/GridLines";
 import { ThemeScript } from "@/components/chrome/ThemeScript";
 import { PlayerProvider } from "@/components/player/PlayerProvider";
+import { PlaylistsProvider } from "@/components/playlists/PlaylistsProvider";
 import { asset } from "@/lib/asset";
 import { interTight, manrope, spaceMono } from "@/lib/fonts";
 
@@ -39,10 +40,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         <GridLines />
         <Grain />
-        <PlayerProvider>
-          {children}
-          <Footer />
-        </PlayerProvider>
+        <PlaylistsProvider>
+          <PlayerProvider>
+            {children}
+            <Footer />
+          </PlayerProvider>
+        </PlaylistsProvider>
       </body>
     </html>
   );

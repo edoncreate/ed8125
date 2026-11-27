@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { formatDuration } from "@/lib/content";
 import { usePlayer } from "./PlayerProvider";
 import { current, itemKey } from "./state";
+import { AddToPlaylist } from "@/components/playlists/AddToPlaylist";
 import { YouTubeMini } from "./YouTubeMini";
 import styles from "./PlayerDock.module.css";
 
@@ -106,7 +107,8 @@ export function PlayerDock() {
         </div>
 
         <div className={styles.ctrls}>
-          <button type="button" onClick={() => dispatch({ type: "prev" })} disabled={!canPrev} aria-label="Previous">
+          {item.type === "audio" && <AddToPlaylist trackKey={item.track.key} title={item.track.title} />}
+          <button type="button" className={styles.prev} onClick={() => dispatch({ type: "prev" })} disabled={!canPrev} aria-label="Previous">
             ⏮
           </button>
           <button type="button" onClick={() => dispatch({ type: "next" })} disabled={!canNext} aria-label="Next">

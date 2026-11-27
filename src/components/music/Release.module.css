@@ -1,0 +1,70 @@
+.release {
+  display: grid;
+  grid-template-columns: minmax(0, 22rem) minmax(0, 1fr);
+  gap: clamp(1.25rem, 3vw, 3rem);
+  align-items: start;
+  padding: clamp(1.5rem, 3vw, 2.5rem) 0;
+  border-top: 1px solid var(--ln);
+}
+
+.cover {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1;
+  object-fit: cover;
+}
+
+.body {
+  min-width: 0;
+}
+
+.title {
+  margin: 0.4rem 0 0;
+  font-family: var(--font-head), "Inter Tight", sans-serif;
+  font-weight: 900;
+  font-size: clamp(1.8rem, 3.5vw, 3.2rem);
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+}
+
+.desc {
+  max-width: 36rem;
+  margin: 1rem 0 0;
+  line-height: 1.5;
+  opacity: 0.85;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem 1.5rem;
+  margin: 1.5rem 0;
+}
+
+.ext {
+  color: var(--acc-ink);
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+.ext:hover {
+  text-decoration: underline;
+}
+
+.static {
+  display: grid;
+  grid-template-columns: 3rem minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.95rem 0.5rem;
+}
+
+@media (max-width: 767px) {
+  .release {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

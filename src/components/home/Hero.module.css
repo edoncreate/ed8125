@@ -237,6 +237,16 @@
   text-align: right;
 }
 
+/* Two places, two coordinates: they sit on their own line under the city and clock. */
+.coords {
+  display: block;
+  white-space: nowrap;
+}
+
+.sep {
+  display: none;
+}
+
 .snd {
   display: inline-block;
   padding: 0.7em 1.4em;
@@ -343,17 +353,6 @@
 
   .cellClock {
     grid-area: clock;
-  }
-}
-
-/* Narrow cells: coordinates drop to their own line instead of wrapping mid-value. */
-@media (max-width: 959px) {
-  .coords {
-    display: block;
-  }
-
-  .sep {
-    display: none;
   }
 }
 

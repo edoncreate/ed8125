@@ -1,10 +1,14 @@
 import type { Metadata } from "next";
+import { Release } from "@/components/music/Release";
 import { TrackList } from "@/components/music/TrackList";
 import { Page, Section } from "@/components/page/Page";
 import { getCollabs, lostTapeToPlayable } from "@/lib/content";
 import styles from "./collabs.module.css";
 
-export const metadata: Metadata = { title: "Collabs", description: "Los Maschineros and beats made for MC friends." };
+export const metadata: Metadata = {
+  title: "Collabs",
+  description: "Los Maschineros (Vol. 1 Classic, Vol. 2 It’s a Reggae Music) and beats made for MC friends.",
+};
 
 export default function CollabsPage() {
   const collabs = getCollabs();
@@ -14,17 +18,19 @@ export default function CollabsPage() {
         <Section key={c.slug} id={c.slug}>
           <div className={styles.head}>
             <h2 className={styles.title}>{c.title}</h2>
-            {c.parts && (
+            {c.releases && (
               <ul className={styles.parts}>
-                {c.parts.map((p) => (
-                  <li key={p.title} className="label">
-                    {p.title} · {p.status === "soon" ? "coming soon" : "out now"}
+                {c.releases.map((r) => (
+                  <li key={r.id} className="label">
+                    {r.label} · {r.title}
                   </li>
                 ))}
               </ul>
             )}
           </div>
           <p className={styles.summary}>{c.summary}</p>
+          {c.releases?.map((r) => <Release key={r.id} collab={c} release={r} />)}
+          {c.releases && c.tracks.length > 0 && <h3 className={`label ${styles.archive}`}>From the Lost Tapes</h3>}
           {c.tracks.length > 0 && (
             <TrackList
               label={`${c.title} tracks`}

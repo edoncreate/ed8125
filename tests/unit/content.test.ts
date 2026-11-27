@@ -2,7 +2,7 @@ import { existsSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import { site } from "@content/site";
 import { asset } from "@/lib/asset";
-import { formatDuration, getCollabs, getProject, getVolume, getVolumes, lostTapeToPlayable, projectVideos, totalLostTapes } from "@/lib/content";
+import { formatDuration, getCollabs, getProject, getVolume, getVolumes, lostTapeToPlayable, projectVideos, releaseTrackToPlayable, totalLostTapes } from "@/lib/content";
 
 describe("Lost Tapes", () => {
   it("has the four volumes in order with their spans", () => {
@@ -79,4 +79,28 @@ describe("formatDuration", () => {
     [0, "–:––"],
     [undefined, "–:––"],
   ])("%s → %s", (s, out) => expect(formatDuration(s)).toBe(out));
+});
+
+describe("collab releases", () => {
+  it("Los Maschineros has both volumes with full tracklists", () => {
+    const lm = getCollabs().find((c) => c.slug === "los-maschineros")!;
+    expect(lm.releases?.map((r) => [r.label, r.title, r.tracks.length])).toEqual([
+      ["Vol. 1", "Classic", 13],
+      ["Vol. 2", "It’s a Reggae Music", 11],
+    ]);
+  });
+
+  it("a release track is playable only once it has a file", () => {
+    const lm = getCollabs().find((c) => c.slug === "los-maschineros")!;
+    const rel = lm.releases![0];
+    expect(releaseTrackToPlayable(lm, rel, { title: "Clássico", duration: 124 }, 0)).toBeNull();
+    expect(releaseTrackToPlayable(lm, rel, { title: "Clássico", duration: 124, file: "vol-1/01-classico.mp3" }, 0)).toEqual({
+      key: "collab:los-maschineros/vol-1/01",
+      title: "Clássico",
+      subtitle: "Los Maschineros · Vol. 1 Classic · 2013",
+      src: asset("/media/audio/los-maschineros/vol-1/01-classico.mp3"),
+      duration: 124,
+      href: "/collabs#los-maschineros",
+    });
+  });
 });

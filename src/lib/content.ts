@@ -1,8 +1,11 @@
-import { collabs, type Collab } from "@content/collabs";
+import { collabs, type Collab, type CollabRelease, type ReleaseTrack } from "@content/collabs";
+import beatAudioJson from "@content/beat-audio.json";
 import lostTapesJson from "@content/lost-tapes.json";
-import { projects, type Project, type VideoProject } from "@content/projects";
+import { projects, type AlbumTrack, type AudioProject, type Project, type VideoProject } from "@content/projects";
+import type { PlayerItem } from "@/components/player/state";
 import { asset } from "./asset";
-import type { Video } from "./youtube";
+import { cleanTrackTitle, slugify } from "./lost-tapes";
+import { cleanTitle, type Video } from "./youtube";
 
 export type LostTape = {
   slug: string;
@@ -103,6 +106,78 @@ export function getCollabs(): CollabWithTracks[] {
     }
     return { ...c, tracks };
   });
+}
+
+/** An album track (e.g. Brasil com amor) as a player item. */
+export function albumTrackToPlayable(project: AudioProject, t: AlbumTrack): PlayableTrack {
+  const n = String(t.n).padStart(2, "0");
+  return {
+    key: `album:${project.slug}/${t.n}`,
+    title: t.title,
+    subtitle: `${project.title} · ${n}`,
+    src: asset(t.src),
+    duration: t.duration,
+    href: `/projects/${project.slug}`,
+  };
+}
+
+/** A collab release track as a player item; null until its audio file exists. */
+export function releaseTrackToPlayable(
+  collab: Pick<Collab, "slug" | "title">,
+  release: CollabRelease,
+  track: ReleaseTrack,
+  index: number,
+): PlayableTrack | null {
+  if (!track.file) return null;
+  const n = String(index + 1).padStart(2, "0");
+  return {
+    key: `collab:${collab.slug}/${release.id}/${n}`,
+    title: track.title,
+    subtitle: `${collab.title} · ${release.label} ${release.title} · ${release.year}`,
+    src: asset(`/media/audio/${collab.slug}/${track.file}`),
+    duration: track.duration,
+    href: `/collabs#${collab.slug}`,
+  };
+}
+
+/** Audio extracted from the One week one beat videos (scripts/build-beat-audio.ts). */
+export type BeatAudio = Record<string, { file: string; duration: number }>;
+const beatAudio = beatAudioJson as BeatAudio;
+
+/** Stable id for a beat, from its YouTube title: "ED8125 - Vida f€dida #owob" → "vida-f-dida". */
+export function beatSlug(title: string): string {
+  return slugify(cleanTrackTitle(cleanTitle(title)).title);
+}
+
+/** A YouTube beat as an audio track, once its audio has been extracted. */
+export function beatToPlayable(video: Video, audio: BeatAudio = beatAudio): PlayableTrack | null {
+  const slug = beatSlug(video.title);
+  const a = audio[slug];
+  if (!a) return null;
+  return {
+    key: `beat:${slug}`,
+    title: video.title,
+    subtitle: `One week one beat · ${video.published.slice(0, 4)}`,
+    src: asset(`/media/beats/${a.file}`),
+    duration: a.duration,
+    href: "/beats",
+  };
+}
+
+/** What the player gets for a beat: its audio when there is some, else the video. */
+export function toPlayerItem(video: Video, audio: BeatAudio = beatAudio): PlayerItem {
+  const track = beatToPlayable(video, audio);
+  return track ? { type: "audio", track } : { type: "video", video };
+}
+
+export const RADIO_SIZE = 20;
+
+/** The default "Radio" playlist: the latest beats by release date, as audio where there is some. */
+export function radio(videos: Video[], audio: BeatAudio = beatAudio): PlayerItem[] {
+  return [...videos]
+    .sort((a, b) => b.published.localeCompare(a.published))
+    .slice(0, RADIO_SIZE)
+    .map((v) => toPlayerItem(v, audio));
 }
 
 /** "214" → "3:34" */

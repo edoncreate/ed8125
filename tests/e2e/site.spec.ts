@@ -19,16 +19,16 @@ test("home: hero, six chapters and the data row", async ({ page }) => {
   for (const id of ["intro", "now", "projects", "lost-tapes", "collabs", "about"]) {
     await expect(page.locator(`section#${id}`)).toHaveCount(1);
   }
-  await expect(page.getByText(/Lost Tapes · 139 beats/)).toBeVisible();
+  await expect(page.getByText(/Lost Tapes · 135 beats/)).toBeVisible();
   expect(errors).toEqual([]);
 });
 
 test("a Lost Tapes track plays, and keeps playing across pages", async ({ page }) => {
   const errors = collectErrors(page);
   await page.goto("/lost-tapes/vol-2");
-  await page.getByRole("button", { name: /^Play Beat da nostalgia/ }).click();
+  await page.getByRole("button", { name: /^Play Da nostalgia/ }).click();
   const dock = page.getByRole("complementary", { name: "Player" });
-  await expect(dock).toContainText("Beat da nostalgia");
+  await expect(dock).toContainText("Da nostalgia");
   await expect.poll(() => audioTime(page), { timeout: 10_000 }).toBeGreaterThan(0.3);
 
   // Client-side navigation: the player lives in the root layout.
@@ -40,7 +40,7 @@ test("a Lost Tapes track plays, and keeps playing across pages", async ({ page }
     await page.getByRole("navigation", { name: "Sections" }).getByRole("link", { name: "Collabs" }).click();
   }
   await expect(page).toHaveURL(/\/collabs\/?$/);
-  await expect(dock).toContainText("Beat da nostalgia");
+  await expect(dock).toContainText("Da nostalgia");
   const t1 = await audioTime(page);
   await page.waitForTimeout(800);
   expect(await audioTime(page)).toBeGreaterThan(t1);

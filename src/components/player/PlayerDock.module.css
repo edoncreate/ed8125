@@ -185,7 +185,7 @@
     grid-area: ctrls;
   }
 
-  .ctrls button:first-child {
+  .prev {
     display: none;
   }
 

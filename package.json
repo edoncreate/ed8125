@@ -12,9 +12,11 @@
     "test": "vitest run",
     "test:e2e": "playwright test",
     "media:lost-tapes": "tsx scripts/build-lost-tapes.ts",
-    "media:youtube-snapshot": "tsx scripts/snapshot-youtube.ts"
+    "media:youtube-snapshot": "tsx scripts/snapshot-youtube.ts",
+    "media:beats": "tsx scripts/build-beat-audio.ts"
   },
   "dependencies": {
+    "@supabase/supabase-js": "2.119.0",
     "next": "16.4.6",
     "react": "19.3.0",
     "react-dom": "19.3.0"

@@ -1,0 +1,135 @@
+.wrap {
+  position: relative;
+}
+
+.trigger {
+  width: 2.25rem;
+  height: 2.25rem;
+  border: 1px solid var(--box);
+  border-radius: 50%;
+  background: none;
+  color: var(--fg);
+  font-size: 1.1rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.trigger[aria-expanded="true"],
+.trigger:hover {
+  border-color: var(--acc);
+  color: var(--acc-ink);
+}
+
+.pop {
+  position: absolute;
+  right: 0;
+  bottom: calc(100% + 0.75rem);
+  width: min(20rem, calc(100vw - 2rem));
+  padding: 1rem;
+  border: 1px solid var(--box);
+  background: var(--bg);
+  box-shadow: 0 12px 40px rgb(0 0 0 / 0.35);
+  text-transform: none;
+  letter-spacing: 0;
+  font-family: var(--font-body), system-ui, sans-serif;
+  font-size: 0.9rem;
+}
+
+.head {
+  margin: 0 0 0.75rem;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--mut);
+}
+
+.muted {
+  color: var(--mut);
+}
+
+.muted a {
+  color: var(--acc-ink);
+}
+
+.list {
+  max-height: 14rem;
+  margin: 0 0 0.75rem;
+  padding: 0;
+  overflow-y: auto;
+  list-style: none;
+}
+
+.list button {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  width: 100%;
+  padding: 0.55rem 0.25rem;
+  border: 0;
+  border-bottom: 1px solid var(--ln);
+  background: none;
+  color: var(--fg);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.list button:hover:not(:disabled) {
+  color: var(--acc-ink);
+}
+
+.list button:disabled {
+  cursor: default;
+}
+
+.new {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.new input {
+  flex: 1;
+  min-width: 0;
+  padding: 0.5rem 0.6rem;
+  border: 1px solid var(--box);
+  background: none;
+  color: var(--fg);
+  font: inherit;
+}
+
+.new button {
+  padding: 0.5rem 0.8rem;
+  border: 0;
+  background: var(--fg);
+  color: var(--bg);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.note {
+  min-height: 1.2em;
+  margin: 0.6rem 0 0;
+  font-size: 0.8rem;
+  color: var(--acc-ink);
+}
+
+.trigger:focus-visible,
+.pop button:focus-visible,
+.pop input:focus-visible,
+.pop a:focus-visible {
+  outline: 2px solid var(--acc);
+  outline-offset: 2px;
+}
+
+/* Phones: the + sits mid-bar, so the panel spans the screen just above the player. */
+@media (max-width: 767px) {
+  .pop {
+    position: fixed;
+    left: 1rem;
+    right: 1rem;
+    bottom: 6.25rem;
+    width: auto;
+  }
+}

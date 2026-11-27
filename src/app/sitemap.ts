@@ -13,6 +13,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/lost-tapes",
     ...getVolumes().map((v) => `/lost-tapes/${v.id}`),
     "/collabs",
+    "/playlists",
+    "/privacy",
   ];
   return paths.map((p) => ({ url: `${site.url}${p === "/" ? "/" : `${p}/`}` }));
 }

@@ -8,14 +8,16 @@ import styles from "./VideoGrid.module.css";
 
 type Props = {
   videos: Video[];
+  /** What each tile plays (audio when the beat has some, else the video); same order as `videos`. */
+  items?: PlayerItem[];
   /** Show the newest first as a larger tile. */
   feature?: boolean;
 };
 
 /** Grid of one-minute beat videos; clicking plays them in order in the site player. */
-export function VideoGrid({ videos, feature = false }: Props) {
+export function VideoGrid({ videos, items, feature = false }: Props) {
   const { playFrom, status } = usePlayer();
-  const queue: PlayerItem[] = videos.map((video) => ({ type: "video", video }));
+  const queue: PlayerItem[] = items ?? videos.map((video) => ({ type: "video", video }));
 
   return (
     <ul className={`${styles.grid} ${feature ? styles.feature : ""}`}>

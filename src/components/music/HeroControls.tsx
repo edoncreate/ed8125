@@ -3,17 +3,15 @@
 import { usePlayer } from "@/components/player/PlayerProvider";
 import { current, type PlayerItem } from "@/components/player/state";
 import type { PlayableTrack } from "@/lib/content";
-import type { Video } from "@/lib/youtube";
 
-/** "▶ Play latest beat": plays the newest video, then the rest in order. */
-export function PlayLatest({ videos, className }: { videos: Video[]; className?: string }) {
+/** "▶ Play radio": the Radio playlist (latest beats), newest first. */
+export function PlayRadio({ queue, className }: { queue: PlayerItem[]; className?: string }) {
   const { playFrom, status } = usePlayer();
-  const queue: PlayerItem[] = videos.map((video) => ({ type: "video", video }));
   if (queue.length === 0) return null;
   const playing = status(queue[0]) === "playing";
   return (
     <button type="button" className={className} onClick={() => playFrom(queue, 0)}>
-      {playing ? "❚❚ Pause" : "▶ Play latest beat"}
+      {playing ? "❚❚ Pause" : "▶ Play radio"}
     </button>
   );
 }

@@ -5,7 +5,7 @@ import type { Project } from "@content/projects";
 import { PlayAll } from "@/components/music/TrackList";
 import { VideoGrid } from "@/components/music/VideoGrid";
 import { asset } from "@/lib/asset";
-import { projectVideos, type CollabWithTracks, type Volume } from "@/lib/content";
+import { projectVideos, toPlayerItem, type CollabWithTracks, type Volume } from "@/lib/content";
 import type { Video } from "@/lib/youtube";
 import { Chapter } from "./Chapter";
 import styles from "./Chapters.module.css";
@@ -25,7 +25,7 @@ export function NowChapter({ videos }: { videos: Video[] }) {
   return (
     <Chapter id="now" aside={<SeeAll href="/beats">{`All ${videos.length} beats`}</SeeAll>}>
       <p className={styles.lead}>One-minute beats, straight from the studio. New ones land here within a day of hitting YouTube.</p>
-      <VideoGrid videos={videos.slice(0, 9)} feature />
+      <VideoGrid videos={videos.slice(0, 9)} items={videos.slice(0, 9).map((v) => toPlayerItem(v))} feature />
     </Chapter>
   );
 }
@@ -129,9 +129,13 @@ export function CollabsChapter({ collabs }: { collabs: CollabWithTracks[] }) {
             <Link href={`/collabs#${c.slug}`} className={styles.row}>
               <span className={styles.rowTitle}>{c.title}</span>
               <span className={styles.rowYears}>
-                {c.parts?.map((p) => `${p.title}${p.status === "soon" ? " (soon)" : ""}`).join(" · ") ?? "MCs"}
+                {c.releases?.map((r) => `${r.label} ${r.title}`).join(" · ") ?? "MCs"}
               </span>
-              <span className={styles.rowMeta}>{c.tracks.length} tracks in the archive</span>
+              <span className={styles.rowMeta}>
+                {c.releases
+                  ? `${c.releases.reduce((n, r) => n + r.tracks.length, 0)} tracks · ${c.releases[0].year}`
+                  : `${c.tracks.length} tracks in the archive`}
+              </span>
               <span className={styles.rowGo} aria-hidden="true">
                 →
               </span>

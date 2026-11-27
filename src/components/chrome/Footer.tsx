@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { site } from "@content/site";
 import styles from "./Footer.module.css";
 
@@ -15,6 +16,7 @@ export function Footer() {
         <a href={site.socials.instagram} target="_blank" rel="noopener noreferrer">
           Instagram ↗
         </a>
+        <Link href="/privacy">Privacy</Link>
       </span>
       <a href={site.studio.url} target="_blank" rel="noopener noreferrer" className={styles.studio}>
         Site by {site.studio.name} ↗

@@ -6,7 +6,7 @@ import { PlayAll, TrackList } from "@/components/music/TrackList";
 import { VideoGrid } from "@/components/music/VideoGrid";
 import { Page, Section } from "@/components/page/Page";
 import { asset } from "@/lib/asset";
-import { getProject, getProjects, projectVideos, type PlayableTrack } from "@/lib/content";
+import { albumTrackToPlayable, getProject, getProjects, projectVideos, toPlayerItem, type PlayableTrack } from "@/lib/content";
 import { getChannelVideos } from "@/lib/youtube";
 import styles from "./project.module.css";
 
@@ -38,20 +38,15 @@ export default async function ProjectPage({ params }: Props) {
     return (
       <Page kicker={kicker} title={project.title} lead={<p>{project.summary}</p>}>
         <Section title={`${videos.length} beats so far · newest first`}>
-          <VideoGrid videos={videos} />
+          <VideoGrid videos={videos} items={videos.map((v) => toPlayerItem(v))} />
         </Section>
       </Page>
     );
   }
 
   const tracks: (PlayableTrack & { n: string })[] = project.tracks.map((t) => ({
-    key: `album:${project.slug}/${t.n}`,
+    ...albumTrackToPlayable(project, t),
     n: String(t.n).padStart(2, "0"),
-    title: t.title,
-    subtitle: `${project.title} · ${String(t.n).padStart(2, "0")}`,
-    src: asset(t.src),
-    duration: t.duration,
-    href: `/projects/${project.slug}`,
   }));
   const minutes = Math.round(project.tracks.reduce((s, t) => s + t.duration, 0) / 60);
 

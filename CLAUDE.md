@@ -9,11 +9,11 @@ ed8125.com — Eduardo's beatmaker site (Lisboa / Quarteira, beats since 2003). 
 
 ## Commands
 - `npm run dev` · `npm run build` · `npm test` · `npm run test:e2e` · `npm run typecheck` · `npm run lint`
-- `npm run media:lost-tapes` (rebuild archive from ~/Desktop/02_Lost_Tapes) · `npm run media:youtube-snapshot`
+- `npm run media:lost-tapes` (rebuild archive from ~/Desktop/02_Lost_Tapes) · `npm run media:beats` (audio from YouTube Studio downloads in ~/Desktop/03_One_Week_One_Beat) · `npm run media:youtube-snapshot`
 
 ## Where things are
 - Content: `content/*.ts|json` (site copy, projects, collabs, generated Lost Tapes + YouTube snapshot).
-- Data helpers: `src/lib/{content,youtube,lost-tapes}.ts`. Player: `src/components/player/` (one channel, root layout).
+- Data helpers: `src/lib/{content,catalog,youtube,lost-tapes,supabase}.ts`. Player: `src/components/player/` (one channel, root layout). Playlists + Radio: `src/components/playlists/`, schema `supabase/migrations/`.
 - Chrome ported from edoncreate (`src/components/chrome/`) — keep tokens/components portable between the repos.
 - Artist/content context for new copy: `docs/ed8125-context.md`.
 
