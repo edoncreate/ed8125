@@ -25,5 +25,20 @@
   },
   "vol-2/people-have-da-power": {
     "title": "People Have da Power"
+  },
+  "vol-1/beat-em-im-2": {
+    "hidden": true
+  },
+  "vol-3/vou-por-ai-2": {
+    "hidden": true
+  },
+  "vol-3/vou-por-ai-project-v3": {
+    "hidden": true
+  },
+  "vol-3/honey-project": {
+    "hidden": true
+  },
+  "vol-3/trsite-final-project": {
+    "title": "Triste Final"
   }
 }

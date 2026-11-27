@@ -8,7 +8,7 @@ import { ImageResponse } from "next/og";
 import { site } from "@content/site";
 
 export const dynamic = "force-static";
-export const alt = "ED8125 — Let's cook some music. Beats since 2003, Lisbon.";
+export const alt = "ED8125 — Let's cook some music. Beats since 2003, Lisboa / Quarteira.";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 

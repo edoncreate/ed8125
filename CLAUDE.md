@@ -1,6 +1,6 @@
 # ED8125
 
-ed8125.com — Eduardo's beatmaker site (Lisbon, beats since 2003). Sibling of edoncreate.com.
+ed8125.com — Eduardo's beatmaker site (Lisboa / Quarteira, beats since 2003). Sibling of edoncreate.com.
 
 - **Start with `docs/MAINTAINING.md`** — status, everyday tasks, deploy/secrets, domain move, rules, open items.
 - **Phase 2 (live, `main`):** Next.js 16 App Router static export on GitHub Pages, "Spotlight orange" system

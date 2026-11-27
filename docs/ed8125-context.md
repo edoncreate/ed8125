@@ -21,7 +21,7 @@ Machine-readable versions of the content live in `src/data/` (`site.ts`, `releas
 | Active since | 2003 (producing instrumental beats) |
 | Studio / brand behind the site | **EDONCREATE** (edoncreate.com), credited in the footer |
 | Domain | ed8125.com |
-| Based in | **Lisbon** (confirmed 2026-11-23) |
+| Based in | **Lisboa / Quarteira** (updated 2026-11-27; was Lisbon). Write the place names in Portuguese. |
 | Language | Phase 2 site is **English only** (Eduardo's call). The 2020 site was in Portuguese. |
 | Genres / influences (inferred) | Instrumental hip-hop, jazz-hop, boom-bap remixes (Sean Price ft Tek), Brazilian/samba-inspired album, a tribute to Portuguese fado singer Carlos do Carmo. Instagram hashtags: #hiphop #hiphopbeats #jazzhop #instrumental #sample #melodies #organ #freestyledrums #newbeat. |
 
@@ -110,7 +110,7 @@ series ("#2", "#4" on covers) — there may be a numbered beat series worth nami
 - **Goal:** show the career since 2003 with current work first; visitors listen and follow.
 - **Current work:** 1-minute beat videos, first as Instagram stories, now also on YouTube (the site lists the channel).
 - **Projects:** *One week one beat* (weekly video series, #25–#39 visible in the public feed; earlier episodes on the channel) and *Brasil com amor*.
-- **Lost Tapes:** `~/Desktop/02_Lost_Tapes` — 139 beats in 4 volumes: Vol. 1 2005–09 (37), Vol. 2 2010–14 (55), Vol. 3 2015–19 (40), 2020–21 (7). All public on the site.
+- **Lost Tapes:** `~/Desktop/02_Lost_Tapes` — 135 beats in 4 volumes: Vol. 1 2005–09 (36), Vol. 2 2010–14 (55), Vol. 3 2015–19 (37), 2020–21 (7); 4 repeats hidden via overrides. Titles drop "beat" and bare numbers. All public on the site.
 - **Collabs:** Los Maschineros (vol 1 & 2; 14 archive tracks titled "Los Maschineros – …") and beats sent to MC friends (file-name notes: zidek, jaydas, sacik, trek, ben, ps). Details to come from Eduardo.
 
 ## 4. Channels
@@ -170,7 +170,7 @@ Technical
 
 1. Exact titles/accents for every track, and release dates for the January 2020 beats.
 2. Which April–May 2020 tracks were released, and what is "Donjon"?
-3. ~~Where based / language~~ → Lisbon, English only.
+3. ~~Where based / language~~ → Lisboa / Quarteira, English only.
 4. ~~Streaming links~~ → YouTube @ED8125 + Instagram.
 5. Updated bio for 2026 (still "since 2003"; anything new: collaborations, live bass work, gear)?
 6. Contact: email or form? Booking / beat licensing?

@@ -53,9 +53,28 @@ describe("cleanTrackTitle", () => {
     ["Honey Project v2", { title: "Honey", instrumental: false }],
     ["And i love v3 torvao", { title: "And i love torvao", instrumental: false }],
     ["Timi v1", { title: "Timi", instrumental: false }],
-    ["01beat kenzo", { title: "Beat kenzo", instrumental: false }],
-    ["1ed-chil beat", { title: "Ed-chil beat", instrumental: false }],
-    ["beat tal", { title: "Beat tal", instrumental: false }],
+    ["01beat kenzo", { title: "Kenzo", instrumental: false }],
+    ["1ed-chil beat", { title: "Ed-chil", instrumental: false }],
+    ["beat tal", { title: "Tal", instrumental: false }],
     ["Gira Sol", { title: "Gira Sol", instrumental: false }],
+    // "beat" and bare numbers are noise in a beatmaker's archive
+    ["11 - beat Cavalo Preto", { title: "Cavalo Preto", instrumental: false }],
+    ["01 beat Hooverphonic", { title: "Hooverphonic", instrumental: false }],
+    ["Beat sgov 1", { title: "Sgov", instrumental: false }],
+    ["1beat a tard e q e 1.1", { title: "A tard e q e", instrumental: false }],
+    ["1beat JMC 05 new", { title: "JMC", instrumental: false }],
+    ["Peace yall beat", { title: "Peace yall", instrumental: false }],
+    ["Mellow piano solo - 2", { title: "Mellow piano solo", instrumental: false }],
+    ["Beat javier soli - Almohada wave", { title: "Javier soli - Almohada wave", instrumental: false }],
+    ["Temes versao 1", { title: "Temes", instrumental: false }],
+    ["Sky bEtal wav", { title: "Sky bEtal", instrumental: false }],
+    ["Vive Para Seres Grande LowQ", { title: "Vive Para Seres Grande", instrumental: false }],
+    ["Chega de Saudade Project", { title: "Chega de Saudade", instrumental: false }],
+    ["beat do golpe por ED8125", { title: "Do golpe", instrumental: false }],
+    // numbers that belong to a word stay
+    ["Tributo a 4Camels", { title: "Tributo a 4Camels", instrumental: false }],
+    ["Beatriz", { title: "Beatriz", instrumental: false }],
+    // never empties a title
+    ["beat 1", { title: "Beat 1", instrumental: false }],
   ])("%s", (raw, expected) => expect(cleanTrackTitle(raw)).toEqual(expected));
 });

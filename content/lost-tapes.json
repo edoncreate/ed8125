@@ -17,91 +17,91 @@
         "source": "Lost Tapes - vol 1 (2005 - 2009)/2005 - Interlude...Ilusões -.mp3"
       },
       {
-        "slug": "beat-ilusoes",
-        "title": "Beat ilusões",
+        "slug": "ilusoes",
+        "title": "Ilusões",
         "year": 2006,
         "date": null,
         "note": null,
         "instrumental": false,
         "duration": 307,
-        "file": "vol-1/beat-ilusoes.mp3",
+        "file": "vol-1/ilusoes.mp3",
         "source": "Lost Tapes - vol 1 (2005 - 2009)/2006 - Beat ilusões (3).wav"
       },
       {
-        "slug": "beat-javier-soli-almohada-wave",
-        "title": "Beat javier soli - Almohada wave",
+        "slug": "javier-soli-almohada-wave",
+        "title": "Javier soli - Almohada wave",
         "year": 2006,
         "date": null,
         "note": null,
         "instrumental": false,
         "duration": 224,
-        "file": "vol-1/beat-javier-soli-almohada-wave.mp3",
+        "file": "vol-1/javier-soli-almohada-wave.mp3",
         "source": "Lost Tapes - vol 1 (2005 - 2009)/2006 - beat javier soli - Almohada wave (1).wav"
       },
       {
-        "slug": "beat-sgov-1",
-        "title": "Beat sgov 1",
-        "year": 2006,
-        "date": null,
-        "note": null,
-        "instrumental": false,
-        "duration": 209,
-        "file": "vol-1/beat-sgov-1.mp3",
-        "source": "Lost Tapes - vol 1 (2005 - 2009)/2006 - beat sgov 1 (1).wav"
-      },
-      {
-        "slug": "beat-stephane-grappel",
-        "title": "Beat stephane grappel",
-        "year": 2006,
-        "date": null,
-        "note": "sonar LE",
-        "instrumental": false,
-        "duration": 250,
-        "file": "vol-1/beat-stephane-grappel.mp3",
-        "source": "Lost Tapes - vol 1 (2005 - 2009)/2006 - beat stephane grappel (sonar LE) (1).wav"
-      },
-      {
-        "slug": "beat-tal",
-        "title": "Beat tal",
-        "year": 2006,
-        "date": null,
-        "note": null,
-        "instrumental": false,
-        "duration": 181,
-        "file": "vol-1/beat-tal.mp3",
-        "source": "Lost Tapes - vol 1 (2005 - 2009)/2006 - beat tal.wav"
-      },
-      {
-        "slug": "peace-yall-beat",
-        "title": "Peace yall beat",
+        "slug": "peace-yall",
+        "title": "Peace yall",
         "year": 2006,
         "date": null,
         "note": null,
         "instrumental": false,
         "duration": 266,
-        "file": "vol-1/peace-yall-beat.mp3",
+        "file": "vol-1/peace-yall.mp3",
         "source": "Lost Tapes - vol 1 (2005 - 2009)/2006 - peace yall beat (1).wav"
       },
       {
-        "slug": "sky-betal-wav",
-        "title": "Sky bEtal wav",
+        "slug": "sgov",
+        "title": "Sgov",
+        "year": 2006,
+        "date": null,
+        "note": null,
+        "instrumental": false,
+        "duration": 209,
+        "file": "vol-1/sgov.mp3",
+        "source": "Lost Tapes - vol 1 (2005 - 2009)/2006 - beat sgov 1 (1).wav"
+      },
+      {
+        "slug": "sky-betal",
+        "title": "Sky bEtal",
         "year": 2006,
         "date": null,
         "note": null,
         "instrumental": false,
         "duration": 267,
-        "file": "vol-1/sky-betal-wav.mp3",
+        "file": "vol-1/sky-betal.mp3",
         "source": "Lost Tapes - vol 1 (2005 - 2009)/2006 - sky bEtal wav (1).wav"
       },
       {
-        "slug": "vida-beat",
-        "title": "Vida beat",
+        "slug": "stephane-grappel",
+        "title": "Stephane grappel",
+        "year": 2006,
+        "date": null,
+        "note": "sonar LE",
+        "instrumental": false,
+        "duration": 250,
+        "file": "vol-1/stephane-grappel.mp3",
+        "source": "Lost Tapes - vol 1 (2005 - 2009)/2006 - beat stephane grappel (sonar LE) (1).wav"
+      },
+      {
+        "slug": "tal",
+        "title": "Tal",
+        "year": 2006,
+        "date": null,
+        "note": null,
+        "instrumental": false,
+        "duration": 181,
+        "file": "vol-1/tal.mp3",
+        "source": "Lost Tapes - vol 1 (2005 - 2009)/2006 - beat tal.wav"
+      },
+      {
+        "slug": "vida",
+        "title": "Vida",
         "year": 2006,
         "date": null,
         "note": null,
         "instrumental": false,
         "duration": 338,
-        "file": "vol-1/vida-beat.mp3",
+        "file": "vol-1/vida.mp3",
         "source": "Lost Tapes - vol 1 (2005 - 2009)/2006 - vida beat (1).wav"
       },
       {
@@ -116,28 +116,6 @@
         "source": "Lost Tapes - vol 1 (2005 - 2009)/2007 -Apv.wav"
       },
       {
-        "slug": "beat-em-im",
-        "title": "Beat em im",
-        "year": 2007,
-        "date": null,
-        "note": null,
-        "instrumental": false,
-        "duration": 143,
-        "file": "vol-1/beat-em-im.mp3",
-        "source": "Lost Tapes - vol 1 (2005 - 2009)/2007 -beat em im (1).wav"
-      },
-      {
-        "slug": "beat-em-im-2",
-        "title": "Beat em im",
-        "year": 2007,
-        "date": null,
-        "note": null,
-        "instrumental": false,
-        "duration": 143,
-        "file": "vol-1/beat-em-im-2.mp3",
-        "source": "Lost Tapes - vol 1 (2005 - 2009)/2007 -beat em im.wav"
-      },
-      {
         "slug": "dignidade",
         "title": "Dignidade",
         "year": 2007,
@@ -147,6 +125,17 @@
         "duration": 222,
         "file": "vol-1/dignidade.mp3",
         "source": "Lost Tapes - vol 1 (2005 - 2009)/2007 - Dignidade.wav"
+      },
+      {
+        "slug": "em-im",
+        "title": "Em im",
+        "year": 2007,
+        "date": null,
+        "note": null,
+        "instrumental": false,
+        "duration": 143,
+        "file": "vol-1/em-im.mp3",
+        "source": "Lost Tapes - vol 1 (2005 - 2009)/2007 -beat em im (1).wav"
       },
       {
         "slug": "velha-escola",
@@ -160,191 +149,169 @@
         "source": "Lost Tapes - vol 1 (2005 - 2009)/2007 - Velha escola.mp3"
       },
       {
-        "slug": "1beat-hooverphonic",
-        "title": "01 beat Hooverphonic",
-        "year": 2008,
-        "date": null,
-        "note": "ps",
-        "instrumental": false,
-        "duration": 228,
-        "file": "vol-1/1beat-hooverphonic.mp3",
-        "source": "Lost Tapes - vol 1 (2005 - 2009)/2008 - 1beat Hooverphonic (ps).mp3"
-      },
-      {
-        "slug": "11-beat-cavalo-preto",
-        "title": "11 - beat Cavalo Preto",
-        "year": 2008,
-        "date": null,
-        "note": null,
-        "instrumental": false,
-        "duration": 91,
-        "file": "vol-1/11-beat-cavalo-preto.mp3",
-        "source": "Lost Tapes - vol 1 (2005 - 2009)/2008 - 11 - beat Cavalo Preto.mp3"
-      },
-      {
-        "slug": "1beat-04-julho-07",
-        "title": "Beat 04 julho 07",
-        "year": 2008,
-        "date": null,
-        "note": null,
-        "instrumental": false,
-        "duration": 98,
-        "file": "vol-1/1beat-04-julho-07.mp3",
-        "source": "Lost Tapes - vol 1 (2005 - 2009)/2008 - 1beat 04 julho 07.mp3"
-      },
-      {
-        "slug": "1beat-a-tard-e-q-e-1-1",
-        "title": "Beat a tard e q e 1.1",
+        "slug": "a-tard-e-q-e",
+        "title": "A tard e q e",
         "year": 2008,
         "date": null,
         "note": null,
         "instrumental": false,
         "duration": 58,
-        "file": "vol-1/1beat-a-tard-e-q-e-1-1.mp3",
+        "file": "vol-1/a-tard-e-q-e.mp3",
         "source": "Lost Tapes - vol 1 (2005 - 2009)/2008 - 1beat a tard e_ q e_ 1.1.mp3"
       },
       {
-        "slug": "beat-javier-soli-almohada",
-        "title": "Beat javier soli - Almohada",
+        "slug": "cavalo-preto",
+        "title": "Cavalo Preto",
         "year": 2008,
         "date": null,
         "note": null,
         "instrumental": false,
-        "duration": 112,
-        "file": "vol-1/beat-javier-soli-almohada.mp3",
-        "source": "Lost Tapes - vol 1 (2005 - 2009)/2008 - beat javier soli - Almohada.mp3"
+        "duration": 91,
+        "file": "vol-1/cavalo-preto.mp3",
+        "source": "Lost Tapes - vol 1 (2005 - 2009)/2008 - 11 - beat Cavalo Preto.mp3"
       },
       {
-        "slug": "1beat-jmc-05-new",
-        "title": "Beat JMC 05 new",
-        "year": 2008,
-        "date": null,
-        "note": null,
-        "instrumental": false,
-        "duration": 180,
-        "file": "vol-1/1beat-jmc-05-new.mp3",
-        "source": "Lost Tapes - vol 1 (2005 - 2009)/2008 - 1beat JMC 05 new.mp3"
-      },
-      {
-        "slug": "1beat-kenzo",
-        "title": "Beat kenzo",
-        "year": 2008,
-        "date": null,
-        "note": null,
-        "instrumental": false,
-        "duration": 129,
-        "file": "vol-1/1beat-kenzo.mp3",
-        "source": "Lost Tapes - vol 1 (2005 - 2009)/2008 - 1beat kenzo.mp3"
-      },
-      {
-        "slug": "1beat-ufou",
-        "title": "Beat UFOu",
-        "year": 2008,
-        "date": null,
-        "note": null,
-        "instrumental": false,
-        "duration": 90,
-        "file": "vol-1/1beat-ufou.mp3",
-        "source": "Lost Tapes - vol 1 (2005 - 2009)/2008 - 1beat UFOu.mp3"
-      },
-      {
-        "slug": "1ed-chil-beat",
-        "title": "Ed-chil beat",
+        "slug": "ed-chil",
+        "title": "Ed-chil",
         "year": 2008,
         "date": null,
         "note": null,
         "instrumental": false,
         "duration": 41,
-        "file": "vol-1/1ed-chil-beat.mp3",
+        "file": "vol-1/ed-chil.mp3",
         "source": "Lost Tapes - vol 1 (2005 - 2009)/2008 - 1ed-chil beat.mp3"
       },
       {
-        "slug": "igrei-new",
-        "title": "Igrei new",
+        "slug": "hooverphonic",
+        "title": "Hooverphonic",
+        "year": 2008,
+        "date": null,
+        "note": "ps",
+        "instrumental": false,
+        "duration": 228,
+        "file": "vol-1/hooverphonic.mp3",
+        "source": "Lost Tapes - vol 1 (2005 - 2009)/2008 - 1beat Hooverphonic (ps).mp3"
+      },
+      {
+        "slug": "igrei",
+        "title": "Igrei",
         "year": 2008,
         "date": null,
         "note": null,
         "instrumental": false,
         "duration": 61,
-        "file": "vol-1/igrei-new.mp3",
+        "file": "vol-1/igrei.mp3",
         "source": "Lost Tapes - vol 1 (2005 - 2009)/2008 - igrei new.mp3"
       },
       {
-        "slug": "temes-versao-1",
-        "title": "Temes versao 1",
+        "slug": "javier-soli-almohada",
+        "title": "Javier soli - Almohada",
+        "year": 2008,
+        "date": null,
+        "note": null,
+        "instrumental": false,
+        "duration": 112,
+        "file": "vol-1/javier-soli-almohada.mp3",
+        "source": "Lost Tapes - vol 1 (2005 - 2009)/2008 - beat javier soli - Almohada.mp3"
+      },
+      {
+        "slug": "jmc",
+        "title": "JMC",
+        "year": 2008,
+        "date": null,
+        "note": null,
+        "instrumental": false,
+        "duration": 180,
+        "file": "vol-1/jmc.mp3",
+        "source": "Lost Tapes - vol 1 (2005 - 2009)/2008 - 1beat JMC 05 new.mp3"
+      },
+      {
+        "slug": "julho",
+        "title": "Julho",
+        "year": 2008,
+        "date": null,
+        "note": null,
+        "instrumental": false,
+        "duration": 98,
+        "file": "vol-1/julho.mp3",
+        "source": "Lost Tapes - vol 1 (2005 - 2009)/2008 - 1beat 04 julho 07.mp3"
+      },
+      {
+        "slug": "kenzo",
+        "title": "Kenzo",
+        "year": 2008,
+        "date": null,
+        "note": null,
+        "instrumental": false,
+        "duration": 129,
+        "file": "vol-1/kenzo.mp3",
+        "source": "Lost Tapes - vol 1 (2005 - 2009)/2008 - 1beat kenzo.mp3"
+      },
+      {
+        "slug": "temes",
+        "title": "Temes",
         "year": 2008,
         "date": null,
         "note": null,
         "instrumental": false,
         "duration": 53,
-        "file": "vol-1/temes-versao-1.mp3",
+        "file": "vol-1/temes.mp3",
         "source": "Lost Tapes - vol 1 (2005 - 2009)/2008 - temes versao 1.mp3"
       },
       {
-        "slug": "01-beat-summer-78",
-        "title": "01 beat Summer 78",
-        "year": 2009,
+        "slug": "ufou",
+        "title": "UFOu",
+        "year": 2008,
         "date": null,
-        "note": "trek",
+        "note": null,
         "instrumental": false,
-        "duration": 109,
-        "file": "vol-1/01-beat-summer-78.mp3",
-        "source": "Lost Tapes - vol 1 (2005 - 2009)/2009 - 01 beat Summer_78 (trek).mp3"
+        "duration": 90,
+        "file": "vol-1/ufou.mp3",
+        "source": "Lost Tapes - vol 1 (2005 - 2009)/2008 - 1beat UFOu.mp3"
       },
       {
-        "slug": "1beat-bar-da-escola-g-s",
-        "title": "Beat bar da escola G s",
+        "slug": "bar-da-escola-g-s",
+        "title": "Bar da escola G s",
         "year": 2009,
         "date": null,
         "note": "sacik",
         "instrumental": false,
         "duration": 154,
-        "file": "vol-1/1beat-bar-da-escola-g-s.mp3",
+        "file": "vol-1/bar-da-escola-g-s.mp3",
         "source": "Lost Tapes - vol 1 (2005 - 2009)/2009 - 1beat bar da escola G_s (sacik).mp3"
       },
       {
-        "slug": "beat-burn",
-        "title": "Beat burn",
+        "slug": "burn",
+        "title": "Burn",
         "year": 2009,
         "date": null,
         "note": null,
         "instrumental": false,
         "duration": 123,
-        "file": "vol-1/beat-burn.mp3",
+        "file": "vol-1/burn.mp3",
         "source": "Lost Tapes - vol 1 (2005 - 2009)/2009 - beat burn.mp3"
       },
       {
-        "slug": "beat-dito-pelo-n-dito",
-        "title": "Beat dito pelo n dito",
+        "slug": "dito-pelo-n-dito",
+        "title": "Dito pelo n dito",
         "year": 2009,
         "date": null,
         "note": null,
         "instrumental": false,
         "duration": 56,
-        "file": "vol-1/beat-dito-pelo-n-dito.mp3",
+        "file": "vol-1/dito-pelo-n-dito.mp3",
         "source": "Lost Tapes - vol 1 (2005 - 2009)/2009 - beat dito pelo n dito.mp3"
       },
       {
-        "slug": "beat-diz-q-disse",
-        "title": "Beat diz q disse",
+        "slug": "diz-q-disse",
+        "title": "Diz q disse",
         "year": 2009,
         "date": null,
         "note": null,
         "instrumental": false,
         "duration": 81,
-        "file": "vol-1/beat-diz-q-disse.mp3",
+        "file": "vol-1/diz-q-disse.mp3",
         "source": "Lost Tapes - vol 1 (2005 - 2009)/2009 - beat diz q disse.mp3"
-      },
-      {
-        "slug": "beat-parar-e-morrer",
-        "title": "Beat parar e morrer",
-        "year": 2009,
-        "date": null,
-        "note": null,
-        "instrumental": false,
-        "duration": 80,
-        "file": "vol-1/beat-parar-e-morrer.mp3",
-        "source": "Lost Tapes - vol 1 (2005 - 2009)/2009 - beat parar e morrer.mp3"
       },
       {
         "slug": "enizelos",
@@ -391,6 +358,17 @@
         "source": "Lost Tapes - vol 1 (2005 - 2009)/2009 - On and on.mp3"
       },
       {
+        "slug": "parar-e-morrer",
+        "title": "Parar e morrer",
+        "year": 2009,
+        "date": null,
+        "note": null,
+        "instrumental": false,
+        "duration": 80,
+        "file": "vol-1/parar-e-morrer.mp3",
+        "source": "Lost Tapes - vol 1 (2005 - 2009)/2009 - beat parar e morrer.mp3"
+      },
+      {
         "slug": "que",
         "title": "Que",
         "year": 2009,
@@ -411,6 +389,17 @@
         "duration": 172,
         "file": "vol-1/sem-papas-na-lingua.mp3",
         "source": "Lost Tapes - vol 1 (2005 - 2009)/2009 - Sem papas na lingua.mp3"
+      },
+      {
+        "slug": "summer",
+        "title": "Summer",
+        "year": 2009,
+        "date": null,
+        "note": "trek",
+        "instrumental": false,
+        "duration": 109,
+        "file": "vol-1/summer.mp3",
+        "source": "Lost Tapes - vol 1 (2005 - 2009)/2009 - 01 beat Summer_78 (trek).mp3"
       }
     ]
   },
@@ -421,92 +410,81 @@
     "to": 2014,
     "tracks": [
       {
-        "slug": "beat-a-chama-n-se-apaga",
-        "title": "Beat a chama n se apaga",
+        "slug": "a-chama-n-se-apaga",
+        "title": "A chama n se apaga",
         "year": 2010,
         "date": null,
         "note": null,
         "instrumental": false,
         "duration": 319,
-        "file": "vol-2/beat-a-chama-n-se-apaga.mp3",
+        "file": "vol-2/a-chama-n-se-apaga.mp3",
         "source": "Lost Tapes - vol 2 (2010 - 2014)/2010 - beat a chama n se apaga.mp3"
       },
       {
-        "slug": "beat-da-dica",
-        "title": "Beat da dica",
+        "slug": "da-dica",
+        "title": "Da dica",
         "year": 2010,
         "date": null,
         "note": null,
         "instrumental": false,
         "duration": 143,
-        "file": "vol-2/beat-da-dica.mp3",
+        "file": "vol-2/da-dica.mp3",
         "source": "Lost Tapes - vol 2 (2010 - 2014)/2010 - beat da dica.mp3"
       },
       {
-        "slug": "beat-da-nostalgia",
-        "title": "Beat da nostalgia",
+        "slug": "da-nostalgia",
+        "title": "Da nostalgia",
         "year": 2010,
         "date": null,
         "note": "zidek",
         "instrumental": false,
         "duration": 112,
-        "file": "vol-2/beat-da-nostalgia.mp3",
+        "file": "vol-2/da-nostalgia.mp3",
         "source": "Lost Tapes - vol 2 (2010 - 2014)/2010 - beat da nostalgia (zidek).mp3"
       },
       {
-        "slug": "beat-da-renascenca",
-        "title": "Beat da renascenca",
+        "slug": "da-renascenca",
+        "title": "Da renascenca",
         "year": 2010,
         "date": null,
         "note": null,
         "instrumental": false,
         "duration": 142,
-        "file": "vol-2/beat-da-renascenca.mp3",
+        "file": "vol-2/da-renascenca.mp3",
         "source": "Lost Tapes - vol 2 (2010 - 2014)/2010 - beat da renascenca.mp3"
       },
       {
-        "slug": "beat-do-big-big-king",
-        "title": "Beat do big big king",
+        "slug": "do-big-big-king",
+        "title": "Do big big king",
         "year": 2010,
         "date": null,
         "note": null,
         "instrumental": false,
         "duration": 205,
-        "file": "vol-2/beat-do-big-big-king.mp3",
+        "file": "vol-2/do-big-big-king.mp3",
         "source": "Lost Tapes - vol 2 (2010 - 2014)/2010 - beat do big big king.mp3"
       },
       {
-        "slug": "beat-do-gato",
-        "title": "Beat do gato",
+        "slug": "do-gato",
+        "title": "Do gato",
         "year": 2010,
         "date": null,
         "note": null,
         "instrumental": false,
         "duration": 142,
-        "file": "vol-2/beat-do-gato.mp3",
+        "file": "vol-2/do-gato.mp3",
         "source": "Lost Tapes - vol 2 (2010 - 2014)/2010 - beat do gato.mp3"
       },
       {
-        "slug": "beat-do-golpe-por-ed8125",
-        "title": "Beat do golpe por ED8125",
+        "slug": "do-golpe",
+        "title": "Do golpe",
         "year": 2010,
         "date": null,
         "note": null,
         "instrumental": false,
         "duration": 105,
-        "file": "vol-2/beat-do-golpe-por-ed8125.mp3",
+        "file": "vol-2/do-golpe.mp3",
         "source": "Lost Tapes - vol 2 (2010 - 2014)/2010 - beat do golpe por ED8125.mp3"
-      },
-      {
-        "slug": "beat-por-direito",
-        "title": "Beat por direito",
-        "year": 2010,
-        "date": null,
-        "note": null,
-        "instrumental": false,
-        "duration": 60,
-        "file": "vol-2/beat-por-direito.mp3",
-        "source": "Lost Tapes - vol 2 (2010 - 2014)/2010 - beat por direito.mp3"
       },
       {
         "slug": "ocv-outro",
@@ -520,58 +498,69 @@
         "source": "Lost Tapes - vol 2 (2010 - 2014)/2010 - OCV outro (jaydas).mp3"
       },
       {
-        "slug": "beat-do-guru-anao",
-        "title": "Beat do guru anao",
+        "slug": "por-direito",
+        "title": "Por direito",
+        "year": 2010,
+        "date": null,
+        "note": null,
+        "instrumental": false,
+        "duration": 60,
+        "file": "vol-2/por-direito.mp3",
+        "source": "Lost Tapes - vol 2 (2010 - 2014)/2010 - beat por direito.mp3"
+      },
+      {
+        "slug": "do-guru-anao",
+        "title": "Do guru anao",
         "year": 2011,
         "date": null,
         "note": null,
         "instrumental": false,
         "duration": 378,
-        "file": "vol-2/beat-do-guru-anao.mp3",
+        "file": "vol-2/do-guru-anao.mp3",
         "source": "Lost Tapes - vol 2 (2010 - 2014)/2011 - beat do guru anao.wav"
       },
       {
-        "slug": "beat-do-mal-amado",
-        "title": "Beat do mal amado",
+        "slug": "do-mal-amado",
+        "title": "Do mal amado",
         "year": 2011,
         "date": null,
         "note": null,
         "instrumental": false,
         "duration": 190,
-        "file": "vol-2/beat-do-mal-amado.mp3",
+        "file": "vol-2/do-mal-amado.mp3",
         "source": "Lost Tapes - vol 2 (2010 - 2014)/2011 - beat do mal amado.wav"
       },
       {
-        "slug": "beat-do-mau-olhado",
-        "title": "Beat do mau olhado",
+        "slug": "do-mau-olhado",
+        "title": "Do mau olhado",
         "year": 2011,
         "date": null,
         "note": null,
         "instrumental": false,
         "duration": 183,
-        "file": "vol-2/beat-do-mau-olhado.mp3",
+        "file": "vol-2/do-mau-olhado.mp3",
         "source": "Lost Tapes - vol 2 (2010 - 2014)/2011 - beat do mau olhado.mp3"
       },
       {
-        "slug": "beat-do-templo-ancestral",
-        "title": "Beat do templo ancestral",
+        "slug": "do-templo-ancestral",
+        "title": "Do templo ancestral",
         "year": 2011,
         "date": null,
         "note": null,
         "instrumental": false,
         "duration": 272,
-        "file": "vol-2/beat-do-templo-ancestral.mp3",
+        "file": "vol-2/do-templo-ancestral.mp3",
         "source": "Lost Tapes - vol 2 (2010 - 2014)/2011 - beat do templo ancestral.wav"
       },
       {
-        "slug": "nao-morreu-meu-amor-demo-ed8125-com",
+        "slug": "nao-morreu-meu-amor-demo",
         "title": "Não Morreu Meu Amor (Demo)",
         "year": 2011,
         "date": null,
         "note": null,
         "instrumental": false,
         "duration": 183,
-        "file": "vol-2/nao-morreu-meu-amor-demo-ed8125-com.mp3",
+        "file": "vol-2/nao-morreu-meu-amor-demo.mp3",
         "source": "Lost Tapes - vol 2 (2010 - 2014)/2011 - Não Morreu Meu Amor _Demo_ - ED8125.com.mp3"
       },
       {
@@ -674,25 +663,25 @@
         "source": "Lost Tapes - vol 2 (2010 - 2014)/2012 - Segue o Teu Coração - ED8125.mp3"
       },
       {
-        "slug": "tributo-a-4camels-contas-pra-pagar-e-que-e-ed8125",
+        "slug": "tributo-a-4camels-contas-pra-pagar-e-que-e-e",
         "title": "Tributo a 4Camels (Contas pra pagar é que é... é )",
         "year": 2012,
         "date": null,
         "note": null,
         "instrumental": false,
         "duration": 142,
-        "file": "vol-2/tributo-a-4camels-contas-pra-pagar-e-que-e-ed8125.mp3",
+        "file": "vol-2/tributo-a-4camels-contas-pra-pagar-e-que-e-e.mp3",
         "source": "Lost Tapes - vol 2 (2010 - 2014)/2012 -  Tributo a 4Camels _Contas pra pagar é que é  ED8125.mp3"
       },
       {
-        "slug": "vive-para-seres-grande-lowq",
-        "title": "Vive Para Seres Grande LowQ",
+        "slug": "vive-para-seres-grande",
+        "title": "Vive Para Seres Grande",
         "year": 2012,
         "date": null,
         "note": null,
         "instrumental": false,
         "duration": 144,
-        "file": "vol-2/vive-para-seres-grande-lowq.mp3",
+        "file": "vol-2/vive-para-seres-grande.mp3",
         "source": "Lost Tapes - vol 2 (2010 - 2014)/2012 - Vive Para Seres Grande LowQ.mp3"
       },
       {
@@ -707,14 +696,14 @@
         "source": "Lost Tapes - vol 2 (2010 - 2014)/2013 - Canto.wav"
       },
       {
-        "slug": "dont-ed8125-soundcloudmate-com",
+        "slug": "don-t",
         "title": "Don't",
         "year": 2013,
         "date": null,
         "note": null,
         "instrumental": false,
         "duration": 108,
-        "file": "vol-2/dont-ed8125-soundcloudmate-com.mp3",
+        "file": "vol-2/don-t.mp3",
         "source": "Lost Tapes - vol 2 (2010 - 2014)/2013 - DONT - ED8125 - SoundCloudMate.com.mp3"
       },
       {
@@ -795,14 +784,14 @@
         "source": "Lost Tapes - vol 2 (2010 - 2014)/2013 - Tive Razão - ED8125.mp3"
       },
       {
-        "slug": "nao-consegui-esquecer-ed8125-2013",
+        "slug": "nao-consegui-esquecer",
         "title": "Não Consegui Esquecer",
         "year": 2013,
         "date": null,
         "note": null,
         "instrumental": false,
         "duration": 285,
-        "file": "vol-2/nao-consegui-esquecer-ed8125-2013.mp3",
+        "file": "vol-2/nao-consegui-esquecer.mp3",
         "source": "Lost Tapes - vol 2 (2010 - 2014)/2013 - Não Consegui Esquecer - ED8125 - 2013.mp3"
       },
       {
@@ -1015,14 +1004,14 @@
         "source": "Lost Tapes - vol 2 (2010 - 2014)/ska.wav"
       },
       {
-        "slug": "timi-v1",
+        "slug": "timi",
         "title": "Timi",
         "year": null,
         "date": null,
         "note": null,
         "instrumental": false,
         "duration": 137,
-        "file": "vol-2/timi-v1.mp3",
+        "file": "vol-2/timi.mp3",
         "source": "Lost Tapes - vol 2 (2010 - 2014)/Timi v1_.mp3"
       }
     ]
@@ -1078,25 +1067,25 @@
         "source": "Lost Tapes - vol 3 (2015 - 2019)/2015 - Red Smoke - ED8125.mp3"
       },
       {
-        "slug": "suzanne-vega-tom-s-diner-project-v4",
+        "slug": "tom-s-diner-suzanne-vega",
         "title": "Tom's Diner (Suzanne Vega)",
         "year": 2018,
         "date": "2018-11-13",
         "note": null,
         "instrumental": false,
         "duration": 211,
-        "file": "vol-3/suzanne-vega-tom-s-diner-project-v4.mp3",
+        "file": "vol-3/tom-s-diner-suzanne-vega.mp3",
         "source": "Lost Tapes - vol 3 (2015 - 2019)/2018_11_13_Suzanne_Vega_Tom_s_Diner_Project_v4.mp3"
       },
       {
-        "slug": "abril-maguas-1000",
+        "slug": "abril-m-aguas-1000",
         "title": "Abril M'Águas 1000",
         "year": 2019,
         "date": "2019-04-09",
         "note": null,
         "instrumental": false,
         "duration": 315,
-        "file": "vol-3/abril-maguas-1000.mp3",
+        "file": "vol-3/abril-m-aguas-1000.mp3",
         "source": "Lost Tapes - vol 3 (2015 - 2019)/2019_04_09_Abril MAguas 1000.mp3"
       },
       {
@@ -1111,26 +1100,15 @@
         "source": "Lost Tapes - vol 3 (2015 - 2019)/2019_07_21_Mais Amor Por Favor.mp3"
       },
       {
-        "slug": "honey-project-v2",
+        "slug": "honey",
         "title": "Honey",
         "year": 2019,
         "date": "2019-07-27",
         "note": null,
         "instrumental": false,
         "duration": 168,
-        "file": "vol-3/honey-project-v2.mp3",
+        "file": "vol-3/honey.mp3",
         "source": "Lost Tapes - vol 3 (2015 - 2019)/2019_07_27_honey_Project_v2.mp3"
-      },
-      {
-        "slug": "honey-project",
-        "title": "Honey Project",
-        "year": 2019,
-        "date": "2019-07-27",
-        "note": null,
-        "instrumental": false,
-        "duration": 168,
-        "file": "vol-3/honey-project.mp3",
-        "source": "Lost Tapes - vol 3 (2015 - 2019)/2019_07_27_honey_Project.mp3"
       },
       {
         "slug": "follow-your-heart",
@@ -1177,14 +1155,14 @@
         "source": "Lost Tapes - vol 3 (2015 - 2019)/2019_12_29_One Love.mp3"
       },
       {
-        "slug": "and-i-love-v3-torvao",
+        "slug": "and-i-love-torvao",
         "title": "And i love torvao",
         "year": null,
         "date": null,
         "note": null,
         "instrumental": false,
         "duration": 256,
-        "file": "vol-3/and-i-love-v3-torvao.mp3",
+        "file": "vol-3/and-i-love-torvao.mp3",
         "source": "Lost Tapes - vol 3 (2015 - 2019)/and i love v3 torvao.mp3"
       },
       {
@@ -1199,25 +1177,25 @@
         "source": "Lost Tapes - vol 3 (2015 - 2019)/Ate Cuando.mp3"
       },
       {
-        "slug": "bright-instr",
+        "slug": "bright",
         "title": "Bright",
         "year": null,
         "date": null,
         "note": null,
         "instrumental": true,
         "duration": 136,
-        "file": "vol-3/bright-instr.mp3",
+        "file": "vol-3/bright.mp3",
         "source": "Lost Tapes - vol 3 (2015 - 2019)/Bright INSTR.mp3"
       },
       {
-        "slug": "cancao-instr",
+        "slug": "cancao",
         "title": "Cancao",
         "year": null,
         "date": null,
         "note": null,
         "instrumental": true,
         "duration": 148,
-        "file": "vol-3/cancao-instr.mp3",
+        "file": "vol-3/cancao.mp3",
         "source": "Lost Tapes - vol 3 (2015 - 2019)/Cancao INSTR.mp3"
       },
       {
@@ -1232,14 +1210,14 @@
         "source": "Lost Tapes - vol 3 (2015 - 2019)/__carnabal.mp3"
       },
       {
-        "slug": "chega-de-saudade-project",
-        "title": "Chega de Saudade Project",
+        "slug": "chega-de-saudade",
+        "title": "Chega de Saudade",
         "year": null,
         "date": null,
         "note": null,
         "instrumental": false,
         "duration": 238,
-        "file": "vol-3/chega-de-saudade-project.mp3",
+        "file": "vol-3/chega-de-saudade.mp3",
         "source": "Lost Tapes - vol 3 (2015 - 2019)/Chega_de_Saudade_Project.mp3"
       },
       {
@@ -1254,14 +1232,14 @@
         "source": "Lost Tapes - vol 3 (2015 - 2019)/_For You.mp3"
       },
       {
-        "slug": "in-a-manner-of-speaking-instr",
+        "slug": "in-a-manner-of-speaking",
         "title": "In a manner of speaking",
         "year": null,
         "date": null,
         "note": null,
         "instrumental": true,
         "duration": 320,
-        "file": "vol-3/in-a-manner-of-speaking-instr.mp3",
+        "file": "vol-3/in-a-manner-of-speaking.mp3",
         "source": "Lost Tapes - vol 3 (2015 - 2019)/in a manner of speaking INSTR.mp3"
       },
       {
@@ -1276,14 +1254,14 @@
         "source": "Lost Tapes - vol 3 (2015 - 2019)/in the sky.mp3"
       },
       {
-        "slug": "kuri-instr",
+        "slug": "kuri",
         "title": "Kuri",
         "year": null,
         "date": null,
         "note": null,
         "instrumental": true,
         "duration": 107,
-        "file": "vol-3/kuri-instr.mp3",
+        "file": "vol-3/kuri.mp3",
         "source": "Lost Tapes - vol 3 (2015 - 2019)/kuri INSTR.mp3"
       },
       {
@@ -1298,58 +1276,58 @@
         "source": "Lost Tapes - vol 3 (2015 - 2019)/_mellow.mp3"
       },
       {
-        "slug": "mellow-piano-solo-2",
-        "title": "Mellow piano solo - 2",
+        "slug": "mellow-piano-solo",
+        "title": "Mellow piano solo",
         "year": null,
         "date": null,
         "note": null,
         "instrumental": false,
         "duration": 230,
-        "file": "vol-3/mellow-piano-solo-2.mp3",
+        "file": "vol-3/mellow-piano-solo.mp3",
         "source": "Lost Tapes - vol 3 (2015 - 2019)/_mellow piano solo - 2.mp3"
       },
       {
-        "slug": "mona-instr",
+        "slug": "mona",
         "title": "Mona",
         "year": null,
         "date": null,
         "note": null,
         "instrumental": true,
         "duration": 140,
-        "file": "vol-3/mona-instr.mp3",
+        "file": "vol-3/mona.mp3",
         "source": "Lost Tapes - vol 3 (2015 - 2019)/mona INSTR.mp3"
       },
       {
-        "slug": "morar-na-filosofia-instr",
+        "slug": "morar-na-filosofia",
+        "title": "Morar na filosofia",
+        "year": null,
+        "date": null,
+        "note": null,
+        "instrumental": false,
+        "duration": 256,
+        "file": "vol-3/morar-na-filosofia.mp3",
+        "source": "Lost Tapes - vol 3 (2015 - 2019)/Morar_na_filosofia_Project.mp3"
+      },
+      {
+        "slug": "morar-na-filosofia-2",
         "title": "Morar na filosofia",
         "year": null,
         "date": null,
         "note": null,
         "instrumental": true,
         "duration": 123,
-        "file": "vol-3/morar-na-filosofia-instr.mp3",
+        "file": "vol-3/morar-na-filosofia-2.mp3",
         "source": "Lost Tapes - vol 3 (2015 - 2019)/morar na filosofia INSTR.mp3"
       },
       {
-        "slug": "morar-na-filosofia-project",
-        "title": "Morar na filosofia Project",
-        "year": null,
-        "date": null,
-        "note": null,
-        "instrumental": false,
-        "duration": 256,
-        "file": "vol-3/morar-na-filosofia-project.mp3",
-        "source": "Lost Tapes - vol 3 (2015 - 2019)/Morar_na_filosofia_Project.mp3"
-      },
-      {
-        "slug": "noite-magica-instru",
+        "slug": "noite-magica",
         "title": "Noite Magica",
         "year": null,
         "date": null,
         "note": null,
         "instrumental": true,
         "duration": 217,
-        "file": "vol-3/noite-magica-instru.mp3",
+        "file": "vol-3/noite-magica.mp3",
         "source": "Lost Tapes - vol 3 (2015 - 2019)/Noite Magica INSTRU.mp3"
       },
       {
@@ -1375,14 +1353,14 @@
         "source": "Lost Tapes - vol 3 (2015 - 2019)/Pela Calada da Noite.mp3"
       },
       {
-        "slug": "sentimental-mood-project",
-        "title": "Sentimental mood Project",
+        "slug": "sentimental-mood",
+        "title": "Sentimental mood",
         "year": null,
         "date": null,
         "note": null,
         "instrumental": false,
         "duration": 277,
-        "file": "vol-3/sentimental-mood-project.mp3",
+        "file": "vol-3/sentimental-mood.mp3",
         "source": "Lost Tapes - vol 3 (2015 - 2019)/sentimental_mood_Project.mp3"
       },
       {
@@ -1408,36 +1386,36 @@
         "source": "Lost Tapes - vol 3 (2015 - 2019)/_she is.mp3"
       },
       {
-        "slug": "sinais-dos-tempos-instr",
+        "slug": "sinais-dos-tempos",
         "title": "Sinais dos tempos",
         "year": null,
         "date": null,
         "note": null,
         "instrumental": true,
         "duration": 129,
-        "file": "vol-3/sinais-dos-tempos-instr.mp3",
+        "file": "vol-3/sinais-dos-tempos.mp3",
         "source": "Lost Tapes - vol 3 (2015 - 2019)/sinais dos tempos INSTR.mp3"
       },
       {
-        "slug": "todo-tempo-do-mundo-project",
-        "title": "Todo tempo do mundo Project",
+        "slug": "todo-tempo-do-mundo",
+        "title": "Todo tempo do mundo",
         "year": null,
         "date": null,
         "note": null,
         "instrumental": false,
         "duration": 206,
-        "file": "vol-3/todo-tempo-do-mundo-project.mp3",
+        "file": "vol-3/todo-tempo-do-mundo.mp3",
         "source": "Lost Tapes - vol 3 (2015 - 2019)/Todo_tempo_do_mundo_Project.mp3"
       },
       {
-        "slug": "trsite-final-project",
-        "title": "Trsite final Project",
+        "slug": "triste-final",
+        "title": "Triste Final",
         "year": null,
         "date": null,
         "note": null,
         "instrumental": false,
         "duration": 251,
-        "file": "vol-3/trsite-final-project.mp3",
+        "file": "vol-3/triste-final.mp3",
         "source": "Lost Tapes - vol 3 (2015 - 2019)/Trsite_final_Project.mp3"
       },
       {
@@ -1450,28 +1428,6 @@
         "duration": 147,
         "file": "vol-3/vambora.mp3",
         "source": "Lost Tapes - vol 3 (2015 - 2019)/Vambora.mp3"
-      },
-      {
-        "slug": "vou-por-ai-project-v3",
-        "title": "Vou por ai",
-        "year": null,
-        "date": null,
-        "note": null,
-        "instrumental": false,
-        "duration": 264,
-        "file": "vol-3/vou-por-ai-project-v3.mp3",
-        "source": "Lost Tapes - vol 3 (2015 - 2019)/vou_por_ai_Project_v3.mp3"
-      },
-      {
-        "slug": "vou-por-ai-2",
-        "title": "Vou Por Ai",
-        "year": null,
-        "date": null,
-        "note": null,
-        "instrumental": false,
-        "duration": 263,
-        "file": "vol-3/vou-por-ai-2.mp3",
-        "source": "Lost Tapes - vol 3 (2015 - 2019)/Vou Por Ai.mp3"
       }
     ]
   },
@@ -1482,14 +1438,14 @@
     "to": 2020,
     "tracks": [
       {
-        "slug": "it-is-time-to-think",
+        "slug": "it-s-time-to-think",
         "title": "It's Time to Think",
         "year": 2020,
         "date": "2020-04-18",
         "note": null,
         "instrumental": false,
         "duration": 233,
-        "file": "2020/it-is-time-to-think.mp3",
+        "file": "2020/it-s-time-to-think.mp3",
         "source": "2020/2020_04_18_It is Time to Think.mp3"
       },
       {
@@ -1504,14 +1460,14 @@
         "source": "2020/20_07_30_Everything.mp3"
       },
       {
-        "slug": "remix-sean-prince-ft-tek",
+        "slug": "sean-price-ft-tek-remix",
         "title": "Sean Price ft Tek (Remix)",
         "year": 2020,
         "date": "2020-11-15",
         "note": null,
         "instrumental": false,
         "duration": 192,
-        "file": "2020/remix-sean-prince-ft-tek.mp3",
+        "file": "2020/sean-price-ft-tek-remix.mp3",
         "source": "2020/2020_11_15_REMIX_Sean Prince ft Tek.mp3"
       },
       {

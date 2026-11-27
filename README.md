@@ -1,6 +1,6 @@
 # ED8125
 
-ed8125.com — beatmaker, bass player and producer, Lisbon. Beats since 2003.
+ed8125.com — beatmaker, bass player and producer, Lisboa / Quarteira. Beats since 2003.
 
 Phase 2: a listening experience in the "Spotlight orange" system shared with
 edoncreate.com. Next.js 16 (App Router, static export) + React 19 + TypeScript, on GitHub Pages. Phase 1 (the

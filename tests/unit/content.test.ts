@@ -12,7 +12,7 @@ describe("Lost Tapes", () => {
       "Vol. 3 2015–2019",
       "2020 2020–2021",
     ]);
-    expect(totalLostTapes()).toBe(139);
+    expect(totalLostTapes()).toBe(135); // 139 files, 4 repeats hidden in lost-tapes-overrides.json
   });
 
   it("every track has a title, a duration and a slug unique within its volume", () => {

@@ -12,8 +12,8 @@ export const site = {
   roles: ["Beatmaker", "Bass", "Producer"],
   since: 2003,
   headline: ["Let’s cook", "some", "music."] as const,
-  positioning: "Beats since 2003, made in Lisbon. A new one most weeks, the archive back to the first tapes.",
-  location: { city: "Lisbon", tz: "Europe/Lisbon", coords: "38°43′N 9°08′W" },
+  positioning: "Beats since 2003, made between Lisboa and Quarteira. A new one most weeks, the archive back to the first tapes.",
+  location: { city: "Lisboa / Quarteira", tz: "Europe/Lisbon", coords: "38°43′N 9°08′W · 37°04′N 8°06′W" },
   socials: {
     youtube: "https://www.youtube.com/@ED8125",
     instagram: "https://www.instagram.com/ed8125/",
@@ -23,7 +23,7 @@ export const site = {
   bio: [
     "Producing instrumental beats since 2003, ED8125 soon realised that music was the way he could best express himself.",
     "First a hobby, maybe a shelter. Whatever it was, music was always part of his life.",
-    "Over the years he has focused on telling stories, with a message in his melodies. Beatmaker, bass player and producer, based in Lisbon.",
+    "Over the years he has focused on telling stories, with a message in his melodies. Beatmaker, bass player and producer, based between Lisboa and Quarteira.",
   ],
   /** Track that "Enter with sound" plays (a Lost Tapes file). */
   soundLoop: { volume: "2020", slug: "mad" },

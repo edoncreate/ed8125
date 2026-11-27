@@ -79,8 +79,9 @@ export function slugify(s: string): string {
 
 /**
  * Tidies a raw archive title: "LOS MASCHINEROS - Besame" → "Los Maschineros – Besame",
- * drops working-file suffixes ("Project v2", "v3"), a leading track number ("01beat")
- * and an "INSTR" marker (reported as `instrumental`).
+ * drops the word "beat", bare numbers ("11 - beat Cavalo Preto" → "Cavalo Preto"),
+ * working-file noise ("Project v2", "versao 1", "new", "wav", "LowQ", "por ED8125") and an
+ * "INSTR" marker (reported as `instrumental`). Numbers inside a word ("4Camels") stay.
  */
 export function cleanTrackTitle(raw: string): { title: string; instrumental: boolean } {
   let t = raw.trim();
@@ -89,13 +90,20 @@ export function cleanTrackTitle(raw: string): { title: string; instrumental: boo
     instrumental = true;
     t = t.replace(/\s+INSTRU?M?(ENTAL)?\.?$/i, "");
   }
+  const lm = /^los maschineros\s*[-–—]\s*/i.test(t);
+  t = t.replace(/^los maschineros\s*[-–—]\s*/i, "");
+  const fallback = t.replace(/\s+/g, " ").trim();
   t = t
-    .replace(/^los maschineros\s*[-–—]\s*/i, "Los Maschineros – ")
-    .replace(/\s+project\s+v\d+\b/i, "")
-    .replace(/\s+v\d+\b/gi, "")
-    .replace(/^\d+(?=[a-z])/i, "")
+    .replace(/\s+project(\s+v\d+)?\b/gi, "")
+    .replace(/\s+(v\d+|versao\s+\d+|new|wav|lowq|por\s+ed8125)(?=\s|$)/gi, "")
+    .replace(/(^|[\s-])\d*beat(?=\s|$)/gi, "$1")
+    .replace(/(^|\s)\d+(?:\.\d+)*(?=\s|$)/g, "$1")
+    .replace(/^\s*\d+(?=[a-z])/i, "")
     .replace(/\s+/g, " ")
+    .replace(/^[\s-]+|[\s-]+$/g, "")
     .trim();
+  if (!t) t = fallback;
   if (t) t = t[0].toUpperCase() + t.slice(1);
+  if (lm) t = `Los Maschineros – ${t}`;
   return { title: t, instrumental };
 }

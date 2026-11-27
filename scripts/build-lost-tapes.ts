@@ -4,15 +4,17 @@
  *   npm run media:lost-tapes            (LOST_TAPES_DIR overrides the source folder)
  *
  * - content/lost-tapes.json  ← committed: volumes, titles, years, durations
- * - public/media/lost-tapes/ ← git-ignored mp3s (WAVs are encoded to 192 kbps);
- *                              upload this folder to the audio host for production
+ * - public/media/lost-tapes/ ← committed mp3s served by GitHub Pages (WAVs are encoded
+ *                              to 192 kbps); files no track uses any more are deleted
  *
  * Titles come from the file's title tag when it has one, else from the file
- * name. Fix any of them in content/lost-tapes-overrides.json, keyed
- * "<volume>/<slug>": { "title": "...", "note": "...", "hidden": true }.
+ * name, cleaned by cleanTrackTitle(). The mp3 name is the slug of the final title.
+ * Fix any of them in content/lost-tapes-overrides.json, keyed by the SOURCE file:
+ * "<volume>/<slugified file name>" (e.g. "vol-1/beat-em-im-2"):
+ * { "title": "...", "note": "...", "hidden": true }.
  */
 import { execFileSync } from "node:child_process";
-import { copyFileSync, existsSync, mkdirSync, readdirSync, readFileSync, statSync, writeFileSync } from "node:fs";
+import { copyFileSync, existsSync, mkdirSync, readdirSync, readFileSync, rmSync, statSync, writeFileSync } from "node:fs";
 import { homedir } from "node:os";
 import { join } from "node:path";
 import { cleanTrackTitle, parseLostTapeFilename, parseVolumeFolder, slugify } from "../src/lib/lost-tapes";
@@ -60,10 +62,12 @@ function encodeOrCopy(src: string, dest: string) {
 }
 
 const volumes: LostTapeVolume[] = [];
+const keep = new Set<string>();
 for (const folder of readdirSync(SRC).filter((f) => statSync(join(SRC, f)).isDirectory())) {
   const info = parseVolumeFolder(folder);
   mkdirSync(join(OUT_AUDIO, info.id), { recursive: true });
   const used = new Set<string>();
+  const usedKeys = new Set<string>();
   const tracks: LostTape[] = [];
 
   for (const name of readdirSync(join(SRC, folder)).filter((f) => AUDIO.test(f)).sort()) {
@@ -74,14 +78,27 @@ for (const folder of readdirSync(SRC).filter((f) => statSync(join(SRC, f)).isDir
     const cleaned = cleanTrackTitle(tagTitle && tagTitle.length > 1 ? tagTitle : parsed.title);
     let title = cleaned.title;
 
-    let slug = slugify(parsed.title) || "untitled";
-    for (let n = 2; used.has(slug); n++) slug = `${slugify(parsed.title)}-${n}`;
-    used.add(slug);
+    // Override key: stable, from the source file name.
+    let key = slugify(parsed.title) || "untitled";
+    for (let n = 2; usedKeys.has(key); n++) key = `${slugify(parsed.title)}-${n}`;
+    usedKeys.add(key);
 
-    const o = overrides[`${info.id}/${slug}`] ?? {};
+    const o = overrides[`${info.id}/${key}`] ?? {};
     if (o.hidden) continue;
     title = o.title ?? title;
+
+    // Public slug and mp3 name: from the final, cleaned title.
+    const base = slugify(title.replace(/^Los Maschineros – /, "")) || key;
+    let slug = base;
+    for (let n = 2; used.has(slug); n++) slug = `${base}-${n}`;
+    used.add(slug);
     const file = `${info.id}/${slug}.mp3`;
+    keep.add(file);
+    // Reuse an encode made under the source-file name (before titles were cleaned).
+    const old = join(OUT_AUDIO, `${info.id}/${key}.mp3`);
+    if (!existsSync(join(OUT_AUDIO, file)) && existsSync(old) && !keep.has(`${info.id}/${key}.mp3`)) {
+      copyFileSync(old, join(OUT_AUDIO, file));
+    }
     encodeOrCopy(srcPath, join(OUT_AUDIO, file));
     tracks.push({
       slug,
@@ -102,5 +119,13 @@ for (const folder of readdirSync(SRC).filter((f) => statSync(join(SRC, f)).isDir
 }
 
 volumes.sort((a, b) => a.from - b.from);
+
+// Drop mp3s no track points at any more (renamed or hidden).
+for (const dir of readdirSync(OUT_AUDIO)) {
+  if (!statSync(join(OUT_AUDIO, dir)).isDirectory()) continue;
+  for (const f of readdirSync(join(OUT_AUDIO, dir))) {
+    if (!keep.has(`${dir}/${f}`)) rmSync(join(OUT_AUDIO, dir, f));
+  }
+}
 writeFileSync(OUT_JSON, JSON.stringify(volumes, null, 2) + "\n");
 console.log(`\nlost-tapes.json: ${volumes.map((v) => `${v.label} ${v.tracks.length}`).join(", ")}`);

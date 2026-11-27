@@ -12,7 +12,7 @@ type Props = { videos: Video[]; soundTrack: PlayableTrack | null; lostTapes: num
 /** 01 Intro: headline left, orange halftone portrait right, data row at the bottom. */
 export function Hero({ videos, soundTrack, lostTapes }: Props) {
   const [l1, l2, l3] = site.headline;
-  const labels = ["Beats since 2003", "Bass", "Lisbon"];
+  const labels = ["Beats since 2003", "Bass", "Lisboa / Quarteira"];
 
   return (
     <section id="intro" aria-labelledby="intro-title" className={styles.hero}>
