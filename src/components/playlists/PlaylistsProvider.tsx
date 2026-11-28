@@ -2,7 +2,7 @@
 
 import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import { BASE_PATH } from "@/lib/asset";
-import type { PlayableTrack } from "@/lib/content";
+import type { CatalogTrack } from "@/lib/catalog";
 import { accountsEnabled, supabase } from "@/lib/supabase";
 import { addKey, cleanName, moveKey, removeAt, type Playlist } from "./model";
 
@@ -13,7 +13,7 @@ type PlaylistsApi = {
   /** Signed-in email, null when signed out, undefined while checking. */
   email: string | null | undefined;
   playlists: Playlist[];
-  catalog: Map<string, PlayableTrack> | null;
+  catalog: Map<string, CatalogTrack> | null;
   loadCatalog: () => void;
   signIn: (email: string) => Promise<Result>;
   signOut: () => Promise<void>;
@@ -22,6 +22,7 @@ type PlaylistsApi = {
   rename: (id: string, name: string) => Promise<Result>;
   remove: (id: string) => Promise<Result>;
   addTrack: (id: string, key: string) => Promise<Result>;
+  addTracks: (id: string, keys: string[]) => Promise<Result>;
   removeTrack: (id: string, index: number) => Promise<Result>;
   moveTrack: (id: string, index: number, delta: number) => Promise<Result>;
 };
@@ -34,7 +35,7 @@ const friendly = (e: { message: string } | null | undefined) => (e ? { error: e.
 export function PlaylistsProvider({ children }: { children: ReactNode }) {
   const [email, setEmail] = useState<string | null | undefined>(accountsEnabled ? undefined : null);
   const [playlists, setPlaylists] = useState<Playlist[]>([]);
-  const [catalog, setCatalog] = useState<Map<string, PlayableTrack> | null>(null);
+  const [catalog, setCatalog] = useState<Map<string, CatalogTrack> | null>(null);
   const catalogLoading = useRef(false);
 
   const refresh = useCallback(async () => {
@@ -59,7 +60,7 @@ export function PlaylistsProvider({ children }: { children: ReactNode }) {
     if (catalogLoading.current) return;
     catalogLoading.current = true;
     fetch(`${BASE_PATH}/catalog.json`)
-      .then((r) => (r.ok ? (r.json() as Promise<PlayableTrack[]>) : []))
+      .then((r) => (r.ok ? (r.json() as Promise<CatalogTrack[]>) : []))
       .then((list) => setCatalog(new Map(list.map((t) => [t.key, t]))))
       .catch(() => {
         catalogLoading.current = false;
@@ -125,6 +126,7 @@ export function PlaylistsProvider({ children }: { children: ReactNode }) {
         return friendly(error);
       },
       addTrack: (id, key) => update(id, (p) => ({ tracks: addKey(p.tracks, key) })),
+      addTracks: (id, keys) => update(id, (p) => ({ tracks: keys.reduce(addKey, p.tracks).slice(0, 500) })),
       removeTrack: (id, index) => update(id, (p) => ({ tracks: removeAt(p.tracks, index) })),
       moveTrack: (id, index, delta) => update(id, (p) => ({ tracks: moveKey(p.tracks, index, delta) })),
     }),

@@ -85,3 +85,19 @@ test("signed in: the + in the player adds the current track", async ({ page }) =
   await expect(dock.getByRole("status")).toHaveText("Added to Late night.");
   expect(db.patches).toEqual([{ tracks: ["lt:vol-2/da-nostalgia"] }]);
 });
+
+test("signed in: filter the discography to Los Maschineros and add them all", async ({ page }) => {
+  const db = await fakeSupabase(page, [{ id: "p1", name: "Late night", tracks: [], updated_at: "2026-11-28" }]);
+  await signedIn(page);
+  await page.goto("/playlists");
+  const disco = page.locator("section[aria-labelledby=disco]");
+  await disco.getByRole("button", { name: /^Los Maschineros/ }).click();
+  await expect(disco.getByRole("status")).toContainText("24 tracks");
+  await disco.getByLabel("Length").selectOption("long");
+  await expect(disco.locator("ol > li")).toHaveCount(1); // Excalibur Maschine of Fire, 4:38
+  await disco.getByRole("button", { name: "Clear filters" }).click();
+  await disco.getByRole("button", { name: /^Los Maschineros/ }).click();
+  await disco.getByRole("button", { name: "+ Add all 24 to Late night" }).click();
+  await expect(page.getByRole("article", { name: "Late night" })).toContainText("24 tracks");
+  expect((db.patches[0] as { tracks: string[] }).tracks).toHaveLength(24);
+});

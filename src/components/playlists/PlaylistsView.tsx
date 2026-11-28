@@ -4,8 +4,9 @@ import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import { usePlayer } from "@/components/player/PlayerProvider";
 import type { PlayerItem } from "@/components/player/state";
+import type { CatalogSource, CatalogTrack } from "@/lib/catalog";
 import { formatDuration, type PlayableTrack } from "@/lib/content";
-import { cleanName, resolveTracks, type Playlist } from "./model";
+import { cleanName, filterCatalog, resolveTracks, type CatalogSort, type LengthBand, type Playlist } from "./model";
 import { usePlaylists } from "./PlaylistsProvider";
 import styles from "./PlaylistsView.module.css";
 
@@ -121,7 +122,7 @@ function SignIn() {
   );
 }
 
-function Mine({ email, playlists, catalog }: { email: string; playlists: Playlist[]; catalog: Map<string, PlayableTrack> | null }) {
+function Mine({ email, playlists, catalog }: { email: string; playlists: Playlist[]; catalog: Map<string, CatalogTrack> | null }) {
   const { create, signOut, deleteAccount } = usePlaylists();
   const [name, setName] = useState("");
   const [error, setError] = useState("");
@@ -170,7 +171,7 @@ function Mine({ email, playlists, catalog }: { email: string; playlists: Playlis
   );
 }
 
-function PlaylistCard({ playlist, catalog }: { playlist: Playlist; catalog: Map<string, PlayableTrack> | null }) {
+function PlaylistCard({ playlist, catalog }: { playlist: Playlist; catalog: Map<string, CatalogTrack> | null }) {
   const { rename, remove, removeTrack, moveTrack } = usePlaylists();
   const { playFrom, status } = usePlayer();
   const tracks = catalog ? resolveTracks(playlist.tracks, catalog) : [];
@@ -246,20 +247,57 @@ function PlaylistCard({ playlist, catalog }: { playlist: Playlist; catalog: Map<
   );
 }
 
-function Discography({ catalog, playlists }: { catalog: Map<string, PlayableTrack> | null; playlists: Playlist[] }) {
-  const { addTrack } = usePlaylists();
+const SOURCES: { id: CatalogSource; label: string }[] = [
+  { id: "beats", label: "One week one beat" },
+  { id: "lost-tapes", label: "Lost Tapes" },
+  { id: "albums", label: "Brasil com amor" },
+  { id: "collabs", label: "Los Maschineros" },
+];
+const LENGTHS: { id: LengthBand; label: string }[] = [
+  { id: "short", label: "Under 2 min" },
+  { id: "mid", label: "2–4 min" },
+  { id: "long", label: "Over 4 min" },
+];
+const SORTS: { id: CatalogSort; label: string }[] = [
+  { id: "catalog", label: "Sort: by section" },
+  { id: "newest", label: "Sort: newest" },
+  { id: "oldest", label: "Sort: oldest" },
+  { id: "az", label: "Sort: A–Z" },
+  { id: "shortest", label: "Sort: shortest" },
+  { id: "longest", label: "Sort: longest" },
+];
+
+function Discography({ catalog, playlists }: { catalog: Map<string, CatalogTrack> | null; playlists: Playlist[] }) {
+  const { addTrack, addTracks } = usePlaylists();
   const { playFrom, status } = usePlayer();
   const [q, setQ] = useState("");
+  const [source, setSource] = useState<CatalogSource | undefined>();
+  const [year, setYear] = useState<number | undefined>();
+  const [length, setLength] = useState<LengthBand | undefined>();
+  const [sort, setSort] = useState<CatalogSort>("catalog");
+  const [hideIn, setHideIn] = useState(false);
   const [target, setTarget] = useState("");
   const targetId = playlists.some((p) => p.id === target) ? target : (playlists[0]?.id ?? "");
   const targetList = playlists.find((p) => p.id === targetId);
 
   const all = useMemo(() => (catalog ? [...catalog.values()] : []), [catalog]);
-  const shown = useMemo(() => {
-    const needle = q.trim().toLowerCase();
-    return needle ? all.filter((t) => `${t.title} ${t.subtitle}`.toLowerCase().includes(needle)) : all;
-  }, [all, q]);
+  const counts = useMemo(() => {
+    const n = new Map<CatalogSource, number>();
+    for (const t of all) n.set(t.source, (n.get(t.source) ?? 0) + 1);
+    return n;
+  }, [all]);
+  const years = useMemo(
+    () => [...new Set(all.filter((t) => !source || t.source === source).map((t) => t.year))].sort((a, b) => b - a),
+    [all, source],
+  );
+  const yearInRange = year && years.includes(year) ? year : undefined;
+  const shown = useMemo(
+    () => filterCatalog(all, { q, source, year: yearInRange, length, sort, exclude: hideIn ? targetList?.tracks : undefined }),
+    [all, q, source, yearInRange, length, sort, hideIn, targetList],
+  );
   const queue = audioQueue(shown);
+  const filtered = Boolean(q || source || yearInRange || length || sort !== "catalog" || hideIn);
+  const missing = targetList ? shown.filter((t) => !targetList.tracks.includes(t.key)) : [];
 
   return (
     <section className={styles.block} aria-labelledby="disco">
@@ -267,9 +305,47 @@ function Discography({ catalog, playlists }: { catalog: Map<string, PlayableTrac
         Discography
       </h2>
       <p className={styles.muted}>Everything with audio on the site: {all.length} tracks.</p>
-      <div className={styles.inline}>
+
+      <div className={styles.chips} role="group" aria-label="Section">
+        <button type="button" aria-pressed={!source} onClick={() => setSource(undefined)}>
+          All <span>{all.length}</span>
+        </button>
+        {SOURCES.filter((s) => counts.get(s.id)).map((s) => (
+          <button key={s.id} type="button" aria-pressed={source === s.id} onClick={() => setSource(source === s.id ? undefined : s.id)}>
+            {s.label} <span>{counts.get(s.id)}</span>
+          </button>
+        ))}
+      </div>
+
+      <div className={styles.filters}>
         <input type="search" value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search titles, volumes, projects" aria-label="Search the discography" />
-        {playlists.length > 0 && (
+        <select value={yearInRange ?? ""} onChange={(e) => setYear(e.target.value ? Number(e.target.value) : undefined)} aria-label="Year">
+          <option value="">All years</option>
+          {years.map((y) => (
+            <option key={y} value={y}>
+              {y}
+            </option>
+          ))}
+        </select>
+        <select value={length ?? ""} onChange={(e) => setLength((e.target.value || undefined) as LengthBand | undefined)} aria-label="Length">
+          <option value="">Any length</option>
+          {LENGTHS.map((l) => (
+            <option key={l.id} value={l.id}>
+              {l.label}
+            </option>
+          ))}
+        </select>
+        <select value={sort} onChange={(e) => setSort(e.target.value as CatalogSort)} aria-label="Sort">
+          {SORTS.map((s) => (
+            <option key={s.id} value={s.id}>
+              {s.label}
+            </option>
+          ))}
+        </select>
+      </div>
+
+      {playlists.length > 0 && (
+        <div className={styles.filters}>
           <select value={targetId} onChange={(e) => setTarget(e.target.value)} aria-label="Add tracks to">
             {playlists.map((p) => (
               <option key={p.id} value={p.id}>
@@ -277,10 +353,51 @@ function Discography({ catalog, playlists }: { catalog: Map<string, PlayableTrac
               </option>
             ))}
           </select>
-        )}
+          <label className={styles.check}>
+            <input type="checkbox" checked={hideIn} onChange={(e) => setHideIn(e.target.checked)} /> Hide tracks already in it
+          </label>
+        </div>
+      )}
+
+      <div className={styles.row2}>
+        <p className={styles.small} role="status">
+          {shown.length} {shown.length === 1 ? "track" : "tracks"}
+          {filtered && (
+            <>
+              {" · "}
+              <button
+                type="button"
+                className={styles.link}
+                onClick={() => {
+                  setQ("");
+                  setSource(undefined);
+                  setYear(undefined);
+                  setLength(undefined);
+                  setSort("catalog");
+                  setHideIn(false);
+                }}
+              >
+                Clear filters
+              </button>
+            </>
+          )}
+        </p>
+        <div className={styles.actions}>
+          <button type="button" className={styles.link} disabled={!queue.length} onClick={() => playFrom(queue, 0)}>
+            ▶ Play these
+          </button>
+          {targetList && filtered && missing.length > 0 && (
+            <button type="button" className={styles.link} onClick={() => void addTracks(targetList.id, missing.map((t) => t.key))}>
+              + Add all {missing.length} to {targetList.name}
+            </button>
+          )}
+        </div>
       </div>
+
       {!catalog ? (
         <p className={styles.muted}>Loading…</p>
+      ) : shown.length === 0 ? (
+        <p className={styles.muted}>Nothing matches. Try fewer filters.</p>
       ) : (
         <ol className={`${styles.tracks} ${styles.disco}`}>
           {shown.map((t, i) => {

@@ -1,3 +1,4 @@
+import type { CatalogSource, CatalogTrack } from "@/lib/catalog";
 import type { PlayableTrack } from "@/lib/content";
 
 /** A listener playlist as stored in Supabase: an ordered list of catalog keys. */
@@ -26,4 +27,51 @@ export function resolveTracks(keys: string[], catalog: Map<string, PlayableTrack
 
 export function cleanName(name: string): string {
   return name.replace(/\s+/g, " ").trim().slice(0, 80);
+}
+
+export type LengthBand = "short" | "mid" | "long";
+export type CatalogSort = "catalog" | "newest" | "oldest" | "az" | "shortest" | "longest";
+export type CatalogFilter = {
+  q?: string;
+  source?: CatalogSource;
+  year?: number;
+  /** short < 2 min ≤ mid ≤ 4 min < long */
+  length?: LengthBand;
+  sort?: CatalogSort;
+  /** Keys to leave out (e.g. what's already in the playlist). */
+  exclude?: string[];
+};
+
+const fold = (s: string) =>
+  s
+    .normalize("NFD")
+    .replace(/[̀-ͯ]/g, "")
+    .toLowerCase();
+
+export function lengthBand(seconds = 0): LengthBand {
+  return seconds < 120 ? "short" : seconds <= 240 ? "mid" : "long";
+}
+
+/** The Discography list after search, filters and sort. Ties keep catalog order. */
+export function filterCatalog(tracks: CatalogTrack[], f: CatalogFilter): CatalogTrack[] {
+  const needle = f.q ? fold(f.q.trim()) : "";
+  const skip = new Set(f.exclude ?? []);
+  const out = tracks.filter(
+    (t) =>
+      (!f.source || t.source === f.source) &&
+      (!f.year || t.year === f.year) &&
+      (!f.length || lengthBand(t.duration) === f.length) &&
+      !skip.has(t.key) &&
+      (!needle || fold(`${t.title} ${t.subtitle}`).includes(needle)),
+  );
+  const by: Record<CatalogSort, ((a: CatalogTrack, b: CatalogTrack) => number) | null> = {
+    catalog: null,
+    newest: (a, b) => b.year - a.year,
+    oldest: (a, b) => a.year - b.year,
+    az: (a, b) => a.title.localeCompare(b.title, "pt"),
+    shortest: (a, b) => (a.duration ?? 0) - (b.duration ?? 0),
+    longest: (a, b) => (b.duration ?? 0) - (a.duration ?? 0),
+  };
+  const cmp = by[f.sort ?? "catalog"];
+  return cmp ? [...out].sort(cmp) : out;
 }

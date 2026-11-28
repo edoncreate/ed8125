@@ -16,6 +16,15 @@ describe("catalog (everything a playlist can hold)", () => {
     expect(cat.filter((t) => t.key.startsWith("lt:"))).toHaveLength(totalLostTapes());
   });
 
+  it("tags every track with its source and year (for the Discography filters)", () => {
+    expect(cat.find((t) => t.key === "beat:Sigo em frente")).toMatchObject({ source: "beats", year: 2025 });
+    expect(cat.find((t) => t.key.startsWith("album:"))).toMatchObject({ source: "albums" });
+    expect(cat.find((t) => t.key.startsWith("collab:"))).toMatchObject({ source: "collabs", year: 2013 });
+    const lt = cat.find((t) => t.key === "lt:vol-2/da-nostalgia");
+    expect(lt).toMatchObject({ source: "lost-tapes", year: 2010 });
+    expect(cat.every((t) => typeof t.year === "number")).toBe(true);
+  });
+
   it("has unique keys and a source for every track", () => {
     expect(new Set(cat.map((t) => t.key)).size).toBe(cat.length);
     expect(cat.every((t) => t.src && t.title)).toBe(true);
