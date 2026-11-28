@@ -13,7 +13,7 @@ export const site = {
   since: 2003,
   headline: ["Let’s cook", "some", "music."] as const,
   positioning: "Beats since 2003, made between Lisboa and Quarteira. A new one most weeks, the archive back to the first tapes.",
-  location: { city: "Lisboa / Quarteira", tz: "Europe/Lisbon", coords: "38°43′N 9°08′W · 37°04′N 8°06′W" },
+  location: { city: "Lisboa / Quarteira", tz: "Europe/Lisbon" },
   socials: {
     youtube: "https://www.youtube.com/@ED8125",
     instagram: "https://www.instagram.com/ed8125/",

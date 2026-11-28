@@ -63,13 +63,7 @@ export function Hero({ videos, soundTrack, lostTapes }: Props) {
           <NowCell fallback={videos[0]?.title ?? "—"} />
         </div>
         <div className={styles.cellClock}>
-          <span>
-            {site.location.city} <LiveClock />
-          </span>
-          <span className={styles.coords}>
-            <span className={styles.sep}> · </span>
-            {site.location.coords}
-          </span>
+          {site.location.city} <LiveClock />
         </div>
       </div>
     </section>

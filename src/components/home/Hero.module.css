@@ -258,16 +258,6 @@
   text-align: right;
 }
 
-/* Two places, two coordinates: they sit on their own line under the city and clock. */
-.coords {
-  display: block;
-  white-space: nowrap;
-}
-
-.sep {
-  display: none;
-}
-
 .snd {
   display: inline-flex;
   align-items: center;
