@@ -19,7 +19,6 @@ export type CollabRelease = {
   title: string;
   year: number;
   cover: string;
-  url: string;
   description?: string;
   /** Release-wide credits line, e.g. beatmakers and scratches. */
   credits?: string;
@@ -48,7 +47,6 @@ export const collabs: Collab[] = [
         title: "Classic",
         year: 2012,
         cover: "/media/img/los-maschineros-classic.jpg",
-        url: "https://soundcloud.com/los-maschineros/sets/los-maschineros-classic",
         description:
           "Presented by Maestro Vitorino d’Almeida, Classic fuses the feeling of a symphonic orchestra with hip hop instrumentals and electronic ambience.",
         credits: "Beats by ED8125 and JV · Scratches by LogicLM",
@@ -74,7 +72,6 @@ export const collabs: Collab[] = [
         title: "It’s a Reggae Music",
         year: 2013,
         cover: "/media/img/los-maschineros-reggae.jpg",
-        url: "https://soundcloud.com/los-maschineros/sets/los-maschineros-it-s-a-reggae",
         credits: "Beats by ED8125, JV and LogicLM · Scratches by LogicLM",
         tracks: [
           { title: "It’s a Reggae Music", duration: 194, producer: "LogicLM", file: "vol-2/01-it-s-a-reggae-music.mp3" },

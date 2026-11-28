@@ -30,12 +30,11 @@ export function Release({ collab, release }: { collab: Pick<Collab, "slug" | "ti
         </h3>
         {release.description && <p className={styles.desc}>{release.description}</p>}
         {release.credits && <p className={styles.credits}>{release.credits}</p>}
-        <div className={styles.actions}>
-          {ready && <PlayAll tracks={ready}>Play {release.title}</PlayAll>}
-          <a href={release.url} target="_blank" rel="noreferrer" className={styles.ext}>
-            Listen on SoundCloud ↗
-          </a>
-        </div>
+        {ready && (
+          <div className={styles.actions}>
+            <PlayAll tracks={ready}>Play {release.title}</PlayAll>
+          </div>
+        )}
         {ready ? (
           <TrackList
             label={`${release.title} tracks`}

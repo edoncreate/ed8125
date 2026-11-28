@@ -18,9 +18,7 @@ export function Footer() {
         </a>
         <Link href="/privacy">Privacy</Link>
       </span>
-      <a href={site.studio.url} target="_blank" rel="noopener noreferrer" className={styles.studio}>
-        Site by {site.studio.name} ↗
-      </a>
+      <span className={styles.studio}>Site by {site.studio.name}</span>
     </footer>
   );
 }

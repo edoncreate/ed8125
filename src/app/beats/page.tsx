@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { site } from "@content/site";
 import { VideoGrid } from "@/components/music/VideoGrid";
 import { Page } from "@/components/page/Page";
 import { toPlayerItem } from "@/lib/content";
@@ -21,10 +20,7 @@ export default async function BeatsPage() {
       lead={
         <p>
           One-minute beats straight from the studio. Press any of them to play, and keep browsing while it plays. New
-          uploads land here within a day.{" "}
-          <a href={site.socials.youtube} target="_blank" rel="noopener noreferrer">
-            Subscribe on YouTube ↗
-          </a>
+          uploads land here within a day.
         </p>
       }
     >

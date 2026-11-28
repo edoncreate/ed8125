@@ -161,14 +161,6 @@ export function AboutChapter() {
           {site.bio.map((p) => (
             <p key={p}>{p}</p>
           ))}
-          <div className={styles.follow}>
-            <a href={site.socials.youtube} target="_blank" rel="noopener noreferrer" className={styles.pillSolid}>
-              Follow on YouTube ↗
-            </a>
-            <a href={site.socials.instagram} target="_blank" rel="noopener noreferrer" className={styles.pill}>
-              Instagram ↗
-            </a>
-          </div>
         </div>
       </div>
     </Chapter>
