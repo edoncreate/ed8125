@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { site } from "@content/site";
 import { CHAPTER_IDS, ChapterDots } from "./ChapterDots";
 import { ThemeToggle } from "./ThemeToggle";
 import { useActiveChapter } from "./useActiveChapter";
@@ -92,12 +91,6 @@ export function Header({ variant }: { variant: "home" | "page" }) {
               ))}
             </nav>
           )}
-          <a href={site.socials.youtube} target="_blank" rel="noopener noreferrer" className={styles.social}>
-            YouTube ↗
-          </a>
-          <a href={site.socials.instagram} target="_blank" rel="noopener noreferrer" className={styles.social}>
-            Instagram ↗
-          </a>
         </div>
         <ThemeToggle />
       </div>

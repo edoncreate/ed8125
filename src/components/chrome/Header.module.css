@@ -130,14 +130,10 @@
   display: none;
 }
 
-/* Home, wide screens: the hero's top right links into the site; socials live in the footer. */
+/* Home, wide screens: the hero's top right links into the site. Socials live in the footer. */
 .homeLinks {
   display: flex;
   gap: clamp(0.75rem, 1.5vw, 1.5rem);
-}
-
-.home .social {
-  display: none;
 }
 
 @media (max-width: 767px) {
@@ -151,10 +147,6 @@
 
   .homeLinks {
     display: none;
-  }
-
-  .home .social {
-    display: inline;
   }
 
   .menuNav {
