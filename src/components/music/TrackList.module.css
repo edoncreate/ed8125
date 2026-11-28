@@ -22,7 +22,7 @@
   font: inherit;
   text-align: left;
   cursor: pointer;
-  transition: background-color 0.15s;
+  transition: background-color var(--dur) var(--ease);
 }
 
 .btn:hover {
@@ -30,6 +30,8 @@
 }
 
 .n {
+  display: flex;
+  align-items: center;
   font-family: var(--font-mono), ui-monospace, monospace;
   word-spacing: var(--mono-ws);
   font-size: 0.8rem;
@@ -62,7 +64,9 @@
 }
 
 .playAll {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55em;
   padding: 0.85em 1.6em;
   border: 1px solid var(--fg);
   border-radius: 99px;
@@ -71,12 +75,21 @@
   font: inherit;
   font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.2s, border-color 0.2s;
+  transition:
+    background-color var(--dur) var(--ease),
+    border-color var(--dur) var(--ease),
+    color var(--dur) var(--ease),
+    transform var(--dur) var(--ease);
 }
 
 .playAll:hover {
   background: var(--acc);
   border-color: var(--acc);
+  color: #0f0f10;
+}
+
+.playAll:active {
+  transform: scale(0.97);
 }
 
 @media (max-width: 599px) {
@@ -93,5 +106,9 @@
   .btn,
   .playAll {
     transition: none;
+  }
+
+  .playAll:active {
+    transform: none;
   }
 }

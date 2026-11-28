@@ -1,11 +1,10 @@
 .seeAll {
   color: var(--fg);
   text-decoration: none;
-  border-bottom: 1px solid var(--box);
+  transition: color var(--dur) var(--ease);
 }
 
 .seeAll:hover {
-  border-color: var(--acc);
   color: var(--acc-ink);
 }
 
@@ -115,7 +114,7 @@
   padding: clamp(1rem, 2vw, 1.75rem) 0.5rem;
   border-bottom: 1px solid var(--ln);
   text-decoration: none;
-  transition: background-color 0.15s;
+  transition: background-color var(--dur) var(--ease);
 }
 
 .row:hover {
@@ -140,9 +139,42 @@
   color: var(--mut);
 }
 
+/* Arrow in a ring; the ring fills and the arrow slides when the row is hovered. */
 .rowGo {
-  font-size: 1.4rem;
-  color: var(--acc);
+  display: grid;
+  place-items: center;
+  align-self: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border: 1px solid var(--box);
+  border-radius: 50%;
+  color: var(--acc-ink);
+  font-size: 1.1rem;
+  transition:
+    background-color var(--dur) var(--ease),
+    border-color var(--dur) var(--ease),
+    color var(--dur) var(--ease);
+}
+
+.row:is(:hover, :focus-visible) .rowGo {
+  border-color: var(--acc);
+  background: var(--acc);
+  color: #0f0f10;
+}
+
+.row:is(:hover, :focus-visible) .rowGo .icon {
+  transform: translateX(3px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .row,
+  .rowGo {
+    transition: none;
+  }
+
+  .row:is(:hover, :focus-visible) .rowGo .icon {
+    transform: none;
+  }
 }
 
 /* ---- about ---- */

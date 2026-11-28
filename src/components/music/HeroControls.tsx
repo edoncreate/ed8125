@@ -3,27 +3,36 @@
 import { usePlayer } from "@/components/player/PlayerProvider";
 import { current, type PlayerItem } from "@/components/player/state";
 import type { PlayableTrack } from "@/lib/content";
+import { IconPause, IconPlay, IconSound, IconSoundOn } from "@/components/ui/icons";
 
-/** "▶ Play radio": the Radio playlist (latest beats), newest first. */
+/** "Play radio": the Radio playlist (latest beats), newest first. */
 export function PlayRadio({ queue, className }: { queue: PlayerItem[]; className?: string }) {
   const { playFrom, status } = usePlayer();
   if (queue.length === 0) return null;
   const playing = status(queue[0]) === "playing";
   return (
     <button type="button" className={className} onClick={() => playFrom(queue, 0)}>
-      {playing ? "❚❚ Pause" : "▶ Play radio"}
+      {playing ? (
+        <>
+          <IconPause /> Pause
+        </>
+      ) : (
+        <>
+          <IconPlay /> Play radio
+        </>
+      )}
     </button>
   );
 }
 
-/** "((•)) Enter with sound": a toggle for one featured track from the archive. */
+/** "Enter with sound": a toggle for one featured track from the archive. */
 export function SoundToggle({ track, className }: { track: PlayableTrack; className?: string }) {
   const { playFrom, status } = usePlayer();
   const item: PlayerItem = { type: "audio", track };
   const on = status(item) === "playing";
   return (
     <button type="button" className={className} aria-pressed={on} onClick={() => playFrom([item], 0)}>
-      <b aria-hidden="true">((•))</b> {on ? "Sound on" : "Enter with sound"}
+      {on ? <IconSoundOn /> : <IconSound />} {on ? "Sound on" : "Enter with sound"}
     </button>
   );
 }

@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import Link from "next/link";
 import { Header } from "@/components/chrome/Header";
+import { IconArrowRight } from "@/components/ui/icons";
 import styles from "./Page.module.css";
 
 /** Inner page frame: sticky header, big Inter Tight title, optional kicker/lead/actions. */
@@ -56,8 +57,8 @@ export function Section({ title, children, id }: { title?: string; children: Rea
 /** Outline pill for page-level links (sits in `actions`, beside or instead of a filled play button). */
 export function ButtonLink({ href, children }: { href: string; children: ReactNode }) {
   return (
-    <Link href={href} className={styles.btn}>
-      {children} <span aria-hidden="true">→</span>
+    <Link href={href} className={`go ${styles.btn}`}>
+      {children} <IconArrowRight className="go-r" />
     </Link>
   );
 }

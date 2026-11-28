@@ -3,6 +3,7 @@
 import { usePlayer } from "@/components/player/PlayerProvider";
 import type { PlayerItem } from "@/components/player/state";
 import { formatDay } from "@/lib/time";
+import { IconPause, IconPlay } from "@/components/ui/icons";
 import type { Video } from "@/lib/youtube";
 import styles from "./VideoGrid.module.css";
 
@@ -36,7 +37,7 @@ export function VideoGrid({ videos, items, feature = false }: Props) {
               {/* eslint-disable-next-line @next/next/no-img-element -- remote YouTube thumbnail, sized by CSS */}
               <img src={v.thumbnail} alt="" loading="lazy" className={styles.thumb} />
               <span className={styles.badge} aria-hidden="true">
-                {st === "playing" ? "❚❚" : "▶"}
+                {st === "playing" ? <IconPause /> : <IconPlay className={styles.playGlyph} />}
               </span>
             </button>
             <p className={styles.title}>{v.title}</p>
@@ -44,7 +45,7 @@ export function VideoGrid({ videos, items, feature = false }: Props) {
               <span>{formatDay(v.published)}</span>
               {v.views !== undefined && (
                 <span className={styles.plays}>
-                  <span aria-hidden="true">▶</span> {plays.format(v.views)}
+                  <IconPlay className={styles.playsIcon} /> {plays.format(v.views)}
                   <span className="visually-hidden"> plays</span>
                 </span>
               )}

@@ -65,6 +65,9 @@
 }
 
 .solid {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
   padding: 0.75em 1.4em;
   border: 1px solid var(--fg);
   border-radius: 99px;
@@ -74,11 +77,21 @@
   font-weight: 600;
   white-space: nowrap;
   cursor: pointer;
+  transition:
+    background-color var(--dur) var(--ease),
+    border-color var(--dur) var(--ease),
+    color var(--dur) var(--ease),
+    transform var(--dur) var(--ease);
 }
 
 .solid:hover:not(:disabled) {
   background: var(--acc);
   border-color: var(--acc);
+  color: #0f0f10;
+}
+
+.solid:active:not(:disabled) {
+  transform: scale(0.97);
 }
 
 .solid:disabled {
@@ -159,6 +172,7 @@
   font: inherit;
   text-align: left;
   cursor: pointer;
+  transition: background-color var(--dur) var(--ease);
 }
 
 .track:hover {
@@ -194,30 +208,24 @@ li[data-status="playing"] .n {
   color: var(--acc-ink);
 }
 
+/* Reorder / remove: quiet until the row is hovered or a button has focus. */
 .tools {
   display: flex;
-  gap: 0.25rem;
+  gap: 0.15rem;
   padding-right: 0.25rem;
+  opacity: 0.55;
+  transition: opacity var(--dur) var(--ease);
 }
 
-.tools button {
-  width: 2rem;
-  height: 2rem;
-  border: 1px solid var(--box);
-  border-radius: 50%;
-  background: none;
-  color: var(--fg);
-  cursor: pointer;
+.tracks li:hover .tools,
+.tools:focus-within {
+  opacity: 1;
 }
 
-.tools button:hover:not(:disabled) {
-  border-color: var(--acc);
-  color: var(--acc-ink);
-}
-
-.tools button:disabled {
-  opacity: 0.35;
-  cursor: default;
+@media (hover: none) {
+  .tools {
+    opacity: 1;
+  }
 }
 
 .view button:focus-visible,
@@ -235,5 +243,17 @@ li[data-status="playing"] .n {
 
   .track .s {
     grid-column: 2;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .solid,
+  .track,
+  .tools {
+    transition: none;
+  }
+
+  .solid:active:not(:disabled) {
+    transform: none;
   }
 }

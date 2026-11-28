@@ -49,7 +49,7 @@ test("a Lost Tapes track plays, and keeps playing across pages", async ({ page }
 
 test("album: play the album, then next track", async ({ page }) => {
   await page.goto("/projects/brasil-com-amor");
-  await page.getByRole("button", { name: "▶ Play the album" }).click();
+  await page.getByRole("button", { name: "Play the album" }).click();
   const dock = page.getByRole("complementary", { name: "Player" });
   await expect(dock).toContainText("Bloco");
   await expect.poll(() => audioTime(page), { timeout: 10_000 }).toBeGreaterThan(0.3);

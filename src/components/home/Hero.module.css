@@ -124,6 +124,9 @@
 
 .ctas a,
 .ctas button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55em;
   padding: 1em 1.7em;
   border: 1px solid transparent;
   border-radius: 99px;
@@ -133,7 +136,11 @@
   white-space: nowrap;
   cursor: pointer;
   background: none;
-  transition: background-color 0.2s, border-color 0.2s, color 0.2s;
+  transition:
+    background-color var(--dur) var(--ease),
+    border-color var(--dur) var(--ease),
+    color var(--dur) var(--ease),
+    transform var(--dur) var(--ease);
 }
 
 .ctas .solid {
@@ -153,7 +160,13 @@
 }
 
 .ctas .outline:hover {
-  border-color: var(--fg);
+  border-color: var(--acc);
+  background: var(--acc);
+  color: #0f0f10;
+}
+
+.ctas :is(a, button):active {
+  transform: scale(0.97);
 }
 
 .ctas :is(a, button):focus-visible {
@@ -256,7 +269,9 @@
 }
 
 .snd {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55em;
   padding: 0.7em 1.4em;
   border: 1px solid var(--box);
   border-radius: 99px;
@@ -266,6 +281,16 @@
   letter-spacing: inherit;
   text-transform: inherit;
   cursor: pointer;
+  transition:
+    background-color var(--dur) var(--ease),
+    border-color var(--dur) var(--ease),
+    color var(--dur) var(--ease);
+}
+
+.snd:hover {
+  border-color: var(--acc);
+  background: var(--acc);
+  color: #0f0f10;
 }
 
 /* ---- mobile: one column, portrait behind the headline ---- */
@@ -366,7 +391,12 @@
 
 @media (prefers-reduced-motion: reduce) {
   .ctas a,
-.ctas button {
+  .ctas button,
+  .snd {
     transition: none;
+  }
+
+  .ctas :is(a, button):active {
+    transform: none;
   }
 }

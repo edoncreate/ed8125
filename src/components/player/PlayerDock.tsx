@@ -6,6 +6,7 @@ import { formatDuration } from "@/lib/content";
 import { usePlayer } from "./PlayerProvider";
 import { current, itemKey } from "./state";
 import { AddToPlaylist } from "@/components/playlists/AddToPlaylist";
+import { IconClose, IconNext, IconPause, IconPlay, IconPrev } from "@/components/ui/icons";
 import { YouTubeMini } from "./YouTubeMini";
 import styles from "./PlayerDock.module.css";
 
@@ -70,7 +71,7 @@ export function PlayerDock() {
           onClick={() => dispatch({ type: "toggle" })}
           aria-label={state.playing ? "Pause" : "Play"}
         >
-          {state.playing ? "❚❚" : "▶"}
+          {state.playing ? <IconPause /> : <IconPlay className={styles.playGlyph} />}
         </button>
 
         <div className={styles.meta}>
@@ -107,25 +108,33 @@ export function PlayerDock() {
                 {formatDuration(time)} / {formatDuration(duration)}
               </span>
             </>
-          ) : (
-            item.type === "video" && (
-              <a href={item.video.url} target="_blank" rel="noopener noreferrer" className={styles.yt}>
-                Watch on YouTube ↗
-              </a>
-            )
-          )}
+          ) : null}
         </div>
 
         <div className={styles.ctrls}>
           {item.type === "audio" && <AddToPlaylist trackKey={item.track.key} title={item.track.title} />}
-          <button type="button" className={styles.prev} onClick={() => dispatch({ type: "prev" })} disabled={!canPrev} aria-label="Previous">
-            ⏮
+          <button
+            type="button"
+            className={`icon-btn ${styles.prev}`}
+            onClick={() => dispatch({ type: "prev" })}
+            disabled={!canPrev}
+            aria-label="Previous"
+            title="Previous"
+          >
+            <IconPrev />
           </button>
-          <button type="button" onClick={() => dispatch({ type: "next" })} disabled={!canNext} aria-label="Next">
-            ⏭
+          <button
+            type="button"
+            className="icon-btn"
+            onClick={() => dispatch({ type: "next" })}
+            disabled={!canNext}
+            aria-label="Next"
+            title="Next"
+          >
+            <IconNext />
           </button>
-          <button type="button" onClick={() => dispatch({ type: "close" })} aria-label="Close player">
-            ✕
+          <button type="button" className="icon-btn" onClick={() => dispatch({ type: "close" })} aria-label="Close player" title="Close">
+            <IconClose />
           </button>
         </div>
       </div>

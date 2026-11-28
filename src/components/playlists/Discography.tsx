@@ -6,6 +6,7 @@ import { usePlayer } from "@/components/player/PlayerProvider";
 import type { PlayerItem } from "@/components/player/state";
 import type { CatalogSource, CatalogTrack } from "@/lib/catalog";
 import { formatDuration } from "@/lib/content";
+import { IconCheck, IconClose, IconPause, IconPlay, IconPlus, IconSearch } from "@/components/ui/icons";
 import { filterCatalog, type CatalogSort, type LengthBand, type Playlist } from "./model";
 import { usePlaylists } from "./PlaylistsProvider";
 import styles from "./Discography.module.css";
@@ -107,10 +108,7 @@ export function Discography({ catalog, playlists }: { catalog: Map<string, Catal
           </div>
 
           <label className={styles.search}>
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <circle cx="11" cy="11" r="7" />
-              <path d="m20 20-3.5-3.5" />
-            </svg>
+            <IconSearch className={styles.searchIcon} />
             <input type="search" value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search" aria-label="Search the discography" />
           </label>
 
@@ -119,7 +117,7 @@ export function Discography({ catalog, playlists }: { catalog: Map<string, Catal
               {SORTS.map((s) => (
                 <button key={s.id} type="button" role="radio" aria-checked={sort === s.id} className={styles.radio} onClick={() => setSort(s.id)}>
                   <span className={styles.tick} aria-hidden="true">
-                    {sort === s.id ? "✓" : ""}
+                    {sort === s.id && <IconCheck />}
                   </span>
                   {s.label}
                 </button>
@@ -208,7 +206,7 @@ export function Discography({ catalog, playlists }: { catalog: Map<string, Catal
             </button>
             <div className={styles.actions}>
               <button type="button" className={styles.solid} disabled={!queue.length} onClick={() => playFrom(queue, 0)}>
-                ▶ Play these
+                <IconPlay /> Play these
               </button>
               {targetList && (
                 <button
@@ -218,7 +216,7 @@ export function Discography({ catalog, playlists }: { catalog: Map<string, Catal
                   title={activeCount ? undefined : "Filter first, then add the whole selection"}
                   onClick={() => void addTracks(targetList.id, missing.map((t) => t.key))}
                 >
-                  + Add {activeCount && missing.length ? `all ${missing.length}` : "all"} to {targetList.name}
+                  <IconPlus /> Add {activeCount && missing.length ? `all ${missing.length}` : "all"} to {targetList.name}
                 </button>
               )}
             </div>
@@ -242,7 +240,7 @@ export function Discography({ catalog, playlists }: { catalog: Map<string, Catal
                 {tags.map((t) => (
                   <li key={t.label}>
                     <button type="button" onClick={t.remove} aria-label={`Remove filter ${t.label}`}>
-                      {t.label} <span aria-hidden="true">×</span>
+                      {t.label} <IconClose className={styles.tagX} />
                     </button>
                   </li>
                 ))}
@@ -268,7 +266,7 @@ export function Discography({ catalog, playlists }: { catalog: Map<string, Catal
                   <li key={t.key} data-status={st}>
                     <button type="button" className={styles.track} onClick={() => playFrom(queue, i)} aria-label={`${st === "playing" ? "Pause" : "Play"} ${t.title}`}>
                       <span className={styles.n} aria-hidden="true">
-                        {st === "playing" ? "❚❚" : "▶"}
+                        {st === "playing" ? <IconPause /> : <IconPlay />}
                       </span>
                       <span className={styles.t}>{t.title}</span>
                       <span className={styles.s}>{t.subtitle}</span>
@@ -277,13 +275,13 @@ export function Discography({ catalog, playlists }: { catalog: Map<string, Catal
                     {targetList && (
                       <button
                         type="button"
-                        className={styles.add}
+                        className={`icon-btn ${styles.add}`}
                         disabled={has}
                         aria-label={`Add ${t.title} to ${targetList.name}`}
                         title={has ? `In ${targetList.name}` : `Add to ${targetList.name}`}
                         onClick={() => void addTrack(targetList.id, t.key)}
                       >
-                        {has ? "✓" : "+"}
+                        {has ? <IconCheck /> : <IconPlus />}
                       </button>
                     )}
                   </li>

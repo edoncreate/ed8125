@@ -34,9 +34,26 @@
   border: 0;
   border-radius: 50%;
   background: var(--acc);
-  color: var(--bg);
-  font-size: 0.85rem;
+  color: #0f0f10;
+  font-size: 1.1rem;
   cursor: pointer;
+  transition:
+    transform var(--dur) var(--ease),
+    box-shadow var(--dur) var(--ease);
+}
+
+.play:hover {
+  transform: scale(1.06);
+  box-shadow: 0 0 0 5px var(--wash);
+}
+
+.play:active {
+  transform: scale(0.94);
+}
+
+/* The triangle's visual centre sits left of its box. */
+.playGlyph {
+  translate: 1px 0;
 }
 
 .meta {
@@ -112,38 +129,12 @@
   white-space: nowrap;
 }
 
-.yt {
-  color: var(--fg);
-  text-decoration: none;
-  border-bottom: 1px solid var(--box);
-}
-
-.yt:hover {
-  border-color: var(--acc);
-}
-
 .ctrls {
   display: flex;
-  gap: 0.25rem;
-}
-
-.ctrls button {
-  width: 2.25rem;
-  height: 2.25rem;
-  border: 1px solid var(--box);
-  border-radius: 50%;
-  background: none;
-  color: var(--fg);
-  cursor: pointer;
-}
-
-.ctrls button:disabled {
-  opacity: 0.35;
-  cursor: default;
+  gap: 0.35rem;
 }
 
 .bar button:focus-visible,
-.yt:focus-visible,
 .seek:focus-visible {
   outline: 2px solid var(--acc);
   outline-offset: 3px;
@@ -170,6 +161,17 @@
   width: 100%;
   height: 100%;
   border: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .play {
+    transition: none;
+  }
+
+  .play:hover,
+  .play:active {
+    transform: none;
+  }
 }
 
 @media (max-width: 767px) {

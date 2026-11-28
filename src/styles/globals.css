@@ -29,6 +29,11 @@
 :root {
   /* Mono labels: a mono space is a full cell wide, so pull multi-word labels together. */
   --mono-ws: -0.3em;
+  /* Motion: quick expo-out, so hovers answer immediately and settle softly. */
+  --ease: cubic-bezier(0.19, 1, 0.22, 1);
+  --dur: 0.2s;
+  /* Hover wash behind icon buttons and quiet controls. */
+  --wash: color-mix(in srgb, var(--acc) 14%, transparent);
 }
 
 *,
@@ -110,4 +115,123 @@ img {
 :focus-visible {
   outline: 2px solid var(--acc);
   outline-offset: 3px;
+}
+
+/* ---- Icons (src/components/ui/icons.tsx) ---- */
+
+.icon {
+  flex-shrink: 0;
+  vertical-align: -0.125em;
+  transition: transform var(--dur) var(--ease), opacity var(--dur) var(--ease);
+}
+
+/*
+ * Round icon-only button: hairline ring at rest; on hover the ring and icon go
+ * orange over a soft orange wash; it gives a little on press.
+ */
+.icon-btn {
+  display: inline-grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 2.25rem;
+  height: 2.25rem;
+  padding: 0;
+  border: 1px solid var(--box);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--fg);
+  font-size: 1rem;
+  line-height: 1;
+  cursor: pointer;
+  transition:
+    color var(--dur) var(--ease),
+    background-color var(--dur) var(--ease),
+    border-color var(--dur) var(--ease),
+    transform var(--dur) var(--ease);
+}
+
+.icon-btn:hover:not(:disabled),
+.icon-btn[aria-expanded="true"] {
+  border-color: var(--acc);
+  background: var(--wash);
+  color: var(--acc-ink);
+}
+
+.icon-btn:active:not(:disabled) {
+  transform: scale(0.92);
+}
+
+.icon-btn:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+/* Smaller, ringless variant for dense rows (reorder, remove). */
+.icon-btn[data-size="sm"] {
+  width: 2rem;
+  height: 2rem;
+  border-color: transparent;
+  color: var(--mut);
+  font-size: 0.95rem;
+}
+
+.icon-btn[data-size="sm"]:hover:not(:disabled) {
+  border-color: transparent;
+}
+
+/*
+ * Links and buttons that go somewhere: the trailing arrow moves the way it points.
+ * Put `go` on the link; the icon inside gets `go-r` (→), `go-l` (←) or `go-ur` (↗).
+ */
+.go {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+}
+
+.go:hover .go-r,
+.go:focus-visible .go-r {
+  transform: translateX(3px);
+}
+
+.go:hover .go-l,
+.go:focus-visible .go-l {
+  transform: translateX(-3px);
+}
+
+.go:hover .go-ur,
+.go:focus-visible .go-ur {
+  transform: translate(2px, -2px);
+}
+
+/* Row number that turns into a play icon under the pointer (src/components/music/RowNum.tsx). */
+.rownum {
+  display: inline-flex;
+  align-items: center;
+}
+
+.rownum-play {
+  display: none;
+  color: var(--acc-ink);
+}
+
+:is(button, a):is(:hover, :focus-visible) .rownum-n {
+  display: none;
+}
+
+:is(button, a):is(:hover, :focus-visible) .rownum-play {
+  display: inline-block;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .icon,
+  .icon-btn {
+    transition: none;
+  }
+
+  .icon-btn:active:not(:disabled),
+  .go:hover .icon,
+  .go:focus-visible .icon {
+    transform: none;
+  }
 }

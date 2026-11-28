@@ -66,7 +66,27 @@
   border-radius: 50%;
   background: var(--acc);
   color: #0f0f10;
-  font-size: 0.8rem;
+  font-size: 1rem;
+  box-shadow: 0 4px 14px rgb(0 0 0 / 0.35);
+  transition: transform var(--dur) var(--ease);
+}
+
+/* Optical centre of the triangle. */
+.playGlyph {
+  translate: 1px 0;
+}
+
+.tile:hover .badge {
+  transform: scale(1.12);
+}
+
+.tile:active .badge {
+  transform: scale(0.95);
+}
+
+.playsIcon {
+  font-size: 0.85em;
+  margin-right: 0.15em;
 }
 
 .title {
@@ -112,11 +132,17 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .thumb {
+  .thumb,
+  .badge {
     transition: none;
   }
 
   .tile:hover .thumb {
     transform: translate(-50%, -50%);
+  }
+
+  .tile:hover .badge,
+  .tile:active .badge {
+    transform: none;
   }
 }

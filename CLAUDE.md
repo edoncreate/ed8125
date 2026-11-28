@@ -19,6 +19,7 @@ ed8125.com — Eduardo's beatmaker site (Lisboa / Quarteira, beats since 2003). 
 
 ## Rules
 - English only. Small orange text uses `--acc-ink` (AA in light mode), large type may use `--acc`.
+- Icons: `lucide-react` through `src/components/ui/icons.tsx` only (no Unicode glyphs like ▶ ↗ ✕). Round icon-only buttons use the global `.icon-btn`; links with a trailing arrow use `.go` + `go-r`/`go-l`/`go-ur`; playable row numbers use `RowNum`. Motion tokens: `--ease`, `--dur`, `--wash` (globals.css).
 - Lost Tapes mp3s are committed on purpose (served by Pages); source WAVs and the old FTP copy never go in git. Never copy code from the compromised WordPress install.
 - GitHub: this repo's `.git/config` pushes as `edoncreate` (repo-local credential helper), so plain `git push` works; for `gh` use `GH_TOKEN="$(gh auth token --user edoncreate)"`. Don't switch the active gh account. Repo is public: commit with the no-reply identity only.
 - New beats from YouTube: Eduardo runs `yt-dlp -x --audio-format mp3 -P ~/Desktop/youtube "https://www.youtube.com/playlist?list=PLiFbISKHIpBsdjGdsKHQ9qJSnEFuPJprS"`,

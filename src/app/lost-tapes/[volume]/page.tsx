@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { PlayAll, TrackList } from "@/components/music/TrackList";
 import { Page, Section } from "@/components/page/Page";
+import { IconArrowLeft, IconArrowRight } from "@/components/ui/icons";
 import { getVolume, getVolumes, lostTapeToPlayable } from "@/lib/content";
 import styles from "./volume.module.css";
 
@@ -51,8 +52,20 @@ export default async function VolumePage({ params }: Props) {
         <TrackList tracks={tracks} label={`Lost Tapes ${volume.label}`} />
       </Section>
       <nav className={styles.pager} aria-label="Other volumes">
-        {prev ? <Link href={`/lost-tapes/${prev.id}`}>← {prev.label} · {prev.span}</Link> : <span />}
-        {next ? <Link href={`/lost-tapes/${next.id}`}>{next.label} · {next.span} →</Link> : <span />}
+        {prev ? (
+          <Link href={`/lost-tapes/${prev.id}`} className="go">
+            <IconArrowLeft className="go-l" /> {prev.label} · {prev.span}
+          </Link>
+        ) : (
+          <span />
+        )}
+        {next ? (
+          <Link href={`/lost-tapes/${next.id}`} className="go">
+            {next.label} · {next.span} <IconArrowRight className="go-r" />
+          </Link>
+        ) : (
+          <span />
+        )}
       </nav>
     </Page>
   );

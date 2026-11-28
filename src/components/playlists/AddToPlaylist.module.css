@@ -3,21 +3,7 @@
 }
 
 .trigger {
-  width: 2.25rem;
-  height: 2.25rem;
-  border: 1px solid var(--box);
-  border-radius: 50%;
-  background: none;
-  color: var(--fg);
-  font-size: 1.1rem;
-  line-height: 1;
-  cursor: pointer;
-}
-
-.trigger[aria-expanded="true"],
-.trigger:hover {
-  border-color: var(--acc);
-  color: var(--acc-ink);
+  font-size: 1.05rem;
 }
 
 .pop {
@@ -66,7 +52,7 @@
   justify-content: space-between;
   gap: 1rem;
   width: 100%;
-  padding: 0.55rem 0.25rem;
+  padding: 0.55rem 0.5rem;
   border: 0;
   border-bottom: 1px solid var(--ln);
   background: none;
@@ -76,7 +62,19 @@
   cursor: pointer;
 }
 
+.list button {
+  transition: color var(--dur) var(--ease), background-color var(--dur) var(--ease);
+}
+
 .list button:hover:not(:disabled) {
+  background: var(--wash);
+  color: var(--acc-ink);
+}
+
+.inIt {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3em;
   color: var(--acc-ink);
 }
 

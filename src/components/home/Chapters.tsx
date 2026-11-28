@@ -7,6 +7,7 @@ import { VideoGrid } from "@/components/music/VideoGrid";
 import { asset } from "@/lib/asset";
 import { projectVideos, toPlayerItem, type CollabWithTracks, type Volume } from "@/lib/content";
 import type { Video } from "@/lib/youtube";
+import { IconArrowRight } from "@/components/ui/icons";
 import { Chapter } from "./Chapter";
 import styles from "./Chapters.module.css";
 
@@ -16,8 +17,8 @@ const hours = (seconds: number) => {
 };
 
 const SeeAll = ({ href, children }: { href: string; children: string }) => (
-  <Link href={href} className={styles.seeAll}>
-    {children} →
+  <Link href={href} className={`go ${styles.seeAll}`}>
+    {children} <IconArrowRight className="go-r" />
   </Link>
 );
 
@@ -114,7 +115,7 @@ export function VolumeRows({ volumes }: { volumes: Volume[] }) {
                 {v.tracks.length} beats · {hours(v.tracks.reduce((s, t) => s + t.duration, 0))}
               </span>
               <span className={styles.rowGo} aria-hidden="true">
-                →
+                <IconArrowRight />
               </span>
             </Link>
           </li>
@@ -140,7 +141,7 @@ export function CollabsChapter({ collabs }: { collabs: CollabWithTracks[] }) {
                   : `${c.tracks.length} tracks in the archive`}
               </span>
               <span className={styles.rowGo} aria-hidden="true">
-                →
+                <IconArrowRight />
               </span>
             </Link>
           </li>

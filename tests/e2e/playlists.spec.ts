@@ -82,7 +82,7 @@ test("signed in: add a Lost Tape from the discography, then play the playlist", 
   await expect(page.getByRole("article", { name: "Late night" })).toContainText("1 tracks");
   expect(db.patches).toEqual([{ tracks: ["lt:vol-2/da-nostalgia"] }]);
 
-  await page.getByRole("article", { name: "Late night" }).getByRole("button", { name: "▶ Play" }).click();
+  await page.getByRole("article", { name: "Late night" }).getByRole("button", { name: "Play", exact: true }).click();
   await expect(page.getByRole("complementary", { name: "Player" })).toContainText("Da nostalgia");
 });
 
@@ -123,7 +123,7 @@ test("signed in: filter the discography to Los Maschineros and add them all", as
   await disco.getByRole("button", { name: "Remove filter Over 4 min" }).click();
   await expect(disco.getByRole("status")).toHaveText("24 tracks");
 
-  await disco.getByRole("button", { name: "+ Add all 24 to Late night" }).click();
+  await disco.getByRole("button", { name: "Add all 24 to Late night" }).click();
   await expect(page.getByRole("article", { name: "Late night" })).toContainText("24 tracks");
   expect((db.patches[0] as { tracks: string[] }).tracks).toHaveLength(24);
 

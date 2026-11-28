@@ -2,6 +2,8 @@
 
 import { usePlayer } from "@/components/player/PlayerProvider";
 import type { PlayerItem } from "@/components/player/state";
+import { RowNum } from "@/components/music/RowNum";
+import { IconPause, IconPlay } from "@/components/ui/icons";
 import styles from "./PlaylistsView.module.css";
 
 const titleOf = (it: PlayerItem) => (it.type === "audio" ? it.track.title : it.video.title);
@@ -16,7 +18,15 @@ export function RadioView({ queue }: { queue: PlayerItem[] }) {
       <div className={styles.row2}>
         <p className={styles.muted}>{queue.length} beats, newest first. Updates with every release.</p>
         <button type="button" className={styles.solid} onClick={() => playFrom(queue, 0)}>
-          {queue[0] && status(queue[0]) === "playing" ? "❚❚ Pause" : "▶ Play radio"}
+          {queue[0] && status(queue[0]) === "playing" ? (
+            <>
+              <IconPause /> Pause
+            </>
+          ) : (
+            <>
+              <IconPlay /> Play radio
+            </>
+          )}
         </button>
       </div>
       <ol className={styles.tracks}>
@@ -25,7 +35,7 @@ export function RadioView({ queue }: { queue: PlayerItem[] }) {
           return (
             <li key={i} data-status={st}>
               <button type="button" className={styles.track} onClick={() => playFrom(queue, i)}>
-                <span className={styles.n}>{st === "playing" ? "❚❚" : String(i + 1).padStart(2, "0")}</span>
+                <RowNum n={String(i + 1).padStart(2, "0")} status={st} className={styles.n} />
                 <span className={styles.t}>{titleOf(it)}</span>
                 <span className={styles.s}>{subOf(it)}</span>
               </button>

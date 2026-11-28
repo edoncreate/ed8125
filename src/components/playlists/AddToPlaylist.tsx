@@ -2,10 +2,11 @@
 
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
+import { IconAddToList, IconCheck } from "@/components/ui/icons";
 import { usePlaylists } from "./PlaylistsProvider";
 import styles from "./AddToPlaylist.module.css";
 
-/** "+" next to the player: put the current track in one of your playlists, or start a new one. */
+/** Add-to-playlist button next to the player: put the current track in one of your playlists, or start a new one. */
 export function AddToPlaylist({
   trackKey,
   title,
@@ -45,7 +46,7 @@ export function AddToPlaylist({
     <div className={styles.wrap} ref={box}>
       <button
         type="button"
-        className={styles.trigger}
+        className={`icon-btn ${styles.trigger}`}
         onClick={() => {
           setOpen((o) => !o);
           setNoteFor(null);
@@ -54,7 +55,7 @@ export function AddToPlaylist({
         aria-label={`Add ${title} to a playlist`}
         title="Add to playlist"
       >
-        +
+        <IconAddToList />
       </button>
       {open && (
         <div className={styles.pop} role="dialog" aria-label="Add to playlist">
@@ -85,8 +86,14 @@ export function AddToPlaylist({
                           }}
                         >
                           <span>{p.name}</span>
-                          <span className={styles.muted}>
-                            {has ? "✓ in it" : `${p.tracks.length}`}
+                          <span className={has ? styles.inIt : styles.muted}>
+                            {has ? (
+                              <>
+                                <IconCheck /> Added
+                              </>
+                            ) : (
+                              `${p.tracks.length}`
+                            )}
                           </span>
                         </button>
                       </li>

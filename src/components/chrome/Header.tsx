@@ -99,7 +99,7 @@ export function Header({ variant }: { variant: "home" | "page" }) {
         >
           Playlists
         </Link>
-        <ThemeToggle />
+        <ThemeToggle className={styles.theme} />
       </div>
     </header>
   );

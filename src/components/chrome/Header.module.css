@@ -84,6 +84,7 @@
 .nav a {
   color: var(--mut);
   text-decoration: none;
+  transition: color var(--dur) var(--ease);
 }
 
 .nav a:hover,
@@ -113,7 +114,7 @@
 }
 
 .right a,
-.right button {
+.right .menuBtn {
   color: inherit;
   font: inherit;
   letter-spacing: inherit;
@@ -134,11 +135,26 @@
   display: none;
 }
 
+/* Theme toggle: a compact icon button, sized to the header's small type. */
+.theme {
+  width: 2rem;
+  height: 2rem;
+  font-size: 0.95rem;
+}
+
+.theme:hover .icon {
+  transform: rotate(-20deg);
+}
+
 /* Your playlists: a small pill top right on every page, apart from the section nav. Fills orange on hover. */
 .right .playlists {
   padding: 0.5em 1.1em;
   border: 1px solid var(--box);
   border-radius: 99px;
+  transition:
+    background-color var(--dur) var(--ease),
+    border-color var(--dur) var(--ease),
+    color var(--dur) var(--ease);
 }
 
 .right .playlists[aria-current="page"] {
@@ -152,10 +168,30 @@
   color: #0f0f10;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .right .playlists,
+  .nav a,
+  .homeLinks a,
+  .menuNav a {
+    transition: none;
+  }
+}
+
 /* Home, wide screens: the hero's top right links into the site. Socials live in the footer. */
 .homeLinks {
   display: flex;
   gap: clamp(0.75rem, 1.5vw, 1.5rem);
+}
+
+/* Already full white, so hover moves to the accent (the page nav goes muted → white instead). */
+.homeLinks a,
+.menuNav a {
+  transition: color var(--dur) var(--ease);
+}
+
+.right .homeLinks a:hover,
+.right .menuNav a:hover {
+  color: var(--acc-ink);
 }
 
 @media (max-width: 767px) {

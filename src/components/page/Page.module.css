@@ -76,12 +76,16 @@
   color: var(--fg);
   font-weight: 600;
   text-decoration: none;
-  transition: border-color 0.2s, color 0.2s;
+  transition:
+    border-color var(--dur) var(--ease),
+    background-color var(--dur) var(--ease),
+    color var(--dur) var(--ease);
 }
 
 .btn:hover {
   border-color: var(--acc);
-  color: var(--acc-ink);
+  background: var(--acc);
+  color: #0f0f10;
 }
 
 .btn:focus-visible {

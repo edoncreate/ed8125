@@ -6,6 +6,8 @@ import { usePlayer } from "@/components/player/PlayerProvider";
 import type { PlayerItem } from "@/components/player/state";
 import type { CatalogTrack } from "@/lib/catalog";
 import type { PlayableTrack } from "@/lib/content";
+import { RowNum } from "@/components/music/RowNum";
+import { IconClose, IconDown, IconPlay, IconUp } from "@/components/ui/icons";
 import { Discography } from "./Discography";
 import { cleanName, resolveTracks, type Playlist } from "./model";
 import { usePlaylists } from "./PlaylistsProvider";
@@ -171,7 +173,7 @@ function PlaylistCard({ playlist, catalog }: { playlist: Playlist; catalog: Map<
             {tracks.length} tracks{minutes ? ` · ${minutes} min` : ""}
           </span>
           <button type="button" className={styles.solid} disabled={!queue.length} onClick={() => playFrom(queue, 0)}>
-            ▶ Play
+            <IconPlay /> Play
           </button>
           <button type="button" className={styles.link} onClick={() => setEditing((x) => !x)}>
             {editing ? "Cancel" : "Rename"}
@@ -190,19 +192,42 @@ function PlaylistCard({ playlist, catalog }: { playlist: Playlist; catalog: Map<
           {tracks.map((t, i) => (
             <li key={`${t.key}-${i}`} data-status={status(queue[i])}>
               <button type="button" className={styles.track} onClick={() => playFrom(queue, i)}>
-                <span className={styles.n}>{status(queue[i]) === "playing" ? "❚❚" : String(i + 1).padStart(2, "0")}</span>
+                <RowNum n={String(i + 1).padStart(2, "0")} status={status(queue[i])} className={styles.n} />
                 <span className={styles.t}>{t.title}</span>
                 <span className={styles.s}>{t.subtitle}</span>
               </button>
               <span className={styles.tools}>
-                <button type="button" aria-label={`Move ${t.title} up`} disabled={i === 0} onClick={() => void moveTrack(playlist.id, i, -1)}>
-                  ↑
+                <button
+                  type="button"
+                  className="icon-btn"
+                  data-size="sm"
+                  aria-label={`Move ${t.title} up`}
+                  title="Move up"
+                  disabled={i === 0}
+                  onClick={() => void moveTrack(playlist.id, i, -1)}
+                >
+                  <IconUp />
                 </button>
-                <button type="button" aria-label={`Move ${t.title} down`} disabled={i === tracks.length - 1} onClick={() => void moveTrack(playlist.id, i, 1)}>
-                  ↓
+                <button
+                  type="button"
+                  className="icon-btn"
+                  data-size="sm"
+                  aria-label={`Move ${t.title} down`}
+                  title="Move down"
+                  disabled={i === tracks.length - 1}
+                  onClick={() => void moveTrack(playlist.id, i, 1)}
+                >
+                  <IconDown />
                 </button>
-                <button type="button" aria-label={`Remove ${t.title}`} onClick={() => void removeTrack(playlist.id, i)}>
-                  ✕
+                <button
+                  type="button"
+                  className="icon-btn"
+                  data-size="sm"
+                  aria-label={`Remove ${t.title}`}
+                  title="Remove"
+                  onClick={() => void removeTrack(playlist.id, i)}
+                >
+                  <IconClose />
                 </button>
               </span>
             </li>

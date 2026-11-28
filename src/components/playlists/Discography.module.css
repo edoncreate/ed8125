@@ -63,11 +63,16 @@
   font: inherit;
   font-size: 0.85rem;
   cursor: pointer;
+  transition:
+    border-color var(--dur) var(--ease),
+    background-color var(--dur) var(--ease),
+    color var(--dur) var(--ease);
 }
 
 .clear:hover:not(:disabled) {
   border-color: var(--acc);
-  color: var(--acc-ink);
+  background: var(--acc);
+  color: #0f0f10;
 }
 
 .clear:disabled {
@@ -88,14 +93,14 @@
   border-color: var(--acc);
 }
 
-.search svg {
-  flex: none;
-  width: 1.1rem;
-  height: 1.1rem;
-  fill: none;
-  stroke: var(--mut);
-  stroke-width: 2;
-  stroke-linecap: round;
+.searchIcon {
+  font-size: 1.1rem;
+  color: var(--mut);
+  transition: color var(--dur) var(--ease);
+}
+
+.search:focus-within .searchIcon {
+  color: var(--acc-ink);
 }
 
 .search input {
@@ -173,6 +178,7 @@
 }
 
 .tick {
+  display: inline-flex;
   width: 1rem;
   color: var(--acc-ink);
 }
@@ -302,6 +308,9 @@
 
 .solid,
 .outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
   padding: 0.7em 1.3em;
   border: 1px solid var(--fg);
   border-radius: 99px;
@@ -309,6 +318,16 @@
   font-weight: 600;
   white-space: nowrap;
   cursor: pointer;
+  transition:
+    background-color var(--dur) var(--ease),
+    border-color var(--dur) var(--ease),
+    color var(--dur) var(--ease),
+    transform var(--dur) var(--ease);
+}
+
+.solid:active:not(:disabled),
+.outline:active:not(:disabled) {
+  transform: scale(0.97);
 }
 
 .solid {
@@ -319,6 +338,7 @@
 .solid:hover:not(:disabled) {
   border-color: var(--acc);
   background: var(--acc);
+  color: #0f0f10;
 }
 
 .outline {
@@ -329,7 +349,8 @@
 
 .outline:hover:not(:disabled) {
   border-color: var(--acc);
-  color: var(--acc-ink);
+  background: var(--acc);
+  color: #0f0f10;
 }
 
 .solid:disabled,
@@ -415,6 +436,9 @@
 }
 
 .tags button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35em;
   padding: 0.35em 0.8em;
   border: 1px solid var(--acc);
   border-radius: 99px;
@@ -426,20 +450,24 @@
   letter-spacing: 0.04em;
   text-transform: uppercase;
   cursor: pointer;
+  transition:
+    background-color var(--dur) var(--ease),
+    color var(--dur) var(--ease);
 }
 
-.tags button span {
-  margin-left: 0.3em;
+.tagX {
   color: var(--acc-ink);
+  transition: transform var(--dur) var(--ease);
 }
 
 .tags button:hover {
   background: var(--acc);
-  color: var(--bg);
+  color: #0f0f10;
 }
 
-.tags button:hover span {
+.tags button:hover .tagX {
   color: inherit;
+  transform: rotate(90deg);
 }
 
 .empty {
@@ -484,11 +512,20 @@
   font: inherit;
   text-align: left;
   cursor: pointer;
-  transition: background-color 0.15s;
+  transition: background-color var(--dur) var(--ease);
 }
 
 .track:hover {
   background: var(--card);
+}
+
+.track:is(:hover, :focus-visible) .n {
+  color: var(--acc-ink);
+}
+
+.n {
+  display: inline-flex;
+  align-items: center;
 }
 
 .n,
@@ -525,27 +562,11 @@
   color: var(--acc-ink);
 }
 
-.add {
-  flex: none;
-  width: 2.1rem;
-  height: 2.1rem;
-  border: 1px solid var(--box);
-  border-radius: 50%;
-  background: none;
-  color: var(--fg);
-  cursor: pointer;
-}
-
-.add:hover:not(:disabled) {
-  border-color: var(--acc);
-  background: var(--acc);
-  color: var(--bg);
-}
-
-.add:disabled {
+/* Already in the list: no ring, a full-strength orange check. */
+.list .add:disabled {
   border-color: transparent;
   color: var(--acc-ink);
-  cursor: default;
+  opacity: 1;
 }
 
 .disco button:focus-visible,
@@ -629,5 +650,23 @@
 @media (min-width: 900px) {
   .sheet {
     display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .clear,
+  .searchIcon,
+  .solid,
+  .outline,
+  .tags button,
+  .tagX,
+  .track {
+    transition: none;
+  }
+
+  .solid:active:not(:disabled),
+  .outline:active:not(:disabled),
+  .tags button:hover .tagX {
+    transform: none;
   }
 }

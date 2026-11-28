@@ -3,6 +3,8 @@
 import { usePlayer } from "@/components/player/PlayerProvider";
 import type { PlayerItem } from "@/components/player/state";
 import { formatDuration, type PlayableTrack } from "@/lib/content";
+import { IconPlay } from "@/components/ui/icons";
+import { RowNum } from "./RowNum";
 import styles from "./TrackList.module.css";
 
 type Row = PlayableTrack & { n?: string; meta?: string };
@@ -24,9 +26,7 @@ export function TrackList({ tracks, label }: { tracks: Row[]; label: string }) {
               onClick={() => playFrom(queue, i)}
               aria-label={`${st === "playing" ? "Pause" : "Play"} ${t.title}`}
             >
-              <span className={styles.n} aria-hidden="true">
-                {st === "playing" ? "❚❚" : st === "paused" ? "▶" : (t.n ?? String(i + 1).padStart(2, "0"))}
-              </span>
+              <RowNum n={t.n ?? String(i + 1).padStart(2, "0")} status={st} className={styles.n} />
               <span className={styles.title}>{t.title}</span>
               {t.meta && <span className={styles.meta}>{t.meta}</span>}
               <span className={styles.dur}>{formatDuration(t.duration)}</span>
@@ -53,7 +53,7 @@ export function PlayAll({
   if (!queue.length) return null;
   return (
     <button type="button" className={styles.playAll} onClick={() => playFrom(queue, 0)}>
-      ▶ {children}
+      <IconPlay /> {children}
     </button>
   );
 }
