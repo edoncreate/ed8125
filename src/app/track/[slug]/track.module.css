@@ -1,0 +1,41 @@
+.track {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+  gap: clamp(1.5rem, 4vw, 4rem);
+  align-items: start;
+}
+
+.noArt {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.art {
+  position: relative;
+  aspect-ratio: 1;
+  overflow: hidden;
+  border: 1px solid var(--ln);
+  border-radius: 6px;
+  background: var(--card);
+}
+
+.art img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* YouTube's 4:3 thumbnail letterboxes the square cover art: scale and centre it (see VideoGrid). */
+.art[data-kind="youtube"] img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 177.78%;
+  max-width: none;
+  transform: translate(-50%, -50%);
+}
+
+@media (max-width: 767px) {
+  .track {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

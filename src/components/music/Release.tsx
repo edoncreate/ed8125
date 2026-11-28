@@ -2,6 +2,7 @@ import Image from "next/image";
 import type { Collab, CollabRelease } from "@content/collabs";
 import { asset } from "@/lib/asset";
 import { formatDuration, releaseTrackToPlayable, type PlayableTrack } from "@/lib/content";
+import { ShareButton } from "@/components/share/ShareButton";
 import { PlayAll, TrackList } from "./TrackList";
 import listStyles from "./TrackList.module.css";
 import styles from "./Release.module.css";
@@ -30,11 +31,10 @@ export function Release({ collab, release }: { collab: Pick<Collab, "slug" | "ti
         </h3>
         {release.description && <p className={styles.desc}>{release.description}</p>}
         {release.credits && <p className={styles.credits}>{release.credits}</p>}
-        {ready && (
-          <div className={styles.actions}>
-            <PlayAll tracks={ready}>Play {release.title}</PlayAll>
-          </div>
-        )}
+        <div className={styles.actions}>
+          {ready && <PlayAll tracks={ready}>Play {release.title}</PlayAll>}
+          <ShareButton path={`/collabs#${collab.slug}-${release.id}`} title={`${collab.title} · ${release.title}`} />
+        </div>
         {ready ? (
           <TrackList
             label={`${release.title} tracks`}

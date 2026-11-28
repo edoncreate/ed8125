@@ -6,6 +6,8 @@ import { formatDuration } from "@/lib/content";
 import { usePlayer } from "./PlayerProvider";
 import { current, itemKey } from "./state";
 import { AddToPlaylist } from "@/components/playlists/AddToPlaylist";
+import { ShareButton } from "@/components/share/ShareButton";
+import { trackPath } from "@/lib/share";
 import { IconClose, IconNext, IconPause, IconPlay, IconPrev } from "@/components/ui/icons";
 import { YouTubeMini } from "./YouTubeMini";
 import styles from "./PlayerDock.module.css";
@@ -112,6 +114,7 @@ export function PlayerDock() {
         </div>
 
         <div className={styles.ctrls}>
+          <ShareButton variant="icon" path={item.type === "audio" ? trackPath(item.track.key) : "/beats"} title={title} />
           {item.type === "audio" && <AddToPlaylist trackKey={item.track.key} title={item.track.title} />}
           <button
             type="button"

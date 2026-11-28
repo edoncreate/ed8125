@@ -19,6 +19,7 @@ import {
   Plus,
   Search,
   SkipBack,
+  Share,
   SkipForward,
   Sun,
   Volume2,
@@ -67,3 +68,5 @@ export const IconSun = make(Sun);
 export const IconSound = make(Volume2);
 export const IconSoundOn = make(AudioLines);
 export const IconMoon = make(Moon);
+/** Share sheet (phones) or copy link (desktop). */
+export const IconShare = make(Share);

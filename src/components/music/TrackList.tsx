@@ -42,17 +42,20 @@ export function TrackList({ tracks, label }: { tracks: Row[]; label: string }) {
 export function PlayAll({
   tracks,
   items,
+  start = 0,
   children = "Play all",
 }: {
   tracks?: PlayableTrack[];
   items?: PlayerItem[];
+  /** Where in the list to start (a track page plays its track, then the rest of the release). */
+  start?: number;
   children?: React.ReactNode;
 }) {
   const { playFrom } = usePlayer();
   const queue: PlayerItem[] = items ?? (tracks ?? []).map((track) => ({ type: "audio", track }));
   if (!queue.length) return null;
   return (
-    <button type="button" className={styles.playAll} onClick={() => playFrom(queue, 0)}>
+    <button type="button" className={styles.playAll} onClick={() => playFrom(queue, start)}>
       <IconPlay /> {children}
     </button>
   );

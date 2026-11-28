@@ -93,8 +93,9 @@ test("signed in: the + in the player adds the current track", async ({ page }) =
   await page.getByRole("button", { name: /^Play Da nostalgia/ }).click();
   const dock = page.getByRole("complementary", { name: "Player" });
   await dock.getByRole("button", { name: "Add Da nostalgia to a playlist" }).click();
-  await dock.getByRole("dialog", { name: "Add to playlist" }).getByRole("button", { name: /Late night/ }).click();
-  await expect(dock.getByRole("status")).toHaveText("Added to Late night.");
+  const dialog = dock.getByRole("dialog", { name: "Add to playlist" });
+  await dialog.getByRole("button", { name: /Late night/ }).click();
+  await expect(dialog.getByRole("status")).toHaveText("Added to Late night.");
   expect(db.patches).toEqual([{ tracks: ["lt:vol-2/da-nostalgia"] }]);
 });
 

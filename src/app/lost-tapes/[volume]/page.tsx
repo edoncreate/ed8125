@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { PlayAll, TrackList } from "@/components/music/TrackList";
 import { Page, Section } from "@/components/page/Page";
+import { ShareButton } from "@/components/share/ShareButton";
 import { IconArrowLeft, IconArrowRight } from "@/components/ui/icons";
 import { getVolume, getVolumes, lostTapeToPlayable } from "@/lib/content";
 import styles from "./volume.module.css";
@@ -46,7 +47,12 @@ export default async function VolumePage({ params }: Props) {
       }
       title={volume.label === volume.id ? volume.span : volume.label}
       accent={volume.label === volume.id ? undefined : volume.span}
-      actions={<PlayAll tracks={tracks}>Play the volume</PlayAll>}
+      actions={
+        <>
+          <PlayAll tracks={tracks}>Play the volume</PlayAll>
+          <ShareButton path={`/lost-tapes/${volume.id}`} title={`Lost Tapes ${volume.label}`} />
+        </>
+      }
     >
       <Section title="Tracklist · oldest first">
         <TrackList tracks={tracks} label={`Lost Tapes ${volume.label}`} />

@@ -11,7 +11,8 @@ import { asset } from "@/lib/asset";
 import { interTight, manrope, spaceMono } from "@/lib/fonts";
 
 export const metadata: Metadata = {
-  // Origin only: Next adds the base path to metadata URLs itself.
+  // Origin only. Next adds the base path to file-based images (opengraph-image.png) but not to URLs
+  // set in metadata objects: pass those through asset().
   metadataBase: new URL(site.origin),
   title: { default: "ED8125 — Beatmaker, bass player, producer", template: "%s · ED8125" },
   description: site.positioning,

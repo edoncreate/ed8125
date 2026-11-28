@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { PlayAll, TrackList } from "@/components/music/TrackList";
 import { VideoGrid } from "@/components/music/VideoGrid";
 import { Page, Section } from "@/components/page/Page";
+import { ShareButton } from "@/components/share/ShareButton";
 import { asset } from "@/lib/asset";
 import { albumTrackToPlayable, getProject, getProjects, projectVideos, toPlayerItem, type PlayableTrack } from "@/lib/content";
 import { getChannelVideos } from "@/lib/youtube";
@@ -20,7 +21,19 @@ type Props = { params: Promise<{ slug: string }> };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const project = getProject((await params).slug);
-  return project ? { title: project.title, description: project.summary } : {};
+  if (!project) return {};
+  return {
+    title: project.title,
+    description: project.summary,
+    openGraph: {
+      type: "music.album",
+      siteName: "ED8125",
+      title: `${project.title} · ED8125`,
+      description: project.summary,
+      url: asset(`/projects/${project.slug}/`),
+      ...(project.kind === "album" ? { images: [{ url: asset(project.cover), alt: `${project.title} cover` }] } : {}),
+    },
+  };
 }
 
 export default async function ProjectPage({ params }: Props) {
@@ -41,7 +54,12 @@ export default async function ProjectPage({ params }: Props) {
         kicker={kicker}
         title={project.title}
         lead={<p>{project.summary}</p>}
-        actions={<PlayAll items={items}>Play the series</PlayAll>}
+        actions={
+          <>
+            <PlayAll items={items}>Play the series</PlayAll>
+            <ShareButton path={`/projects/${project.slug}`} title={project.title} />
+          </>
+        }
       >
         <Section title={`${videos.length} beats so far · newest first`}>
           <VideoGrid videos={videos} items={items} />
@@ -61,7 +79,12 @@ export default async function ProjectPage({ params }: Props) {
       kicker={kicker}
       title={project.title}
       lead={<p>{project.summary}</p>}
-      actions={<PlayAll tracks={tracks}>Play the album</PlayAll>}
+      actions={
+        <>
+          <PlayAll tracks={tracks}>Play the album</PlayAll>
+          <ShareButton path={`/projects/${project.slug}`} title={project.title} />
+        </>
+      }
     >
       <div className={styles.album}>
         <div className={styles.covers}>

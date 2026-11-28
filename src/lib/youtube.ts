@@ -141,8 +141,18 @@ export function mergeVideos(...lists: Video[][]): Video[] {
   return newestFirst([...byId.values()]);
 }
 
-/** Every known video, newest first: live from YouTube, merged with the snapshot. */
-export async function getChannelVideos(): Promise<Video[]> {
+let built: Promise<Video[]> | undefined;
+
+/**
+ * Every known video, newest first: live from YouTube, merged with the snapshot.
+ * A production build asks YouTube once per worker (hundreds of pages call this); dev asks every time.
+ */
+export function getChannelVideos(): Promise<Video[]> {
+  if (process.env.NODE_ENV !== "production") return loadChannelVideos();
+  return (built ??= loadChannelVideos());
+}
+
+async function loadChannelVideos(): Promise<Video[]> {
   const snapshot = (await import("@content/youtube-snapshot.json")).default as Video[];
   let live: Video[] = [];
   try {
