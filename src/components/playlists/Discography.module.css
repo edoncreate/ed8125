@@ -361,6 +361,12 @@
   border-color: var(--acc);
 }
 
+/* Keyboard ring sits on the whole box (label + select), never on the bare select inside it. */
+.select:has(select:focus-visible) {
+  outline: 2px solid var(--acc);
+  outline-offset: 2px;
+}
+
 /* Chevron drawn in CSS so it lines up with the text instead of the browser's own. */
 .select::after {
   content: "";
@@ -537,7 +543,6 @@
 
 .disco button:focus-visible,
 .disco input:focus-visible,
-.disco select:focus-visible,
 .disco summary:focus-visible {
   outline: 2px solid var(--acc);
   outline-offset: 2px;

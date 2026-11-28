@@ -111,7 +111,7 @@ series ("#2", "#4" on covers) — there may be a numbered beat series worth nami
 - **Current work:** 1-minute beat videos, first as Instagram stories, now also on YouTube (the site lists the channel).
 - **Projects:** *One week one beat* (weekly video series, #25–#39 visible in the public feed; earlier episodes on the channel) and *Brasil com amor*.
 - **Lost Tapes:** `~/Desktop/02_Lost_Tapes` — 135 beats in 4 volumes: Vol. 1 2005–09 (36), Vol. 2 2010–14 (55), Vol. 3 2015–19 (37), 2020–21 (7); 4 repeats hidden via overrides. Titles drop "beat" and bare numbers. All public on the site.
-- **Collabs:** Los Maschineros (vol 1 & 2; 14 archive tracks titled "Los Maschineros – …") and beats sent to MC friends (file-name notes: zidek, jaydas, sacik, trek, ben, ps). Details to come from Eduardo.
+- **Collabs:** Los Maschineros — Vol. 1 *Classic* (2012, beats by ED8125 and JV, alternating, JV opens) and Vol. 2 *It’s a Reggae Music* (2013, beats by ED8125, JV and LogicLM); scratches by LogicLM on both; per-track producer in `content/collabs.ts`. Plus 14 archive tracks titled "Los Maschineros – …" and beats sent to MC friends (file-name notes: zidek, jaydas, sacik, trek, ben, ps). Details to come from Eduardo.
 
 ## 4. Channels
 

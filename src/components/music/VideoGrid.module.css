@@ -75,13 +75,22 @@
   font-size: clamp(0.95rem, 1.1vw, 1.15rem);
 }
 
-.date {
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0 0.75rem;
   margin: 0.2rem 0 0;
   font-family: var(--font-mono), ui-monospace, monospace;
   font-size: 0.72rem;
   text-transform: uppercase;
   letter-spacing: 0.06em;
   color: var(--mut);
+}
+
+.plays {
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
 }
 
 @media (max-width: 1023px) {

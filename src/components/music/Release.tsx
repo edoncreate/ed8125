@@ -29,6 +29,7 @@ export function Release({ collab, release }: { collab: Pick<Collab, "slug" | "ti
           {release.title}
         </h3>
         {release.description && <p className={styles.desc}>{release.description}</p>}
+        {release.credits && <p className={styles.credits}>{release.credits}</p>}
         <div className={styles.actions}>
           {ready && <PlayAll tracks={ready}>Play {release.title}</PlayAll>}
           <a href={release.url} target="_blank" rel="noreferrer" className={styles.ext}>
@@ -36,13 +37,17 @@ export function Release({ collab, release }: { collab: Pick<Collab, "slug" | "ti
           </a>
         </div>
         {ready ? (
-          <TrackList label={`${release.title} tracks`} tracks={ready} />
+          <TrackList
+            label={`${release.title} tracks`}
+            tracks={ready.map((t, i) => ({ ...t, meta: release.tracks[i].producer }))}
+          />
         ) : (
           <ol className={listStyles.list} aria-label={`${release.title} tracklist`}>
             {release.tracks.map((t, i) => (
               <li key={t.title} className={`${listStyles.row} ${styles.static}`}>
                 <span className={listStyles.n}>{String(i + 1).padStart(2, "0")}</span>
                 <span className={listStyles.title}>{t.title}</span>
+                {t.producer && <span className={listStyles.meta}>{t.producer}</span>}
                 <span className={listStyles.dur}>{t.duration ? formatDuration(t.duration) : ""}</span>
               </li>
             ))}

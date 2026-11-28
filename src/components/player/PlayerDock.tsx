@@ -45,8 +45,6 @@ export function PlayerDock() {
   const title = item.type === "audio" ? item.track.title : item.video.title;
   const href = item.type === "audio" ? item.track.href : "/beats";
   const subtitle = item.type === "audio" ? item.track.subtitle : `One-minute beat · ${item.video.published.slice(0, 4)}`;
-  /** A beat playing as audio can switch to its video in place. */
-  const watch = item.type === "audio" ? item.track.video : undefined;
   const canPrev = state.index > 0;
   const canNext = state.index < state.queue.length - 1;
 
@@ -115,11 +113,6 @@ export function PlayerDock() {
                 Watch on YouTube ↗
               </a>
             )
-          )}
-          {watch && (
-            <button type="button" className={styles.watch} onClick={() => dispatch({ type: "replace", item: { type: "video", video: watch } })}>
-              Watch video
-            </button>
           )}
         </div>
 

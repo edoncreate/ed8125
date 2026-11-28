@@ -135,7 +135,9 @@ export function releaseTrackToPlayable(
   return {
     key: `collab:${collab.slug}/${release.id}/${n}`,
     title: track.title,
-    subtitle: `${collab.title} · ${release.label} ${release.title} · ${release.year}`,
+    subtitle: [`${collab.title} · ${release.label} ${release.title}`, track.producer ? `prod. ${track.producer}` : release.year].join(
+      " · ",
+    ),
     src: asset(`/media/audio/${collab.slug}/${track.file}`),
     duration: track.duration,
     href: `/collabs#${collab.slug}`,

@@ -90,14 +90,26 @@ describe("collab releases", () => {
     ]);
   });
 
+  it("credits a producer on every Los Maschineros track", () => {
+    const lm = getCollabs().find((c) => c.slug === "los-maschineros")!;
+    const [v1, v2] = lm.releases!.map((r) => r.tracks.map((t) => t.producer));
+    expect(v1).toEqual(["JV", "ED8125", "JV", "ED8125", "JV", "ED8125", "JV", "ED8125", "JV", "ED8125", "JV", "ED8125", "JV"]);
+    expect(v2).toEqual(["LogicLM", "ED8125", "ED8125", "JV", "LogicLM", "JV", "ED8125", "LogicLM", "JV", "LogicLM", "ED8125"]);
+  });
+
   it("a release track is playable only once it has a file", () => {
     const lm = getCollabs().find((c) => c.slug === "los-maschineros")!;
     const rel = lm.releases![0];
     expect(releaseTrackToPlayable(lm, rel, { title: "Clássico", duration: 124 }, 0)).toBeNull();
-    expect(releaseTrackToPlayable(lm, rel, { title: "Clássico", duration: 124, file: "vol-1/01-classico.mp3" }, 0)).toEqual({
+    expect(releaseTrackToPlayable(lm, rel, { title: "Clássico", duration: 124, file: "vol-1/01-classico.mp3" }, 0)).toMatchObject({
+      subtitle: "Los Maschineros · Vol. 1 Classic · 2012",
+    });
+    expect(
+      releaseTrackToPlayable(lm, rel, { title: "Clássico", duration: 124, producer: "JV", file: "vol-1/01-classico.mp3" }, 0),
+    ).toEqual({
       key: "collab:los-maschineros/vol-1/01",
       title: "Clássico",
-      subtitle: "Los Maschineros · Vol. 1 Classic · 2013",
+      subtitle: "Los Maschineros · Vol. 1 Classic · prod. JV",
       src: asset("/media/audio/los-maschineros/vol-1/01-classico.mp3"),
       duration: 124,
       href: "/collabs#los-maschineros",

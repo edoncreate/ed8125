@@ -12,6 +12,8 @@ export type Video = {
   published: string;
   thumbnail: string;
   url: string;
+  /** YouTube view count when known (feed `media:statistics`, API `statistics.viewCount`). */
+  views?: number;
 };
 
 export const CHANNEL_ID = "UCRrfnRVH5LuN6ORAuGNivDw";
@@ -55,7 +57,15 @@ export function parseYouTubeFeed(xml: string): Video[] {
     const title = /<title>([\s\S]*?)<\/title>/.exec(entry)?.[1];
     const published = /<published>(\d{4}-\d{2}-\d{2})/.exec(entry)?.[1];
     if (!id || !title || !published) continue;
-    videos.push({ id, title: cleanTitle(decode(title)), published, thumbnail: thumb(id), url: watch(id) });
+    const views = /<media:statistics[^>]*\bviews="(\d+)"/.exec(entry)?.[1];
+    videos.push({
+      id,
+      title: cleanTitle(decode(title)),
+      published,
+      thumbnail: thumb(id),
+      url: watch(id),
+      ...(views ? { views: Number(views) } : {}),
+    });
   }
   return newestFirst(videos);
 }
@@ -88,7 +98,27 @@ async function fromApi(key: string): Promise<Video[]> {
     }
     page = data.nextPageToken;
   } while (page);
-  return newestFirst(videos);
+  const views = await viewCounts(key, videos.map((v) => v.id)).catch(() => new Map<string, number>());
+  return newestFirst(videos.map((v) => (views.has(v.id) ? { ...v, views: views.get(v.id) } : v)));
+}
+
+type VideosPage = { items?: { id?: string; statistics?: { viewCount?: string } }[] };
+
+/** View counts by video id, 50 ids per request. */
+async function viewCounts(key: string, ids: string[]): Promise<Map<string, number>> {
+  const counts = new Map<string, number>();
+  for (let i = 0; i < ids.length; i += 50) {
+    const url = new URL("https://www.googleapis.com/youtube/v3/videos");
+    url.search = new URLSearchParams({ part: "statistics", id: ids.slice(i, i + 50).join(","), key }).toString();
+    const res = await fetch(url);
+    if (!res.ok) throw new Error(`YouTube API ${res.status}`);
+    const data = (await res.json()) as VideosPage;
+    for (const item of data.items ?? []) {
+      const n = Number(item.statistics?.viewCount);
+      if (item.id && Number.isFinite(n)) counts.set(item.id, n);
+    }
+  }
+  return counts;
 }
 
 async function fromFeed(): Promise<Video[]> {
@@ -99,17 +129,26 @@ async function fromFeed(): Promise<Video[]> {
   return videos;
 }
 
+/** Live from YouTube: the whole channel via the API when `key` is set, else the feed's latest 15. */
+export function fetchChannelVideos(key = process.env.YOUTUBE_API_KEY): Promise<Video[]> {
+  return key ? fromApi(key) : fromFeed();
+}
+
+/** Merges by id, later lists winning; a video keeps its older view count if the newer one has none. */
+export function mergeVideos(...lists: Video[][]): Video[] {
+  const byId = new Map<string, Video>();
+  for (const v of lists.flat()) byId.set(v.id, { ...byId.get(v.id), ...v });
+  return newestFirst([...byId.values()]);
+}
+
 /** Every known video, newest first: live from YouTube, merged with the snapshot. */
 export async function getChannelVideos(): Promise<Video[]> {
   const snapshot = (await import("@content/youtube-snapshot.json")).default as Video[];
   let live: Video[] = [];
   try {
-    const key = process.env.YOUTUBE_API_KEY;
-    live = key ? await fromApi(key) : await fromFeed();
+    live = await fetchChannelVideos();
   } catch {
     // Offline build or YouTube hiccup: the snapshot keeps the site complete.
   }
-  const byId = new Map<string, Video>();
-  for (const v of [...snapshot, ...live]) byId.set(v.id, v);
-  return newestFirst([...byId.values()]);
+  return mergeVideos(snapshot, live);
 }

@@ -19,7 +19,7 @@ describe("catalog (everything a playlist can hold)", () => {
   it("tags every track with its source and year (for the Discography filters)", () => {
     expect(cat.find((t) => t.key === "beat:Sigo em frente")).toMatchObject({ source: "beats", year: 2025 });
     expect(cat.find((t) => t.key.startsWith("album:"))).toMatchObject({ source: "albums" });
-    expect(cat.find((t) => t.key.startsWith("collab:"))).toMatchObject({ source: "collabs", year: 2013 });
+    expect(cat.find((t) => t.key.startsWith("collab:"))).toMatchObject({ source: "collabs", year: 2012 });
     const lt = cat.find((t) => t.key === "lt:vol-2/da-nostalgia");
     expect(lt).toMatchObject({ source: "lost-tapes", year: 2010 });
     expect(cat.every((t) => typeof t.year === "number")).toBe(true);

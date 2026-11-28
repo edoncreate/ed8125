@@ -206,22 +206,3 @@
     width: auto;
   }
 }
-
-.watch {
-  flex: none;
-  padding: 0.35em 0.8em;
-  border: 1px solid var(--box);
-  border-radius: 99px;
-  background: none;
-  color: var(--fg);
-  font: inherit;
-  letter-spacing: inherit;
-  text-transform: inherit;
-  white-space: nowrap;
-  cursor: pointer;
-}
-
-.watch:hover {
-  border-color: var(--acc);
-  color: var(--acc-ink);
-}

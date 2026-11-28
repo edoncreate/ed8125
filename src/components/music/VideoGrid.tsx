@@ -14,6 +14,8 @@ type Props = {
   feature?: boolean;
 };
 
+const plays = new Intl.NumberFormat("en-GB");
+
 /** Grid of one-minute beat videos; clicking plays them in order in the site player. */
 export function VideoGrid({ videos, items, feature = false }: Props) {
   const { playFrom, status } = usePlayer();
@@ -38,7 +40,15 @@ export function VideoGrid({ videos, items, feature = false }: Props) {
               </span>
             </button>
             <p className={styles.title}>{v.title}</p>
-            <p className={styles.date}>{formatDay(v.published)}</p>
+            <p className={styles.meta}>
+              <span>{formatDay(v.published)}</span>
+              {v.views !== undefined && (
+                <span className={styles.plays}>
+                  <span aria-hidden="true">▶</span> {plays.format(v.views)}
+                  <span className="visually-hidden"> plays</span>
+                </span>
+              )}
+            </p>
           </li>
         );
       })}
