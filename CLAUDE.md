@@ -9,7 +9,7 @@ ed8125.com — Eduardo's beatmaker site (Lisboa / Quarteira, beats since 2003). 
 
 ## Commands
 - `npm run dev` · `npm run build` · `npm test` · `npm run test:e2e` · `npm run typecheck` · `npm run lint`
-- `npm run media:lost-tapes` (rebuild archive from ~/Desktop/02_Lost_Tapes) · `npm run media:beats` (beat audio from ~/Desktop/beats/1 week 1 beat, yt-dlp names with [videoId]) · `npm run media:youtube-snapshot`
+- `npm run media:lost-tapes` (rebuild archive from ~/Desktop/02_Lost_Tapes) · `npm run media:beats` (beat audio from ~/Desktop/youtube; see the rule below) · `npm run media:youtube-snapshot`
 
 ## Where things are
 - Content: `content/*.ts|json` (site copy, projects, collabs, generated Lost Tapes + YouTube snapshot).
@@ -21,3 +21,5 @@ ed8125.com — Eduardo's beatmaker site (Lisboa / Quarteira, beats since 2003). 
 - English only. Small orange text uses `--acc-ink` (AA in light mode), large type may use `--acc`.
 - Lost Tapes mp3s are committed on purpose (served by Pages); source WAVs and the old FTP copy never go in git. Never copy code from the compromised WordPress install.
 - GitHub: push/PR as `edoncreate` per command; don't switch the active gh account. Repo is public: commit with the no-reply identity only.
+- New beats from YouTube: Eduardo runs `yt-dlp -x --audio-format mp3 -P ~/Desktop/youtube "https://www.youtube.com/playlist?list=PLiFbISKHIpBsdjGdsKHQ9qJSnEFuPJprS"`,
+  then `npm run media:beats` (adds only new ones; names files `NN-title.mp3` after the cover number, drops the `[id]`).
