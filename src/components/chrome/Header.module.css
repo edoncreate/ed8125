@@ -7,6 +7,7 @@
   min-height: clamp(3.5rem, 6.4vw, 6rem);
   padding: 0 clamp(1rem, 3vw, 3rem);
   font-family: var(--font-mono), ui-monospace, monospace;
+  word-spacing: var(--mono-ws);
   font-size: clamp(0.72rem, 0.9vw, 0.9rem);
   text-transform: uppercase;
   letter-spacing: 0.06em;

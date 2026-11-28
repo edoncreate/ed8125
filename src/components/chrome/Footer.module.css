@@ -7,6 +7,7 @@
   padding: clamp(1.25rem, 2vw, 2rem) clamp(1rem, 3vw, 3rem);
   border-top: 1px solid var(--ln);
   font-family: var(--font-mono), ui-monospace, monospace;
+  word-spacing: var(--mono-ws);
   font-size: clamp(0.72rem, 0.9vw, 0.9rem);
   text-transform: uppercase;
   letter-spacing: 0.06em;

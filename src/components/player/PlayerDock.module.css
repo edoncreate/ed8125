@@ -20,6 +20,7 @@
   backdrop-filter: blur(10px);
   border-top: 1px solid var(--acc);
   font-family: var(--font-mono), ui-monospace, monospace;
+  word-spacing: var(--mono-ws);
   font-size: clamp(0.68rem, 0.8vw, 0.82rem);
   letter-spacing: 0.05em;
   text-transform: uppercase;

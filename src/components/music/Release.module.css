@@ -37,6 +37,7 @@
 .credits {
   margin: 0.75rem 0 0;
   font-family: var(--font-mono), ui-monospace, monospace;
+  word-spacing: var(--mono-ws);
   font-size: 0.72rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;

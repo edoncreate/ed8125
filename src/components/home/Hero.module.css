@@ -61,6 +61,7 @@
 .kicker {
   margin: 0;
   font-family: var(--font-mono), ui-monospace, monospace;
+  word-spacing: var(--mono-ws);
   font-size: clamp(0.7rem, 0.85vw, 1rem);
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -219,6 +220,7 @@
   min-height: var(--bot);
   border-top: 1px solid var(--ln);
   font-family: var(--font-mono), ui-monospace, monospace;
+  word-spacing: var(--mono-ws);
   font-size: clamp(0.62rem, 0.78vw, 0.9rem);
   letter-spacing: 0.05em;
   text-transform: uppercase;

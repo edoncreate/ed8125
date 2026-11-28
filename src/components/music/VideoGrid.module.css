@@ -82,6 +82,7 @@
   gap: 0 0.75rem;
   margin: 0.2rem 0 0;
   font-family: var(--font-mono), ui-monospace, monospace;
+  word-spacing: var(--mono-ws);
   font-size: 0.72rem;
   text-transform: uppercase;
   letter-spacing: 0.06em;

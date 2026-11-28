@@ -120,6 +120,7 @@
   justify-content: space-between;
   margin-bottom: 0.9rem;
   font-family: var(--font-mono), ui-monospace, monospace;
+  word-spacing: var(--mono-ws);
   font-size: 0.75rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -223,6 +224,7 @@
 
 .num {
   font-family: var(--font-mono), ui-monospace, monospace;
+  word-spacing: var(--mono-ws);
   font-size: 0.72rem;
   color: var(--mut);
 }
@@ -239,6 +241,7 @@
   background: none;
   color: var(--fg);
   font-family: var(--font-mono), ui-monospace, monospace;
+  word-spacing: var(--mono-ws);
   font-size: 0.75rem;
   cursor: pointer;
 }
@@ -283,6 +286,7 @@
 
 .count span {
   font-family: var(--font-mono), ui-monospace, monospace;
+  word-spacing: var(--mono-ws);
   font-weight: 400;
   font-size: 0.75rem;
   letter-spacing: 0.08em;
@@ -351,6 +355,7 @@
   padding-left: 0.9rem;
   border: 1px solid var(--box);
   font-family: var(--font-mono), ui-monospace, monospace;
+  word-spacing: var(--mono-ws);
   font-size: 0.72rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -416,6 +421,7 @@
   background: none;
   color: var(--fg);
   font-family: var(--font-mono), ui-monospace, monospace;
+  word-spacing: var(--mono-ws);
   font-size: 0.72rem;
   letter-spacing: 0.04em;
   text-transform: uppercase;
@@ -489,6 +495,7 @@
 .s,
 .d {
   font-family: var(--font-mono), ui-monospace, monospace;
+  word-spacing: var(--mono-ws);
   font-size: 0.72rem;
   letter-spacing: 0.05em;
   text-transform: uppercase;
