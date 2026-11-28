@@ -70,7 +70,8 @@ quota is far above what one daily build uses. Never paste the key into code, cha
   Discography on `/playlists`. Privacy note at `/privacy`; "Delete account" removes the user and playlists.
 - **Turning it on** (one time):
   1. Create a free project at supabase.com (region: EU, e.g. Frankfurt).
-  2. SQL Editor → paste `supabase/migrations/0001_playlists.sql` → Run.
+  2. SQL Editor → paste `supabase/migrations/0001_playlists.sql` → Run, then the same with
+     `0002_grants.sql` (new projects grant no table access by default).
   3. Authentication → URL Configuration: Site URL `https://edoncreate.github.io/ed8125/` (later
      `https://ed8125.com/`); Redirect URLs: add `https://edoncreate.github.io/ed8125/playlists/`,
      `https://ed8125.com/playlists/` and `http://localhost:3000/playlists/`.

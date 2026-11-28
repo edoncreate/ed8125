@@ -6,7 +6,7 @@ create table if not exists public.playlists (
   id          uuid primary key default gen_random_uuid(),
   user_id     uuid not null default auth.uid() references auth.users (id) on delete cascade,
   name        text not null check (char_length(name) between 1 and 80),
-  -- Catalog keys from /catalog.json, e.g. "lt:vol-2/canto", "beat:sigo-em-frente", "album:brasil-com-amor/3".
+  -- Catalog keys from /catalog.json, e.g. "lt:vol-2/canto", "beat:BaEaVqnvyX4" (YouTube id), "album:brasil-com-amor/3".
   tracks      text[] not null default '{}' check (cardinality(tracks) <= 500),
   created_at  timestamptz not null default now(),
   updated_at  timestamptz not null default now()
