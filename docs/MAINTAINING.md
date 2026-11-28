@@ -150,7 +150,7 @@ When it gets close: host the Lost Tapes mp3s elsewhere (e.g. Cloudflare R2 or an
 
 ## Open items
 
-- [ ] Point ed8125.com at GitHub Pages (steps above).
+- [ ] Point ed8125.com at GitHub Pages — **later, via Vercel DNS** (decided 2026-11-28; stay on the github.io URL while building). Today the domain resolves nowhere: its nameservers (ns1–4.webhs.org, the old host) no longer answer, so nothing breaks in the meantime. Then: nameservers → ns1/ns2.vercel-dns.com, records as in "Moving to ed8125.com", Supabase Site URL → https://ed8125.com/.
 - [x] Playlists on: Supabase project `ed8125` (EU, Ireland), migrations 0001 + 0002 run, repo variables set (2026-11-28).
 - [ ] Custom SMTP in Supabase before sharing playlists widely (built-in mailer: a few emails/hour).
 - [ ] Beats for MCs: who, which beats, links.
