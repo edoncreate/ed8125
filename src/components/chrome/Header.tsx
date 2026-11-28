@@ -13,7 +13,7 @@ export const NAV = [
   { href: "/projects", label: "Projects" },
   { href: "/lost-tapes", label: "Lost Tapes" },
   { href: "/collabs", label: "Collabs" },
-  { href: "/playlists", label: "Playlists" },
+  { href: "/radio", label: "Radio" },
 ] as const;
 
 /** True once the page has scrolled at all (the home header is see-through only at the very top). */
@@ -92,6 +92,13 @@ export function Header({ variant }: { variant: "home" | "page" }) {
             </nav>
           )}
         </div>
+        <Link
+          href="/playlists"
+          className={styles.playlists}
+          aria-current={pathname.startsWith("/playlists") ? "page" : undefined}
+        >
+          Playlists
+        </Link>
         <ThemeToggle />
       </div>
     </header>

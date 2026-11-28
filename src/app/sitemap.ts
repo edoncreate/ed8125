@@ -13,6 +13,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/lost-tapes",
     ...getVolumes().map((v) => `/lost-tapes/${v.id}`),
     "/collabs",
+    "/radio",
     "/playlists",
     "/privacy",
   ];

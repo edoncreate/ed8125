@@ -12,23 +12,21 @@ import { usePlaylists } from "./PlaylistsProvider";
 import styles from "./PlaylistsView.module.css";
 
 const audioQueue = (tracks: PlayableTrack[]): PlayerItem[] => tracks.map((track) => ({ type: "audio", track }));
-const titleOf = (it: PlayerItem) => (it.type === "audio" ? it.track.title : it.video.title);
-const subOf = (it: PlayerItem) =>
-  it.type === "audio" ? it.track.subtitle : `One week one beat · ${it.video.published.slice(0, 4)} · video`;
 
-export function PlaylistsView({ radio }: { radio: PlayerItem[] }) {
+export function PlaylistsView() {
   const { enabled, email, playlists, catalog, loadCatalog } = usePlaylists();
   useEffect(loadCatalog, [loadCatalog]);
 
   return (
     <div className={styles.view}>
-      <RadioBlock queue={radio} />
       <section className={styles.block} aria-labelledby="mine">
         <h2 id="mine" className={styles.h2}>
           My playlists
         </h2>
         {!enabled ? (
-          <p className={styles.muted}>Accounts are switching on soon. Radio plays in the meantime.</p>
+          <p className={styles.muted}>
+            Accounts are switching on soon. <Link href="/radio">Radio</Link> plays in the meantime.
+          </p>
         ) : email === undefined ? (
           <p className={styles.muted}>…</p>
         ) : email === null ? (
@@ -39,39 +37,6 @@ export function PlaylistsView({ radio }: { radio: PlayerItem[] }) {
       </section>
       {enabled && email && <Discography catalog={catalog} playlists={playlists} />}
     </div>
-  );
-}
-
-function RadioBlock({ queue }: { queue: PlayerItem[] }) {
-  const { playFrom, status } = usePlayer();
-  return (
-    <section className={styles.block} aria-labelledby="radio">
-      <div className={styles.row2}>
-        <div>
-          <h2 id="radio" className={styles.h2}>
-            Radio
-          </h2>
-          <p className={styles.muted}>The latest {queue.length} beats, newest first. Updates with every release.</p>
-        </div>
-        <button type="button" className={styles.solid} onClick={() => playFrom(queue, 0)}>
-          {queue[0] && status(queue[0]) === "playing" ? "❚❚ Pause" : "▶ Play radio"}
-        </button>
-      </div>
-      <ol className={styles.tracks}>
-        {queue.map((it, i) => {
-          const st = status(it);
-          return (
-            <li key={i} data-status={st}>
-              <button type="button" className={styles.track} onClick={() => playFrom(queue, i)}>
-                <span className={styles.n}>{st === "playing" ? "❚❚" : String(i + 1).padStart(2, "0")}</span>
-                <span className={styles.t}>{titleOf(it)}</span>
-                <span className={styles.s}>{subOf(it)}</span>
-              </button>
-            </li>
-          );
-        })}
-      </ol>
-    </section>
   );
 }
 

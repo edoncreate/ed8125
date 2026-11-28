@@ -48,11 +48,18 @@ async function signedIn(page: Page) {
   }, user);
 }
 
-test("signed out: Radio plays and sign-in sends a link", async ({ page }) => {
+test("Radio has its own page with the latest 20 beats", async ({ page }) => {
+  await page.goto("/radio");
+  await expect(page.locator('a[href*="/radio"][aria-current="page"]')).toHaveCount(1); // section nav (hidden on phones)
+  await expect(page.getByRole("region", { name: "Radio" }).locator("ol > li")).toHaveCount(20);
+  await page.getByRole("button", { name: "Play radio" }).click();
+  await expect(page.getByRole("complementary", { name: "Player" })).toBeVisible();
+});
+
+test("signed out: sign-in sends a link", async ({ page }) => {
   await fakeSupabase(page, []);
   await page.goto("/playlists");
-  await expect(page.getByRole("heading", { name: "Radio" })).toBeVisible();
-  await expect(page.locator("section[aria-labelledby=radio] ol > li")).toHaveCount(20);
+  await expect(page.getByRole("link", { name: "Playlists" })).toHaveAttribute("aria-current", "page");
   await page.getByLabel(/Sign in with your email/).fill("listener@example.com");
   await page.getByRole("button", { name: "Send link" }).click();
   await expect(page.getByRole("status")).toContainText("Check your inbox");

@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import Link from "next/link";
 import { Header } from "@/components/chrome/Header";
 import styles from "./Page.module.css";
 
@@ -49,5 +50,14 @@ export function Section({ title, children, id }: { title?: string; children: Rea
       {title && <h2 className={styles.sectionTitle}>{title}</h2>}
       {children}
     </section>
+  );
+}
+
+/** Outline pill for page-level links (sits in `actions`, beside or instead of a filled play button). */
+export function ButtonLink({ href, children }: { href: string; children: ReactNode }) {
+  return (
+    <Link href={href} className={styles.btn}>
+      {children} <span aria-hidden="true">→</span>
+    </Link>
   );
 }

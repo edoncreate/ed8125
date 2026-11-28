@@ -63,9 +63,9 @@ quota is far above what one daily build uses. Never paste the key into code, cha
 
 ## Playlists and Radio (Supabase)
 
-- **Radio** = the latest 20 beats by YouTube release date (`radio()` in `src/lib/content.ts`), audio where a
+- **Radio** (`/radio`, in the section nav) = the latest 20 beats by YouTube release date (`radio()` in `src/lib/content.ts`), audio where a
   beat has some, else the video. Instagram has no feed the site can read, so YouTube dates are the source.
-- **Playlists**: listeners sign in by email link (no password); each playlist is a list of catalog keys
+- **Playlists** (`/playlists`, top right of the header): listeners sign in by email link (no password); each playlist is a list of catalog keys
   (`/catalog.json`: every audio track on the site). Add with the **+** in the footer player or from the
   Discography on `/playlists`. Privacy note at `/privacy`; "Delete account" removes the user and playlists.
 - **Turning it on** (one time):

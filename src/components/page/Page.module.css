@@ -66,6 +66,35 @@
   margin-top: clamp(1.5rem, 2.5vw, 2.5rem);
 }
 
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  padding: 0.85em 1.6em;
+  border: 1px solid var(--box);
+  border-radius: 99px;
+  color: var(--fg);
+  font-weight: 600;
+  text-decoration: none;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.btn:hover {
+  border-color: var(--acc);
+  color: var(--acc-ink);
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--acc);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn {
+    transition: none;
+  }
+}
+
 .section {
   margin-bottom: clamp(3rem, 6vw, 6rem);
 }
