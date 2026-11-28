@@ -151,7 +151,8 @@ When it gets close: host the Lost Tapes mp3s elsewhere (e.g. Cloudflare R2 or an
 ## Open items
 
 - [ ] Point ed8125.com at GitHub Pages (steps above).
-- [ ] Turn on playlists: Supabase project + repo variables (see Playlists and Radio).
+- [x] Playlists on: Supabase project `ed8125` (EU, Ireland), migrations 0001 + 0002 run, repo variables set (2026-11-28).
+- [ ] Custom SMTP in Supabase before sharing playlists widely (built-in mailer: a few emails/hour).
 - [ ] Beats for MCs: who, which beats, links.
 - [ ] Delete `edoncreate/ed8125-old` once sure nothing is needed from it.
 - [ ] Pages size: ~100 MB left. Move the Lost Tapes mp3s to an audio host before adding much more.
