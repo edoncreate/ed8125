@@ -19,14 +19,18 @@ export function Hero({ videos, soundTrack, lostTapes }: Props) {
       <div className={styles.stage}>
         <div className={styles.inner}>
           <div className={styles.copy}>
-            <p className={styles.kicker}>
-              <b>ED8125</b> — {site.roles.join(" | ")}
-            </p>
+            <p className={styles.kicker}>{site.roles.join(" | ")}</p>
             <h1 id="intro-title" className={styles.h1}>
               <span className={styles.line}>{l1}</span> <span className={styles.line}>{l2}</span>{" "}
               <span className={`${styles.line} ${styles.acc}`}>{l3}</span>
             </h1>
-            <p className={styles.sub}>{site.positioning}</p>
+            <p className={styles.sub}>
+              {site.positioning.split(/(?<=\.)\s+/).map((sentence) => (
+                <span key={sentence} className={styles.sentence}>
+                  {sentence}
+                </span>
+              ))}
+            </p>
             <div className={styles.ctas}>
               <PlayRadio queue={radio(videos)} className={styles.solid} />
               <Link href="/beats" className={styles.outline}>

@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { formatDuration } from "@/lib/content";
 import { usePlayer } from "./PlayerProvider";
@@ -42,6 +43,7 @@ export function PlayerDock() {
   if (!item) return null;
 
   const title = item.type === "audio" ? item.track.title : item.video.title;
+  const href = item.type === "audio" ? item.track.href : "/beats";
   const subtitle = item.type === "audio" ? item.track.subtitle : `One-minute beat · ${item.video.published.slice(0, 4)}`;
   /** A beat playing as audio can switch to its video in place. */
   const watch = item.type === "audio" ? item.track.video : undefined;
@@ -75,7 +77,15 @@ export function PlayerDock() {
 
         <div className={styles.meta}>
           <b className={styles.title}>{title}</b>
-          <span className={styles.sub}>{failed ? "Couldn't play this one — try the next." : subtitle}</span>
+          {failed ? (
+            <span className={styles.sub}>Couldn&apos;t play this one — try the next.</span>
+          ) : href ? (
+            <Link href={href} className={`${styles.sub} ${styles.subLink}`}>
+              {subtitle}
+            </Link>
+          ) : (
+            <span className={styles.sub}>{subtitle}</span>
+          )}
         </div>
 
         <div className={styles.progress}>

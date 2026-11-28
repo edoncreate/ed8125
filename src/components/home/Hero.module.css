@@ -99,11 +99,17 @@
 
 .sub {
   margin: clamp(1rem, 1.8vw, 2.25rem) 0 0;
-  max-width: 34vw;
+  max-width: 42vw;
   font-size: clamp(1rem, 1.3vw, 1.5rem);
   line-height: 1.35;
   opacity: 0.85;
   text-wrap: pretty;
+}
+
+/* One sentence per line; a long one wraps evenly instead of leaving a word behind. */
+.sentence {
+  display: block;
+  text-wrap: balance;
 }
 
 .ctas {

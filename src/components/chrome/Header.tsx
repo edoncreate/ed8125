@@ -83,10 +83,19 @@ export function Header({ variant }: { variant: "home" | "page" }) {
               </Link>
             ))}
           </div>
-          <a href={site.socials.youtube} target="_blank" rel="noopener noreferrer">
+          {isHome && (
+            <nav aria-label="Sections" className={styles.homeLinks}>
+              {NAV.slice(0, 3).map((n) => (
+                <Link key={n.href} href={n.href}>
+                  {n.label}
+                </Link>
+              ))}
+            </nav>
+          )}
+          <a href={site.socials.youtube} target="_blank" rel="noopener noreferrer" className={styles.social}>
             YouTube ↗
           </a>
-          <a href={site.socials.instagram} target="_blank" rel="noopener noreferrer">
+          <a href={site.socials.instagram} target="_blank" rel="noopener noreferrer" className={styles.social}>
             Instagram ↗
           </a>
         </div>
