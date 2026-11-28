@@ -107,12 +107,13 @@ When it gets close: host the Lost Tapes mp3s elsewhere (e.g. Cloudflare R2 or an
 
 ## GitHub and git rules
 
-- Push and open PRs **as `edoncreate`, per command**. The machine's default gh account is a
-  different one with no access here; don't switch it. One-off push:
+- This repo pushes **as `edoncreate`** on its own: `.git/config` has a repo-only credential helper that
+  asks `gh` for the edoncreate token (set 2026-11-28). Plain `git push` and the editor's Push button work.
+  The Mac's default gh account stays the work one for every other repo; don't switch it. On a new clone,
+  set it up again:
   ```bash
-  git -c credential.helper= -c credential.https://github.com.helper= \
-      -c 'credential.https://github.com.helper=!f(){ echo username=x-access-token; echo "password=$(gh auth token --user edoncreate)"; }; f' \
-      push origin main
+  git config --local --add credential.https://github.com.helper ''
+  git config --local --add credential.https://github.com.helper '!f() { test "$1" = get || exit 0; echo username=x-access-token; echo "password=$(/opt/homebrew/bin/gh auth token --user edoncreate)"; }; f'
   ```
   For `gh` commands: `GH_TOKEN="$(gh auth token --user edoncreate)" gh …`
 - Commits use the GitHub no-reply address (set in this repo's local git config). The repo is
