@@ -24,7 +24,7 @@ describe("shareUrl", () => {
 });
 
 describe("getTrackPages", () => {
-  const v = (id: string, published: string): Video => ({ id, title: id, published, thumbnail: `https://i.ytimg.com/vi/${id}/hqdefault.jpg`, url: "" });
+  const v = (id: string, published: string): Video => ({ id, title: id, published, thumbnail: `https://i.ytimg.com/vi/${id}/maxresdefault.jpg`, url: "" });
   const audio = {
     a: { file: "01-a.mp3", duration: 60, episode: 1 },
     b: { file: "02-b.mp3", duration: 60, episode: 2 },

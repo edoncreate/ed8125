@@ -24,7 +24,7 @@
   height: auto;
 }
 
-/* YouTube's 4:3 thumbnail letterboxes the square cover art: scale and centre it (see VideoGrid). */
+/* The square cover art sits in the middle of YouTube's 16:9 thumbnail: scale and centre it (see VideoGrid). */
 .art[data-kind="youtube"] img {
   position: absolute;
   top: 50%;

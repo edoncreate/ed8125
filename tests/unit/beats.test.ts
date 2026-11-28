@@ -7,7 +7,7 @@ const video = (title: string): Video => ({
   id: "abc123def45",
   title,
   published: "2025-07-25T10:00:00Z",
-  thumbnail: "https://i.ytimg.com/vi/abc123def45/hqdefault.jpg",
+  thumbnail: "https://i.ytimg.com/vi/abc123def45/maxresdefault.jpg",
   url: "https://www.youtube.com/watch?v=abc123def45",
 });
 

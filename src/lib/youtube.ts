@@ -43,7 +43,11 @@ export function uploadsPlaylistId(channelId: string): string {
   return `UU${channelId.slice(2)}`;
 }
 
-const thumb = (id: string) => `https://i.ytimg.com/vi/${id}/hqdefault.jpg`;
+/**
+ * 1280x720 thumbnail: the square cover art in its middle is 720px (hqdefault's is only 270px, which blurs
+ * on the tiles). Every upload on the channel is HD, so maxresdefault exists for all of them.
+ */
+const thumb = (id: string) => `https://i.ytimg.com/vi/${id}/maxresdefault.jpg`;
 const watch = (id: string) => `https://www.youtube.com/watch?v=${id}`;
 
 function newestFirst(videos: Video[]): Video[] {

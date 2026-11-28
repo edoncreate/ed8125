@@ -13,7 +13,7 @@ describe("parseYouTubeFeed", () => {
       id: "BaEaVqnvyX4",
       title: "Sigo em frente",
       published: "2025-07-25",
-      thumbnail: "https://i.ytimg.com/vi/BaEaVqnvyX4/hqdefault.jpg",
+      thumbnail: "https://i.ytimg.com/vi/BaEaVqnvyX4/maxresdefault.jpg",
       url: "https://www.youtube.com/watch?v=BaEaVqnvyX4",
       views: 8,
     });

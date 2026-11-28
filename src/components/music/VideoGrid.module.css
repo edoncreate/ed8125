@@ -27,8 +27,8 @@
 
 .thumb {
   /*
-   * YouTube's 4:3 thumbnail (480x360) letterboxes the 16:9 frame, whose middle is ED8125's
-   * square cover art (270x270). 480/270 = 177.78%: scaled and centred, the art fills the tile.
+   * YouTube's 16:9 thumbnail (1280x720, maxresdefault) has ED8125's square cover art (720x720)
+   * in the middle. 1280/720 = 177.78%: scaled and centred, the art fills the tile.
    */
   position: absolute;
   top: 50%;

@@ -8,7 +8,7 @@ export type TrackPage = {
   track: PlayableTrack;
   /** Cover art: a site path (/media/...) or a full URL (YouTube thumbnail). Lost Tapes have none. */
   image?: string;
-  /** YouTube thumbnails are 4:3 with the square art in the middle. */
+  /** YouTube thumbnails are 16:9 with the square art in the middle. */
   imageKind?: "square" | "youtube";
   from: { label: string; href: string };
   /** The release the track belongs to, in order; Play starts at `index` and carries on. */
