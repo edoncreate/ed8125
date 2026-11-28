@@ -35,10 +35,16 @@ export default async function ProjectPage({ params }: Props) {
 
   if (project.kind === "videos") {
     const videos = projectVideos(project, await getChannelVideos());
+    const items = videos.map((v) => toPlayerItem(v));
     return (
-      <Page kicker={kicker} title={project.title} lead={<p>{project.summary}</p>}>
+      <Page
+        kicker={kicker}
+        title={project.title}
+        lead={<p>{project.summary}</p>}
+        actions={<PlayAll items={items}>Play the series</PlayAll>}
+      >
         <Section title={`${videos.length} beats so far · newest first`}>
-          <VideoGrid videos={videos} items={videos.map((v) => toPlayerItem(v))} />
+          <VideoGrid videos={videos} items={items} />
         </Section>
       </Page>
     );

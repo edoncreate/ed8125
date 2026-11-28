@@ -38,15 +38,21 @@ export function TrackList({ tracks, label }: { tracks: Row[]; label: string }) {
   );
 }
 
-/** "Play all" for a list of tracks. */
-export function PlayAll({ tracks, children = "Play all" }: { tracks: PlayableTrack[]; children?: React.ReactNode }) {
+/** "Play all" for a list of tracks, or for ready-made player items (e.g. a video series: audio where there is some). */
+export function PlayAll({
+  tracks,
+  items,
+  children = "Play all",
+}: {
+  tracks?: PlayableTrack[];
+  items?: PlayerItem[];
+  children?: React.ReactNode;
+}) {
   const { playFrom } = usePlayer();
+  const queue: PlayerItem[] = items ?? (tracks ?? []).map((track) => ({ type: "audio", track }));
+  if (!queue.length) return null;
   return (
-    <button
-      type="button"
-      className={styles.playAll}
-      onClick={() => playFrom(tracks.map((track) => ({ type: "audio", track })), 0)}
-    >
+    <button type="button" className={styles.playAll} onClick={() => playFrom(queue, 0)}>
       ▶ {children}
     </button>
   );

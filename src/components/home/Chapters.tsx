@@ -81,6 +81,9 @@ export function ProjectCards({ projects, videos }: { projects: Project[]; videos
                 Play the album
               </PlayAll>
             )}
+            {p.kind === "videos" && (
+              <PlayAll items={projectVideos(p, videos).map((v) => toPlayerItem(v))}>Play the series</PlayAll>
+            )}
           </li>
         ))}
       </ul>

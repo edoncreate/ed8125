@@ -57,6 +57,14 @@ test("album: play the album, then next track", async ({ page }) => {
   await expect(dock).toContainText("Carnaval");
 });
 
+test("video series: Play the series starts the newest beat", async ({ page }) => {
+  await page.goto("/projects");
+  await page.getByRole("button", { name: "Play the series" }).click();
+  const dock = page.getByRole("complementary", { name: "Player" });
+  await expect(dock).toContainText("One week one beat #39");
+  await expect.poll(() => audioTime(page), { timeout: 10_000 }).toBeGreaterThan(0.3);
+});
+
 test("enter with sound toggles the featured track", async ({ page }) => {
   await page.goto("/");
   const toggle = page.getByRole("button", { name: /Enter with sound/ });
