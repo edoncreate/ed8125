@@ -21,7 +21,8 @@ describe("beatSlug", () => {
 });
 
 describe("beatToPlayable", () => {
-  const audio = { "sigo-em-frente": { file: "sigo-em-frente.mp3", duration: 61 } };
+  // Keyed by YouTube id; the episode is the number on the cover art.
+  const audio = { abc123def45: { file: "39-sigo-em-frente.mp3", duration: 61, episode: 39 } };
 
   it("is null while the beat has no audio file", () => {
     expect(beatToPlayable(video("Sigo em frente"), {})).toBeNull();
@@ -29,18 +30,20 @@ describe("beatToPlayable", () => {
 
   it("maps a beat with audio to an audio track", () => {
     expect(beatToPlayable(video("Sigo em frente"), audio)).toEqual({
-      key: "beat:sigo-em-frente",
+      key: "beat:abc123def45",
       title: "Sigo em frente",
-      subtitle: "One week one beat · 2025",
-      src: asset("/media/beats/sigo-em-frente.mp3"),
+      subtitle: "One week one beat #39 · 2025",
+      src: asset("/media/beats/39-sigo-em-frente.mp3"),
       duration: 61,
       href: "/beats",
+      video: video("Sigo em frente"),
     });
   });
 
   it("toPlayerItem prefers audio and falls back to the video", () => {
     expect(toPlayerItem(video("Sigo em frente"), audio).type).toBe("audio");
-    expect(toPlayerItem(video("Caminho"), audio)).toEqual({ type: "video", video: video("Caminho") });
+    const other = { ...video("Caminho"), id: "zzzzzzzzzzz" };
+    expect(toPlayerItem(other, audio)).toEqual({ type: "video", video: other });
   });
 });
 
@@ -57,5 +60,16 @@ describe("radio", () => {
     expect(q).toHaveLength(20);
     expect(q.map((it) => (it.type === "video" ? it.video.published.slice(8, 10) : ""))[0]).toBe("25");
     expect(q.map((it) => (it.type === "video" ? it.video.published.slice(8, 10) : ""))[19]).toBe("06");
+  });
+});
+
+describe("beat audio file names (yt-dlp downloads)", () => {
+  it("reads the YouTube id and title, and names the mp3 after the cover number", async () => {
+    const { parseDownloadName, beatFileName } = await import("@/lib/content");
+    expect(parseDownloadName("ED8125 - Vida f€dida [uLd5W41QFCw].mp3")).toEqual({ id: "uLd5W41QFCw", title: "Vida f€dida" });
+    expect(parseDownloadName("01 - Clássico [94920601].mp3")).toEqual({ id: "94920601", title: "Clássico", n: 1 });
+    expect(parseDownloadName("no id here.mp3")).toBeNull();
+    expect(beatFileName(1, "Temes")).toBe("01-temes.mp3");
+    expect(beatFileName(23, "Vida f€dida")).toBe("23-vida-f-dida.mp3");
   });
 });

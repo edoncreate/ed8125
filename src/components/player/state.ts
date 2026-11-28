@@ -14,6 +14,7 @@ export type PlayerAction =
   | { type: "next" }
   | { type: "prev" }
   | { type: "ended" }
+  | { type: "replace"; item: PlayerItem }
   | { type: "close" };
 
 export const initialPlayerState: PlayerState = { queue: [], index: 0, playing: false };
@@ -46,6 +47,11 @@ export function playerReducer(s: PlayerState, a: PlayerAction): PlayerState {
       return s.index > 0 ? { ...s, index: s.index - 1, playing: true } : s;
     case "ended":
       return s.index < s.queue.length - 1 ? { ...s, index: s.index + 1, playing: true } : { ...s, playing: false };
+    case "replace": {
+      if (!s.queue.length) return s;
+      const queue = s.queue.map((it, i) => (i === s.index ? a.item : it));
+      return { ...s, queue, playing: true };
+    }
     case "close":
       return initialPlayerState;
   }

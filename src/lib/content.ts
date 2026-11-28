@@ -37,6 +37,8 @@ export type PlayableTrack = {
   src: string;
   duration?: number;
   href?: string;
+  /** One week one beat: the YouTube video this audio comes from. */
+  video?: Video;
 };
 
 /**
@@ -140,27 +142,48 @@ export function releaseTrackToPlayable(
   };
 }
 
-/** Audio extracted from the One week one beat videos (scripts/build-beat-audio.ts). */
-export type BeatAudio = Record<string, { file: string; duration: number }>;
+/**
+ * Audio for the One week one beat videos (scripts/build-beat-audio.ts), keyed by YouTube id.
+ * `episode` is the number on the cover art (01 = the first upload).
+ */
+export type BeatAudio = Record<string, { file: string; duration: number; episode: number }>;
 const beatAudio = beatAudioJson as BeatAudio;
 
-/** Stable id for a beat, from its YouTube title: "ED8125 - Vida f€dida #owob" → "vida-f-dida". */
+/** Slug of a beat's title: "ED8125 - Vida f€dida #owob" → "vida-f-dida". */
 export function beatSlug(title: string): string {
   return slugify(cleanTrackTitle(cleanTitle(title)).title);
 }
 
-/** A YouTube beat as an audio track, once its audio has been extracted. */
+/** mp3 name for an episode, keeping the cover number: (1, "Temes") → "01-temes.mp3". */
+export function beatFileName(episode: number, title: string): string {
+  return `${String(episode).padStart(2, "0")}-${beatSlug(title)}.mp3`;
+}
+
+/**
+ * Reads a yt-dlp download name: "ED8125 - Temes [_CZF_9reLJI].mp3" → id + title;
+ * "01 - Clássico [94920601].mp3" (SoundCloud set) → id + title + track number.
+ */
+export function parseDownloadName(name: string): { id: string; title: string; n?: number } | null {
+  const m = /^(.*?)\s*\[([A-Za-z0-9_-]+)\]\.[a-z0-9]+$/i.exec(name);
+  if (!m) return null;
+  let title = cleanTitle(m[1]).trim();
+  const num = /^(\d{1,3})\s*-\s*(.+)$/.exec(title);
+  if (num) title = num[2].trim();
+  return num ? { id: m[2], title, n: Number(num[1]) } : { id: m[2], title };
+}
+
+/** A YouTube beat as an audio track, once its audio is in. */
 export function beatToPlayable(video: Video, audio: BeatAudio = beatAudio): PlayableTrack | null {
-  const slug = beatSlug(video.title);
-  const a = audio[slug];
+  const a = audio[video.id];
   if (!a) return null;
   return {
-    key: `beat:${slug}`,
+    key: `beat:${video.id}`,
     title: video.title,
-    subtitle: `One week one beat · ${video.published.slice(0, 4)}`,
+    subtitle: `One week one beat #${String(a.episode).padStart(2, "0")} · ${video.published.slice(0, 4)}`,
     src: asset(`/media/beats/${a.file}`),
     duration: a.duration,
     href: "/beats",
+    video,
   };
 }
 

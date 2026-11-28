@@ -66,12 +66,15 @@ test("enter with sound toggles the featured track", async ({ page }) => {
   await expect(page.locator("html")).toHaveAttribute("data-playing", "true");
 });
 
-test("a beat video opens in the floating YouTube player", async ({ page }) => {
+test("a beat plays as audio, and 'Watch video' opens it in the floating YouTube player", async ({ page }) => {
   await page.goto("/beats");
   await page.getByRole("button", { name: /^Play Sigo em frente/ }).click();
   const dock = page.getByRole("complementary", { name: "Player" });
-  await expect(dock).toContainText("Sigo em frente");
+  await expect(dock).toContainText("One week one beat #39");
+  await expect.poll(() => audioTime(page), { timeout: 10_000 }).toBeGreaterThan(0.3);
+  await dock.getByRole("button", { name: "Watch video" }).click();
   await expect(dock.locator("iframe[src*='youtube']")).toHaveCount(1, { timeout: 20_000 });
+  await expect(page.locator("audio")).toHaveCount(0);
 });
 
 test("unknown pages 404", async ({ page }) => {

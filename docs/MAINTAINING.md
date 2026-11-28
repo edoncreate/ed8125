@@ -19,8 +19,8 @@ Read this first when picking the site up again. Last updated 2026-11-27.
 | I want to… | Do this |
 |---|---|
 | Publish a new beat | Upload it to YouTube (@ED8125). The site rebuilds daily at 05:17 UTC and picks it up (as a video, and in Radio). Can't wait? Actions → *Deploy to GitHub Pages* → **Run workflow**. |
-| Make beats play as audio (and join playlists) | Download the videos in YouTube Studio (Content → ⋮ → Download) into `~/Desktop/03_One_Week_One_Beat`, keep the file names (= video titles), run `npm run media:beats`, commit `content/beat-audio.json` + `public/media/beats/`, push. A beat without audio still plays as video. |
-| Add the Los Maschineros audio | Put the mp3s in `public/media/audio/los-maschineros/vol-1/` (and `vol-2/`), named `01-classico.mp3` etc., and add `file: "vol-1/01-classico.mp3"` to each track in `content/collabs.ts`. A volume becomes playable once **all** its tracks have a file. |
+| Add audio for new beats | Put the mp3 in `~/Desktop/beats/1 week 1 beat` with its YouTube id in the name (yt-dlp style, `ED8125 - Title [videoId].mp3`), run `npm run media:beats`, commit `content/beat-audio.json` + `public/media/beats/`, push. Files are named after the cover number (`40-title.mp3`); the [id] never reaches the site. A beat without audio plays as video. In the player, **Watch video** switches a beat to its video. |
+| Los Maschineros audio | Done: `public/media/audio/los-maschineros/vol-1|vol-2/NN-title.mp3`, listed with `file` + `duration` in `content/collabs.ts` (source: `~/Desktop/beats/vol-1`, `vol-2`). A volume plays once **all** its tracks have a file. |
 | Add Lost Tapes | Drop the files into `~/Desktop/02_Lost_Tapes/<volume folder>`, run `npm run media:lost-tapes` (needs `ffmpeg`), check the titles, commit, push. |
 | Fix a Lost Tape title / hide one | `content/lost-tapes-overrides.json`, keyed by the **source file name** slugified: `"vol-2/beat-da-dica": { "title": "…" }` or `{ "hidden": true }`, then `npm run media:lost-tapes`. Titles drop "beat", bare numbers and "Project/vN/new/wav" automatically; the mp3 name follows the title. Hidden as repeats: Beat em im (2nd), Vou por ai (2 copies), Honey Project (v1). |
 | Edit bio, headline, socials | `content/site.ts` |
@@ -95,9 +95,10 @@ No `CNAME` file is needed in the repo: with Actions deploys, the domain lives in
 
 ## Size budget
 
-GitHub Pages allows **1 GB** per site. Today: `public/media` ≈ 712 MB (Lost Tapes ≈ 579 MB, 135
-tracks, mp3 192k). Coming: One week one beat audio ≈ 55 MB (39 × ~1 min), Los Maschineros ≈ 100 MB
-(24 tracks, ~70 min). With both, the site sits close to the limit, so plan the move below then.
+GitHub Pages allows **1 GB** per site. Today the built site is ≈ **900 MB**: Lost Tapes ≈ 579 MB (135
+tracks), One week one beat ≈ 122 MB (39 × ~3 min, ~130 kbps), Los Maschineros ≈ 63 MB (24 tracks),
+Brasil com amor and images the rest. About **100 MB of headroom** ≈ 30 more beats. Before that runs
+out, move the Lost Tapes audio off Pages (below).
 
 When it gets close: host the Lost Tapes mp3s elsewhere (e.g. Cloudflare R2 or another bucket), set
 `NEXT_PUBLIC_LOST_TAPES_BASE` to that URL in the workflow's build env, and remove the files from
@@ -149,11 +150,9 @@ When it gets close: host the Lost Tapes mp3s elsewhere (e.g. Cloudflare R2 or an
 ## Open items
 
 - [ ] Point ed8125.com at GitHub Pages (steps above).
-- [ ] Los Maschineros audio files (tracklists, artwork and info are in; see Everyday tasks).
-- [ ] One week one beat audio: download from YouTube Studio, then `npm run media:beats`.
 - [ ] Turn on playlists: Supabase project + repo variables (see Playlists and Radio).
 - [ ] Beats for MCs: who, which beats, links.
 - [ ] Delete `edoncreate/ed8125-old` once sure nothing is needed from it.
-- [ ] Watch the Pages size budget as Lost Tapes grow.
+- [ ] Pages size: ~100 MB left. Move the Lost Tapes mp3s to an audio host before adding much more.
 - [ ] GitHub warns that the Pages actions run on deprecated Node 20; bump the action versions when
       new majors ship.

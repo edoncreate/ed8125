@@ -47,4 +47,14 @@ describe("playerReducer", () => {
     const s = playerReducer(initialPlayerState, { type: "load", queue: [a("x")], index: 5 });
     expect(s.index).toBe(0);
   });
+
+  it("replace swaps the current item (audio ↔ its video) and keeps the queue position", () => {
+    let s = playerReducer(initialPlayerState, { type: "load", queue: [a("x"), a("y"), a("z")], index: 1 });
+    s = playerReducer(s, { type: "pause" });
+    s = playerReducer(s, { type: "replace", item: v("y") });
+    expect(s.queue.map((it) => (it.type === "audio" ? it.track.key : `yt:${it.video.id}`))).toEqual(["x", "yt:y", "z"]);
+    expect(s.index).toBe(1);
+    expect(s.playing).toBe(true);
+    expect(playerReducer(initialPlayerState, { type: "replace", item: v("y") })).toEqual(initialPlayerState);
+  });
 });
