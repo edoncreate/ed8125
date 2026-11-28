@@ -13,6 +13,8 @@ const nextConfig: NextConfig = {
   // Pin the workspace root (a stray package.json/lockfile exists higher up the tree).
   turbopack: { root },
   outputFileTracingRoot: root,
+  // Changes every build, so the browser never reuses a cached /catalog.json from an older deploy.
+  env: { NEXT_PUBLIC_BUILD_ID: process.env.GITHUB_SHA?.slice(0, 7) ?? String(Date.now()) },
 };
 
 export default nextConfig;

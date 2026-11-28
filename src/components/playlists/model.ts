@@ -31,12 +31,13 @@ export function cleanName(name: string): string {
 
 export type LengthBand = "short" | "mid" | "long";
 export type CatalogSort = "catalog" | "newest" | "oldest" | "az" | "shortest" | "longest";
+/** Empty or missing lists mean "no filter"; several values in one list mean "any of these". */
 export type CatalogFilter = {
   q?: string;
-  source?: CatalogSource;
-  year?: number;
+  sources?: CatalogSource[];
+  years?: number[];
   /** short < 2 min ≤ mid ≤ 4 min < long */
-  length?: LengthBand;
+  lengths?: LengthBand[];
   sort?: CatalogSort;
   /** Keys to leave out (e.g. what's already in the playlist). */
   exclude?: string[];
@@ -56,11 +57,12 @@ export function lengthBand(seconds = 0): LengthBand {
 export function filterCatalog(tracks: CatalogTrack[], f: CatalogFilter): CatalogTrack[] {
   const needle = f.q ? fold(f.q.trim()) : "";
   const skip = new Set(f.exclude ?? []);
+  const any = <T,>(list: T[] | undefined, v: T) => !list?.length || list.includes(v);
   const out = tracks.filter(
     (t) =>
-      (!f.source || t.source === f.source) &&
-      (!f.year || t.year === f.year) &&
-      (!f.length || lengthBand(t.duration) === f.length) &&
+      any(f.sources, t.source) &&
+      any(f.years, t.year) &&
+      any(f.lengths, lengthBand(t.duration)) &&
       !skip.has(t.key) &&
       (!needle || fold(`${t.title} ${t.subtitle}`).includes(needle)),
   );

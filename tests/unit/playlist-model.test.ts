@@ -55,11 +55,18 @@ describe("filterCatalog (Discography filters)", async () => {
   });
 
   it("filters by source, year and length band", () => {
-    expect(keys({ source: "lost-tapes" })).toEqual(["lt1", "lt2"]);
-    expect(keys({ year: 2025 })).toEqual(["b1"]);
-    expect(keys({ length: "short" })).toEqual(["lt1", "al1"]); // under 2 min
-    expect(keys({ length: "mid" })).toEqual(["b1", "b2"]); // 2–4 min
-    expect(keys({ length: "long" })).toEqual(["lt2", "lm1"]); // over 4 min
+    expect(keys({ sources: ["lost-tapes"] })).toEqual(["lt1", "lt2"]);
+    expect(keys({ years: [2025] })).toEqual(["b1"]);
+    expect(keys({ lengths: ["short"] })).toEqual(["lt1", "al1"]); // under 2 min
+    expect(keys({ lengths: ["mid"] })).toEqual(["b1", "b2"]); // 2–4 min
+    expect(keys({ lengths: ["long"] })).toEqual(["lt2", "lm1"]); // over 4 min
+  });
+
+  it("several choices in one group widen it; groups narrow each other", () => {
+    expect(keys({ sources: ["lost-tapes", "collabs"] })).toEqual(["lt1", "lt2", "lm1"]);
+    expect(keys({ years: [2010, 2013, 2025] })).toEqual(["b1", "lt1", "lm1"]);
+    expect(keys({ sources: ["lost-tapes", "collabs"], lengths: ["long"] })).toEqual(["lt2", "lm1"]);
+    expect(keys({ sources: [], years: [], lengths: [] })).toHaveLength(6); // empty = no filter
   });
 
   it("searches title and subtitle, accents ignored", () => {

@@ -65,7 +65,12 @@ test("signed in: add a Lost Tape from the discography, then play the playlist", 
   await expect(page.getByText("Signed in as")).toContainText("listener@example.com");
   await expect(page.getByRole("article", { name: "Late night" })).toContainText("0 tracks");
 
-  await page.getByLabel("Search the discography").fill("Da nostalgia");
+  await expect(page.locator("section[aria-labelledby=disco]").getByRole("status")).toHaveText(/^\d+ tracks$/);
+  const filtersBtn = page.getByRole("button", { name: /^Filters/ });
+  if (await filtersBtn.isVisible()) await filtersBtn.click();
+  await page.locator('[aria-label="Filters"]:visible').getByLabel("Search the discography").fill("Da nostalgia");
+  const done = page.getByRole("button", { name: /^Show \d+ tracks?/ });
+  if (await done.isVisible()) await done.click();
   await page.getByRole("button", { name: "Add Da nostalgia to Late night" }).click();
   await expect(page.getByRole("article", { name: "Late night" })).toContainText("1 tracks");
   expect(db.patches).toEqual([{ tracks: ["lt:vol-2/da-nostalgia"] }]);
@@ -91,13 +96,32 @@ test("signed in: filter the discography to Los Maschineros and add them all", as
   await signedIn(page);
   await page.goto("/playlists");
   const disco = page.locator("section[aria-labelledby=disco]");
-  await disco.getByRole("button", { name: /^Los Maschineros/ }).click();
-  await expect(disco.getByRole("status")).toContainText("24 tracks");
-  await disco.getByLabel("Length").selectOption("long");
-  await expect(disco.locator("ol > li")).toHaveCount(1); // Excalibur Maschine of Fire, 4:38
-  await disco.getByRole("button", { name: "Clear filters" }).click();
-  await disco.getByRole("button", { name: /^Los Maschineros/ }).click();
+  // Desktop: sidebar. Phone: a full-screen dialog opened from the "Filters" button.
+  const filters = page.locator('[aria-label="Filters"]:visible');
+  const openFilters = async () => {
+    const btn = disco.getByRole("button", { name: /^Filters/ });
+    if (await btn.isVisible()) await btn.click(); // phones: the sidebar is a sheet
+  };
+  const closeFilters = async () => {
+    const done = filters.getByRole("button", { name: /^Show \d+ tracks?/ });
+    if (await done.isVisible()) await done.click();
+  };
+
+  await expect(disco.getByRole("status")).toHaveText(/^\d+ tracks$/); // signed in + catalog loaded
+  await openFilters();
+  await filters.getByLabel("Los Maschineros").check();
+  await filters.getByLabel("Over 4 min").check();
+  await closeFilters();
+  await expect(disco.getByRole("status")).toHaveText("1 track"); // Excalibur Maschine of Fire, 4:38
+  await disco.getByRole("button", { name: "Remove filter Over 4 min" }).click();
+  await expect(disco.getByRole("status")).toHaveText("24 tracks");
+
   await disco.getByRole("button", { name: "+ Add all 24 to Late night" }).click();
   await expect(page.getByRole("article", { name: "Late night" })).toContainText("24 tracks");
   expect((db.patches[0] as { tracks: string[] }).tracks).toHaveLength(24);
+
+  await openFilters();
+  await filters.getByRole("button", { name: "Clear all" }).click();
+  await closeFilters();
+  await expect(disco.getByRole("status")).toHaveText(/^2\d\d tracks$/);
 });

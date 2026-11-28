@@ -66,7 +66,7 @@ export function lostTapeToPlayable(volume: Volume, t: LostTape): PlayableTrack {
   return {
     key: `lt:${volume.id}/${t.slug}`,
     title: t.title,
-    subtitle: `Lost Tapes ${volume.label} · ${t.date?.slice(0, 4) ?? t.year ?? ""}`.trim(),
+    subtitle: [`Lost Tapes ${volume.label}`, t.date?.slice(0, 4) ?? t.year].filter(Boolean).join(" · "),
     src: `${LOST_TAPES_BASE}/${t.file}`,
     duration: t.duration,
     href: `/lost-tapes/${volume.id}`,

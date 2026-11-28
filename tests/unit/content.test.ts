@@ -104,3 +104,11 @@ describe("collab releases", () => {
     });
   });
 });
+
+describe("Lost Tapes subtitle", () => {
+  it("has no trailing separator when a track has no year", () => {
+    const v = getVolume("vol-2")!;
+    const t = v.tracks.find((x) => x.slug === "jeze")!;
+    expect(lostTapeToPlayable(v, t).subtitle).toBe("Lost Tapes Vol. 2");
+  });
+});

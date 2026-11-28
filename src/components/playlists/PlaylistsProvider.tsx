@@ -59,7 +59,7 @@ export function PlaylistsProvider({ children }: { children: ReactNode }) {
   const loadCatalog = useCallback(() => {
     if (catalogLoading.current) return;
     catalogLoading.current = true;
-    fetch(`${BASE_PATH}/catalog.json`)
+    fetch(`${BASE_PATH}/catalog.json?v=${process.env.NEXT_PUBLIC_BUILD_ID ?? ""}`)
       .then((r) => (r.ok ? (r.json() as Promise<CatalogTrack[]>) : []))
       .then((list) => setCatalog(new Map(list.map((t) => [t.key, t]))))
       .catch(() => {
